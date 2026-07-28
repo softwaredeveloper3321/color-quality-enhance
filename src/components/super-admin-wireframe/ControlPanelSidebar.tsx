@@ -110,7 +110,7 @@ const RoleButton = memo<{
       type="button"
       className={cn(
         "w-full flex items-center gap-3 rounded-lg transition-all duration-100 cursor-pointer",
-        "px-3 py-2.5 text-left min-h-[40px] border border-transparent",
+        "px-3 py-2 text-left min-h-[36px] border border-transparent",
         isActive 
           ? "bg-blue-600" 
           : "hover:bg-white/10"

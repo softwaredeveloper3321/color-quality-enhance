@@ -17,7 +17,7 @@ interface KPIGridProps {
 export function KPIGrid({ children, className, gap = 'md' }: KPIGridProps) {
   const gapClasses = {
     sm: 'gap-3',
-    md: 'gap-4',
+    md: 'gap-3',
     lg: 'gap-6',
   };
 
@@ -94,9 +94,9 @@ export function KPIBox({
         // Base styles
         'relative overflow-hidden cursor-pointer transition-all duration-200 group',
         // Fixed height with flexible content
-        'min-h-[164px] h-full',
+        'min-h-[122px] h-full',
         // Card styling — premium violet glass surface
-        'p-4 rounded-2xl border-2 border-primary/35 surface-rich backdrop-blur-md',
+        'p-3.5 rounded-2xl border-2 border-primary/35 surface-rich backdrop-blur-md',
         // Hover/selected states
         'hover:border-primary-glow/70 hover:glow-primary',
         isSelected && 'ring-2 ring-primary ring-offset-2 ring-offset-background border-primary',
