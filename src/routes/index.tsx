@@ -140,11 +140,12 @@ const KPI_BOXES: Kpi[] = [
 
 function CockpitBanner() {
   return (
-    <section className="relative overflow-hidden rounded-3xl border border-primary/30 p-6 sm:p-8">
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/60 to-accent/70" />
-      <div className="absolute -left-16 -top-20 h-64 w-64 rounded-full bg-primary/60 blur-3xl" />
-      <div className="absolute -right-10 bottom-[-6rem] h-72 w-72 rounded-full bg-accent/60 blur-3xl" />
-      <div className="absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.35)_1px,transparent_0)] [background-size:22px_22px]" />
+    <section className="relative overflow-hidden rounded-3xl border-2 border-primary-glow/40 p-6 shadow-[0_28px_70px_-30px] shadow-primary/80 sm:p-8">
+      <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary-glow/80 to-accent" />
+      <div className="absolute -left-16 -top-20 h-64 w-64 rounded-full bg-primary-glow/70 blur-3xl" />
+      <div className="absolute -right-10 bottom-[-6rem] h-72 w-72 rounded-full bg-accent/70 blur-3xl" />
+      <div className="absolute inset-0 opacity-35 [background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.4)_1px,transparent_0)] [background-size:20px_20px]" />
+
 
       <div className="relative flex flex-col gap-6 xl:flex-row xl:items-center xl:justify-between">
         <div className="max-w-2xl">
