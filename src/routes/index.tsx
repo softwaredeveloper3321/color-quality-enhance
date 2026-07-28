@@ -203,7 +203,7 @@ function Index() {
 
   return (
     <TooltipProvider>
-      <div className="dark flex min-h-screen w-full" style={{ background: "#120b23" }}>
+      <div className="dark flex min-h-screen w-full" style={{ background: "radial-gradient(1200px 700px at 18% -10%, #34145e 0%, transparent 60%), radial-gradient(900px 600px at 100% 0%, #3d0f4d 0%, transparent 55%), #120727" }}>
         <div className="w-[320px] flex-shrink-0">
           <ControlPanelSidebar
             activeRole={activeRole}
@@ -243,9 +243,9 @@ function Index() {
 
         <aside
           className="hidden w-[280px] flex-shrink-0 overflow-y-auto xl:block"
-          style={{ background: "#1a1030", borderLeft: "1px solid #2c2048" }}
+          style={{ background: "linear-gradient(180deg, #221040 0%, #160a2c 100%)", borderLeft: "2px solid rgba(167,108,255,0.32)" }}
         >
-          <div className="px-3 py-3" style={{ borderBottom: "1px solid #2c2048" }}>
+          <div className="px-3 py-3" style={{ borderBottom: "2px solid rgba(167,108,255,0.32)" }}>
             <h2 className="text-xs font-bold uppercase tracking-wider text-foreground">
               Control Panel
             </h2>

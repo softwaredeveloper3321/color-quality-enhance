@@ -30,16 +30,16 @@ import {
 
 // ===== LOCKED COLORS (SOFTWARE VALA VIOLET GRADIENT) =====
 const COLORS = {
-  bg: '#120b23',
-  bgGradient: 'linear-gradient(180deg, #171029 0%, #0e0819 100%)',
-  border: '#2c2048',
-  activeHighlight: '#8b5cf6',
-  hoverBg: 'rgba(139, 92, 246, 0.18)',
-  cardBg: 'rgba(139, 92, 246, 0.08)',
-  cardGlow: 'rgba(139, 92, 246, 0.22)',
+  bg: '#150a2b',
+  bgGradient: 'linear-gradient(180deg, #241041 0%, #180b2f 55%, #0e0620 100%)',
+  border: 'rgba(167, 108, 255, 0.32)',
+  activeHighlight: '#8b3dff',
+  hoverBg: 'rgba(167, 108, 255, 0.22)',
+  cardBg: 'rgba(167, 108, 255, 0.12)',
+  cardGlow: 'rgba(167, 108, 255, 0.35)',
   text: '#ffffff',
   textMuted: 'rgba(255, 255, 255, 0.7)',
-  iconColor: '#c4b5fd',
+  iconColor: '#d6bcff',
 };
 
 // ===== ROLE CATEGORIES (EXACT ORDER - LOCKED BY GRADE) =====
@@ -110,15 +110,16 @@ const RoleButton = memo<{
       type="button"
       className={cn(
         "w-full flex items-center gap-3 rounded-lg transition-all duration-100 cursor-pointer",
-        "px-3 py-2 text-left min-h-[36px]",
+        "px-3 py-2.5 text-left min-h-[40px] border border-transparent",
         isActive 
           ? "bg-blue-600" 
           : "hover:bg-white/10"
       )}
       style={{
         background: isActive 
-          ? `linear-gradient(135deg, ${COLORS.activeHighlight} 0%, #d946ef 100%)`
+          ? `linear-gradient(135deg, ${COLORS.activeHighlight} 0%, #e935c8 100%)`
           : undefined,
+        boxShadow: isActive ? '0 10px 26px -12px rgba(180, 80, 255, 0.9)' : undefined,
       }}
     >
       {/* Icon */}
@@ -135,7 +136,7 @@ const RoleButton = memo<{
       {/* Text */}
       <span 
         className={cn(
-          "text-sm font-semibold truncate leading-tight",
+          "text-sm font-bold truncate leading-tight tracking-tight",
           isActive ? "text-white" : "text-white/90"
         )}
       >
@@ -163,7 +164,7 @@ export const ControlPanelSidebar = memo<ControlPanelSidebarProps>(({
         width: 320,
         height: '100vh',
         background: COLORS.bgGradient,
-        borderRight: `1px solid ${COLORS.border}`,
+        borderRight: `2px solid ${COLORS.border}`,
         overflowY: 'auto',
         overflowX: 'hidden',
       }}
