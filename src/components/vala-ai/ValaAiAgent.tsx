@@ -12,8 +12,8 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import valaAgent from "@/assets/vala-ai-agent.png";
 import { useValaChat } from "./useValaChat";
+import { ValaAvatarLive } from "./ValaAvatarLive";
 
 /* --------------------------- command execution ---------------------------- */
 
@@ -61,41 +61,6 @@ function createRecognition(): SpeechRecognitionLike | null {
   rec.continuous = false;
   rec.interimResults = false;
   return rec;
-}
-
-/* -------------------------------- avatar ---------------------------------- */
-
-function ValaAvatar({
-  state,
-  className,
-}: {
-  state: "idle" | "thinking" | "speaking" | "listening";
-  className?: string;
-}) {
-  return (
-    <div className={cn("relative", className)}>
-      <span
-        className={cn(
-          "absolute inset-0 -z-10 rounded-full blur-2xl transition-all duration-500",
-          state === "listening" && "bg-accent/60 animate-pulse",
-          state === "thinking" && "bg-primary/60 animate-pulse",
-          state === "speaking" && "bg-primary-glow/60 animate-pulse",
-          state === "idle" && "bg-primary/35",
-        )}
-      />
-      <img
-        src={valaAgent}
-        alt="Vala AI executive assistant with glowing blue circuit bodysuit"
-        width={832}
-        height={1216}
-        className={cn(
-          "h-full w-auto select-none object-contain drop-shadow-[0_18px_50px_rgba(40,140,255,0.55)]",
-          "animate-[vala-breathe_5s_ease-in-out_infinite]",
-          state === "speaking" && "animate-[vala-talk_0.9s_ease-in-out_infinite]",
-        )}
-      />
-    </div>
-  );
 }
 
 /* --------------------------------- panel ---------------------------------- */
@@ -198,7 +163,7 @@ export function ValaAiAgent() {
         {/* Header with avatar */}
         <header className="relative flex items-center gap-3 border-b-2 border-primary/35 px-3 py-2.5">
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(120px_80px_at_10%_0%,rgba(56,160,255,0.35),transparent)]" />
-          <ValaAvatar state={avatarState} className="h-16" />
+          <ValaAvatarLive state={avatarState} className="h-24" showWaveform={false} />
           <div className="min-w-0 flex-1">
             <p className="text-sm font-extrabold tracking-tight text-foreground">VALA · Founder AI</p>
             <span className="mt-0.5 inline-flex items-center gap-1 rounded-full border border-accent/40 bg-accent/12 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-accent">

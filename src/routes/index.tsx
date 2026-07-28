@@ -46,8 +46,8 @@ import ControlPanelSidebar, {
 } from "@/components/super-admin-wireframe/ControlPanelSidebar";
 import { CommandCenter } from "@/components/command-center/CommandCenter";
 import { KPIGrid, KPIBox } from "@/components/boss/KPIGrid";
-import mascot from "@/assets/vala-ai-agent.png";
 import { ValaAiAgent } from "@/components/vala-ai/ValaAiAgent";
+import { ValaAvatarLive } from "@/components/vala-ai/ValaAvatarLive";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -199,15 +199,11 @@ function CockpitBanner() {
             ))}
           </div>
 
-          {/* Vala AI agent */}
-          <img
-            src={mascot}
-            alt="Vala AI female android assistant with glowing blue circuit patterns"
-            width={832}
-            height={1216}
-            className="hidden h-[220px] w-auto shrink-0 select-none object-contain drop-shadow-[0_24px_50px_rgba(40,130,255,0.6)] lg:block xl:h-[260px] animate-[vala-breathe_5s_ease-in-out_infinite]"
+          {/* Living Vala AI agent */}
+          <ValaAvatarLive
+            state="idle"
+            className="hidden h-[290px] w-auto shrink-0 lg:block xl:h-[340px]"
           />
-
         </div>
       </div>
     </section>
