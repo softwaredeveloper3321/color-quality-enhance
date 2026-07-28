@@ -72,17 +72,17 @@ export function KPIBox({
   className,
 }: KPIBoxProps) {
   const statusColors = {
-    healthy: 'bg-green-500',
+    healthy: 'bg-neon',
     warning: 'bg-amber-500',
     critical: 'bg-destructive',
     action: 'bg-blue-500',
   };
 
   const urgencyStyles = {
-    low: 'border-green-500/50 text-green-600 bg-green-500/10',
-    medium: 'border-amber-500/50 text-amber-600 bg-amber-500/10',
-    high: 'border-orange-500/50 text-orange-600 bg-orange-500/10',
-    critical: 'border-destructive/50 text-destructive bg-destructive/10',
+    low: 'border-neon/60 text-neon bg-neon/12',
+    medium: 'border-gold/60 text-gold bg-gold/12',
+    high: 'border-orange-400/60 text-orange-300 bg-orange-400/15',
+    critical: 'border-destructive/60 text-destructive bg-destructive/15',
   };
 
   return (
@@ -94,24 +94,23 @@ export function KPIBox({
         // Base styles
         'relative overflow-hidden cursor-pointer transition-all duration-200 group',
         // Fixed height with flexible content
-        'min-h-[150px] h-full',
+        'min-h-[164px] h-full',
         // Card styling — premium violet glass surface
-        'p-4 rounded-2xl border border-primary/20 bg-card/80 backdrop-blur-sm',
-        'shadow-[0_2px_20px_-8px] shadow-primary/40',
+        'p-4 rounded-2xl border-2 border-primary/35 surface-rich backdrop-blur-md',
         // Hover/selected states
-        'hover:border-primary/60 hover:shadow-[0_10px_36px_-10px] hover:shadow-primary/60',
+        'hover:border-primary-glow/70 hover:glow-primary',
         isSelected && 'ring-2 ring-primary ring-offset-2 ring-offset-background border-primary',
         className
       )}
     >
       {/* Violet sheen */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-70 group-hover:opacity-100 transition-opacity" />
-      <div className="pointer-events-none absolute -top-16 -right-12 h-32 w-32 rounded-full bg-primary/20 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/18 opacity-70 group-hover:opacity-100 transition-opacity" />
+      <div className="pointer-events-none absolute -top-16 -right-12 h-32 w-32 rounded-full bg-primary-glow/30 blur-3xl" />
 
       {/* Live Pulse Indicator */}
       <div
         className={cn(
-          'absolute top-3 right-3 w-2 h-2 rounded-full',
+          'absolute top-3 right-3 w-2.5 h-2.5 rounded-full ring-2 ring-background/60',
           statusColors[status],
           status === 'critical' ? 'animate-pulse' : 'animate-pulse [animation-duration:2s]'
         )}
@@ -122,15 +121,15 @@ export function KPIBox({
         {/* Top Row: Label + Value + Icon */}
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
-            <p className="text-[10px] text-muted-foreground uppercase tracking-wide font-semibold leading-none truncate">
+            <p className="text-[11px] text-foreground/70 uppercase tracking-[0.12em] font-bold leading-none truncate">
               {label}
             </p>
             <div className="flex items-baseline gap-2 mt-1">
               <p
                 className={cn(
-                  'text-2xl font-bold leading-none',
+                  'text-[1.7rem] font-extrabold leading-none tracking-tight',
                   status === 'critical' && 'text-destructive',
-                  status === 'healthy' && 'text-green-500'
+                  status === 'healthy' && 'text-neon'
                 )}
               >
                 {value}
@@ -138,23 +137,23 @@ export function KPIBox({
             </div>
             {/* Sub-values summary */}
             {subValues && subValues.length > 0 && (
-              <p className="text-[9px] text-muted-foreground mt-1 leading-relaxed line-clamp-1">
+              <p className="text-[10px] font-medium text-muted-foreground mt-1.5 leading-relaxed line-clamp-1">
                 {subValues.join(' • ')}
               </p>
             )}
           </div>
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 bg-muted">
-            <Icon className="w-4 h-4 text-muted-foreground" />
+          <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 border border-primary/40 bg-primary/25">
+            <Icon className="w-[18px] h-[18px] text-primary-glow" />
           </div>
         </div>
 
         {/* Bottom Row: Source + Urgency + Actions */}
         <div className="flex items-center justify-between mt-auto pt-2 gap-2">
           <div className="flex items-center gap-1.5 min-w-0">
-            <span className="text-[8px] text-muted-foreground truncate">{source}</span>
+            <span className="text-[9px] font-semibold text-muted-foreground truncate">{source}</span>
             <span
               className={cn(
-                'text-[7px] font-semibold px-1.5 py-0.5 rounded border',
+                'text-[8px] font-bold tracking-wide px-1.5 py-0.5 rounded-md border',
                 urgencyStyles[urgency]
               )}
             >
