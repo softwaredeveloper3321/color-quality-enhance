@@ -44,7 +44,7 @@ import {
   Wallet,
   Zap,
 } from "lucide-react";
-import mascot from "@/assets/ai-mascot.png";
+import mascot from "@/assets/vala-ai-agent.png";
 
 /* ---------------------------------- shell --------------------------------- */
 
