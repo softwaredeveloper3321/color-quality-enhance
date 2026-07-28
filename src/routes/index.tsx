@@ -198,14 +198,15 @@ function CockpitBanner() {
             ))}
           </div>
 
-          {/* Corporate AI mascot */}
+          {/* Vala AI agent */}
           <img
             src={mascot}
-            alt="Corporate AI assistant robot presenting the enterprise dashboard"
-            width={912}
-            height={1104}
-            className="hidden h-[220px] w-auto shrink-0 select-none object-contain drop-shadow-[0_24px_50px_rgba(40,130,255,0.6)] lg:block xl:h-[260px]"
+            alt="Vala AI female android assistant with glowing blue circuit patterns"
+            width={832}
+            height={1216}
+            className="hidden h-[220px] w-auto shrink-0 select-none object-contain drop-shadow-[0_24px_50px_rgba(40,130,255,0.6)] lg:block xl:h-[260px] animate-[vala-breathe_5s_ease-in-out_infinite]"
           />
+
         </div>
       </div>
     </section>
