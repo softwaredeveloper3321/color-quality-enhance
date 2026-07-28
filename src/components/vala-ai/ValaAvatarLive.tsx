@@ -44,6 +44,143 @@ const PARTICLES = Array.from({ length: 12 }, (_, i) => ({
   size: 1.5 + ((i * 0.7) % 2),
 }));
 
+/**
+ * HUMAN BEHAVIOUR ENGINE
+ * Real people are never perfectly periodic: they blink irregularly (sometimes twice),
+ * their eyes dart in micro-saccades, they glance away while thinking, shift weight,
+ * nod while listening and move their jaw unevenly while talking.
+ * This hook produces that noise on a single rAF loop.
+ */
+type Behaviour = {
+  blink: number; // 0 open → 1 closed
+  saccade: { x: number; y: number }; // small involuntary eye darts
+  glance: { x: number; y: number }; // occasional look-away
+  head: { yaw: number; pitch: number; roll: number };
+  jaw: number; // 0..1 mouth openness while speaking
+  brow: number; // -1 concerned .. 1 raised/happy
+  breath: number; // 0..1
+};
+
+function useHumanBehaviour(state: ValaState): Behaviour {
+  const [b, setB] = useState<Behaviour>({
+    blink: 0,
+    saccade: { x: 0, y: 0 },
+    glance: { x: 0, y: 0 },
+    head: { yaw: 0, pitch: 0, roll: 0 },
+    jaw: 0,
+    brow: 0,
+    breath: 0,
+  });
+  const stateRef = useRef(state);
+  stateRef.current = state;
+
+  useEffect(() => {
+    let raf = 0;
+    let nextBlink = performance.now() + 1200;
+    let blinkStart = -1;
+    let doubleBlink = false;
+    let nextSaccade = performance.now() + 900;
+    let sac = { x: 0, y: 0 };
+    let nextGlance = performance.now() + 7000;
+    let glanceUntil = 0;
+    let glance = { x: 0, y: 0 };
+    let jawSeed = Math.random() * 100;
+
+    const rand = (a: number, c: number) => a + Math.random() * (c - a);
+
+    const loop = (now: number) => {
+      const s = stateRef.current;
+      const t = now / 1000;
+
+      /* --- blinking: irregular, sometimes a quick double blink --- */
+      if (blinkStart < 0 && now >= nextBlink) {
+        blinkStart = now;
+        doubleBlink = Math.random() < 0.22;
+      }
+      let blink = 0;
+      if (blinkStart >= 0) {
+        const e = now - blinkStart;
+        const span = doubleBlink ? 430 : 190;
+        if (e >= span) {
+          blinkStart = -1;
+          // people blink faster when talking / thinking, slower when calm
+          const base = s === "speaking" ? 2400 : s === "thinking" ? 2000 : 3600;
+          nextBlink = now + rand(base * 0.55, base * 1.7);
+        } else if (doubleBlink) {
+          const p = e < 170 ? e / 170 : e < 250 ? 1 - (e - 170) / 80 : (e - 250) / 180;
+          blink = Math.sin(Math.min(1, Math.max(0, p)) * Math.PI);
+        } else {
+          blink = Math.sin((e / span) * Math.PI);
+        }
+      }
+
+      /* --- micro-saccades: tiny involuntary eye jumps --- */
+      if (now >= nextSaccade) {
+        sac = { x: rand(-1, 1), y: rand(-0.6, 0.6) };
+        nextSaccade = now + rand(s === "thinking" ? 500 : 900, s === "thinking" ? 1400 : 2600);
+      }
+
+      /* --- glance away (thinking / recalling), then back to the user --- */
+      if (now >= nextGlance && glanceUntil < now) {
+        // thinkers look up-left, idle people drift sideways
+        glance =
+          s === "thinking"
+            ? { x: rand(-1, -0.4), y: -0.9 }
+            : { x: rand(-1, 1), y: rand(-0.3, 0.4) };
+        glanceUntil = now + rand(700, 1600);
+        nextGlance = glanceUntil + rand(4000, 11000);
+      }
+      const glancing = now < glanceUntil;
+
+      /* --- breathing + posture weight shift --- */
+      const breath = (Math.sin(t * (s === "idle" ? 0.62 : 0.9)) + 1) / 2;
+      const drift = Math.sin(t * 0.23) * 0.6 + Math.sin(t * 0.11 + 1.7) * 0.4;
+
+      /* --- head: listening nods, thinking tilt, speaking emphasis --- */
+      let yaw = drift * 2 + (glancing ? glance.x * 5 : 0);
+      let pitch = Math.sin(t * 0.31) * 0.8 + (glancing ? glance.y * 3 : 0);
+      let roll = Math.sin(t * 0.19) * 0.9;
+      if (s === "listening") pitch += Math.sin(t * 1.9) * 1.6; // gentle nodding
+      if (s === "thinking") roll += 3.2; // head tilt
+      if (s === "speaking") {
+        yaw += Math.sin(t * 1.35) * 1.8;
+        pitch += Math.sin(t * 2.1) * 1.2;
+      }
+
+      /* --- jaw / lip movement: uneven, syllable-like --- */
+      let jaw = 0;
+      if (s === "speaking") {
+        const a = Math.sin((t + jawSeed) * 11.3);
+        const c = Math.sin((t + jawSeed) * 6.7 + 1.1);
+        jaw = Math.max(0, a * 0.6 + c * 0.4) * (0.55 + 0.45 * ((Math.sin(t * 0.8) + 1) / 2));
+      }
+
+      /* --- brow expression --- */
+      const brow =
+        s === "speaking" ? 0.5 + Math.sin(t * 1.7) * 0.3
+        : s === "listening" ? 0.7
+        : s === "thinking" ? -0.6
+        : s === "welcome" ? 1
+        : Math.sin(t * 0.4) * 0.2;
+
+      setB({
+        blink,
+        saccade: sac,
+        glance: glancing ? glance : { x: 0, y: 0 },
+        head: { yaw, pitch, roll },
+        jaw,
+        brow,
+        breath,
+      });
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  return b;
+}
+
 export function ValaAvatarLive({
   state = "idle",
   className,
@@ -55,7 +192,9 @@ export function ValaAvatarLive({
 }) {
   const [entered, setEntered] = useState(false);
   const [gaze, setGaze] = useState({ x: 0, y: 0 });
+  const [reaction, setReaction] = useState<"none" | "greet" | "acknowledge">("none");
   const ref = useRef<HTMLDivElement>(null);
+  const human = useHumanBehaviour(state);
 
   // Smooth welcome entrance: fade in + circuits boot from the chest outward.
   useEffect(() => {
@@ -79,6 +218,16 @@ export function ValaAvatarLive({
     window.addEventListener("pointermove", onMove, { passive: true });
     return () => window.removeEventListener("pointermove", onMove);
   }, []);
+
+  // Human-style reactions: greets on arrival, acknowledges when you interact.
+  useEffect(() => {
+    if (state === "welcome" || state === "listening") {
+      setReaction(state === "welcome" ? "greet" : "acknowledge");
+      const t = setTimeout(() => setReaction("none"), 1600);
+      return () => clearTimeout(t);
+    }
+  }, [state]);
+
 
   const active = state === "speaking" || state === "listening" || state === "thinking";
   const flowScale = state === "speaking" ? 0.45 : state === "listening" ? 0.6 : state === "thinking" ? 0.7 : 1;
@@ -108,13 +257,18 @@ export function ValaAvatarLive({
         style={{ animation: `vala-bloom ${active ? 1.8 : 4.5}s ease-in-out infinite` }}
       />
 
-      {/* Character with breathing / idle sway / head micro-motion */}
+      {/* Character — human posture: breathing, weight shift, head turn, nods */}
       <div
-        className="relative h-full w-full [transform-style:preserve-3d]"
+        className="relative h-full w-full [transform-style:preserve-3d] [will-change:transform]"
         style={{
-          animation: `vala-breathe ${active ? 3.4 : 5.2}s ease-in-out infinite, vala-sway ${active ? 6 : 9}s ease-in-out infinite`,
-          transform: `perspective(700px) rotateY(${gaze.x * 4}deg) rotateX(${-gaze.y * 2.5}deg)`,
-          transition: "transform 700ms cubic-bezier(.22,1,.36,1)",
+          transform: [
+            "perspective(760px)",
+            `rotateY(${gaze.x * 4 + human.head.yaw}deg)`,
+            `rotateX(${-gaze.y * 2.5 + human.head.pitch}deg)`,
+            `rotateZ(${human.head.roll}deg)`,
+            `translateY(${(-human.breath * 0.5 - (reaction === "greet" ? 0.6 : 0)).toFixed(2)}%)`,
+            `scaleY(${(1 + human.breath * 0.006).toFixed(4)})`,
+          ].join(" "),
         }}
       >
         <img
@@ -122,27 +276,59 @@ export function ValaAvatarLive({
           alt="Vala AI executive assistant, a futuristic female android with glowing blue energy circuits"
           width={832}
           height={1216}
-          className={cn(
-            "h-full w-auto object-contain drop-shadow-[0_22px_60px_rgba(45,150,255,0.6)]",
-            state === "speaking" && "animate-[vala-talk_0.55s_ease-in-out_infinite]",
-          )}
+          className="h-full w-auto object-contain drop-shadow-[0_22px_60px_rgba(45,150,255,0.6)]"
         />
 
-        {/* Eye blink + gaze shimmer */}
+        {/* Eyelids — irregular human blinking (incl. occasional double blink) */}
         <span
           aria-hidden
-          className="pointer-events-none absolute left-[42%] top-[13.5%] h-[1.6%] w-[16%] rounded-full bg-[rgba(10,20,40,0.55)] blur-[1px]"
-          style={{ animation: "vala-blink 6.4s ease-in-out infinite" }}
+          className="pointer-events-none absolute left-[42%] top-[13.2%] w-[16%] rounded-full bg-[rgba(8,16,34,0.72)] blur-[1.2px]"
+          style={{
+            height: `${(0.35 + human.blink * 2.2).toFixed(2)}%`,
+            opacity: 0.35 + human.blink * 0.65,
+          }}
         />
+
+        {/* Pupil light — pointer tracking + micro-saccades + look-away glances */}
         <span
           aria-hidden
           className="pointer-events-none absolute left-[42%] top-[13%] h-[2.4%] w-[16%] rounded-full bg-[radial-gradient(circle,rgba(120,220,255,0.75),transparent_70%)] blur-[2px]"
           style={{
-            transform: `translate(${gaze.x * 12}%, ${gaze.y * 8}%)`,
-            transition: "transform 600ms cubic-bezier(.22,1,.36,1)",
-            opacity: state === "listening" ? 1 : 0.55,
+            transform: `translate(${(gaze.x * 12 + human.saccade.x * 4 + human.glance.x * 14).toFixed(2)}%, ${(gaze.y * 8 + human.saccade.y * 3 + human.glance.y * 8).toFixed(2)}%)`,
+            transition: "transform 180ms cubic-bezier(.22,1,.36,1)",
+            opacity: (state === "listening" ? 1 : 0.55) * (1 - human.blink),
           }}
         />
+
+        {/* Brow expression — raised when happy/listening, drawn in when thinking */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute left-[41%] top-[11.4%] h-[0.9%] w-[18%] rounded-full bg-[radial-gradient(circle,rgba(140,220,255,0.35),transparent_75%)]"
+          style={{
+            transform: `translateY(${(-human.brow * 0.6).toFixed(2)}%) scaleX(${(1 + human.brow * 0.04).toFixed(3)})`,
+            opacity: 0.25 + Math.abs(human.brow) * 0.35,
+            transition: "opacity 400ms ease-out",
+          }}
+        />
+
+        {/* Jaw / lips — uneven syllable-like movement while speaking */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute left-[45.5%] top-[17.4%] w-[9%] rounded-[50%] bg-[radial-gradient(ellipse,rgba(20,40,70,0.55),transparent_75%)] blur-[1px]"
+          style={{
+            height: `${(0.3 + human.jaw * 1.9).toFixed(2)}%`,
+            opacity: state === "speaking" ? 0.55 + human.jaw * 0.45 : 0,
+            transition: "opacity 220ms ease-out",
+          }}
+        />
+
+        {/* Smile / warmth flash on greeting or acknowledgement */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute left-[44%] top-[18.2%] h-[1.6%] w-[12%] rounded-b-full border-b-2 border-[rgba(150,225,255,0.55)] blur-[1px] transition-opacity duration-500"
+          style={{ opacity: reaction === "none" ? 0 : 0.8 }}
+        />
+
 
         {/* Energy circuit network */}
         <svg
