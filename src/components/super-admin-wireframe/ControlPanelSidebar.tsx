@@ -31,16 +31,16 @@ import {
 
 // ===== LOCKED COLORS (SOFTWARE VALA VIOLET GRADIENT) =====
 const COLORS = {
-  bg: '#150a2b',
-  bgGradient: 'linear-gradient(180deg, #241041 0%, #180b2f 55%, #0e0620 100%)',
-  border: 'rgba(167, 108, 255, 0.32)',
-  activeHighlight: '#8b3dff',
-  hoverBg: 'rgba(167, 108, 255, 0.22)',
-  cardBg: 'rgba(167, 108, 255, 0.12)',
-  cardGlow: 'rgba(167, 108, 255, 0.35)',
+  bg: '#0a1428',
+  bgGradient: 'linear-gradient(180deg, #10254a 0%, #0b1a35 55%, #060d1d 100%)',
+  border: 'rgba(88, 160, 255, 0.32)',
+  activeHighlight: '#2f7dff',
+  hoverBg: 'rgba(88, 160, 255, 0.22)',
+  cardBg: 'rgba(88, 160, 255, 0.12)',
+  cardGlow: 'rgba(88, 160, 255, 0.35)',
   text: '#ffffff',
   textMuted: 'rgba(255, 255, 255, 0.7)',
-  iconColor: '#d6bcff',
+  iconColor: '#bcd8ff',
 };
 
 // ===== ROLE CATEGORIES (EXACT ORDER - LOCKED BY GRADE) =====
@@ -119,9 +119,9 @@ const RoleButton = memo<{
       )}
       style={{
         background: isActive
-          ? `linear-gradient(135deg, ${COLORS.activeHighlight} 0%, #e935c8 100%)`
+          ? `linear-gradient(135deg, ${COLORS.activeHighlight} 0%, #48c6ff 100%)`
           : undefined,
-        boxShadow: isActive ? '0 10px 26px -12px rgba(180, 80, 255, 0.9)' : undefined,
+        boxShadow: isActive ? '0 10px 26px -12px rgba(50, 140, 255, 0.9)' : undefined,
       }}
     >
       {/* Active indicator bar */}
@@ -155,7 +155,7 @@ const RoleButton = memo<{
 
       {/* Premium tooltip in collapsed mode */}
       {compact && (
-        <span className="pointer-events-none absolute left-[105%] z-50 hidden whitespace-nowrap rounded-md border border-primary/40 bg-[#1c0f36] px-2 py-1 text-[11px] font-semibold text-white opacity-0 shadow-xl transition-opacity duration-150 group-hover:block group-hover:opacity-100">
+        <span className="pointer-events-none absolute left-[105%] z-50 hidden whitespace-nowrap rounded-md border border-primary/40 bg-[#0f2244] px-2 py-1 text-[11px] font-semibold text-white opacity-0 shadow-xl transition-opacity duration-150 group-hover:block group-hover:opacity-100">
           {role.label}
         </span>
       )}
