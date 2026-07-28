@@ -102,51 +102,62 @@
 }
 
 .dark {
-  /* Rich casino-violet cockpit palette */
-  --background: oklch(0.135 0.055 297);
-  --foreground: oklch(0.985 0.006 300);
-  --card: oklch(0.205 0.072 298);
-  --card-foreground: oklch(0.985 0.006 300);
-  --popover: oklch(0.195 0.07 298);
-  --popover-foreground: oklch(0.985 0.006 300);
-  --primary: oklch(0.63 0.265 296);
-  --primary-foreground: oklch(0.99 0.004 300);
-  --primary-glow: oklch(0.74 0.21 305);
-  --secondary: oklch(0.27 0.095 300);
-  --secondary-foreground: oklch(0.985 0.006 300);
-  --muted: oklch(0.265 0.078 299);
-  --muted-foreground: oklch(0.79 0.045 300);
-  --accent: oklch(0.62 0.26 330);
-  --accent-foreground: oklch(0.99 0.004 300);
-  --neon: oklch(0.85 0.24 145);
-  --neon-foreground: oklch(0.18 0.09 150);
-  --gold: oklch(0.83 0.17 88);
-  --destructive: oklch(0.65 0.245 20);
-  --destructive-foreground: oklch(0.99 0.004 300);
-  --border: oklch(0.42 0.13 300 / 70%);
-  --input: oklch(0.42 0.13 300 / 75%);
-  --ring: oklch(0.7 0.25 300);
-  --chart-1: oklch(0.66 0.25 297);
-  --chart-2: oklch(0.8 0.21 150);
-  --chart-3: oklch(0.83 0.17 88);
-  --chart-4: oklch(0.68 0.26 330);
-  --chart-5: oklch(0.66 0.25 16);
-  --sidebar: oklch(0.175 0.065 298);
-  --sidebar-foreground: oklch(0.985 0.006 300);
-  --sidebar-primary: oklch(0.63 0.265 296);
-  --sidebar-primary-foreground: oklch(0.99 0.004 300);
-  --sidebar-accent: oklch(0.3 0.115 305);
-  --sidebar-accent-foreground: oklch(0.99 0.004 300);
-  --sidebar-border: oklch(0.42 0.13 300 / 70%);
-  --sidebar-ring: oklch(0.7 0.25 300);
+  /* Vala AI — electric blue executive cockpit palette */
+  --background: oklch(0.16 0.05 255);
+  --foreground: oklch(0.985 0.006 240);
+  --card: oklch(0.225 0.062 256);
+  --card-foreground: oklch(0.985 0.006 240);
+  --popover: oklch(0.21 0.058 256);
+  --popover-foreground: oklch(0.985 0.006 240);
+  --primary: oklch(0.62 0.19 253);
+  --primary-foreground: oklch(0.99 0.004 240);
+  --primary-glow: oklch(0.76 0.16 235);
+  --secondary: oklch(0.29 0.075 258);
+  --secondary-foreground: oklch(0.985 0.006 240);
+  --muted: oklch(0.28 0.06 258);
+  --muted-foreground: oklch(0.8 0.04 245);
+  --accent: oklch(0.82 0.15 210);
+  --accent-foreground: oklch(0.18 0.07 255);
+  --neon: oklch(0.82 0.19 160);
+  --neon-foreground: oklch(0.18 0.08 165);
+  --gold: oklch(0.84 0.16 82);
+  --destructive: oklch(0.63 0.23 22);
+  --destructive-foreground: oklch(0.99 0.004 240);
+  --border: oklch(0.5 0.13 250 / 60%);
+  --input: oklch(0.5 0.13 250 / 65%);
+  --ring: oklch(0.72 0.17 240);
+  --chart-1: oklch(0.62 0.19 253);
+  --chart-2: oklch(0.82 0.15 210);
+  --chart-3: oklch(0.82 0.19 160);
+  --chart-4: oklch(0.84 0.16 82);
+  --chart-5: oklch(0.68 0.2 300);
+  --sidebar: oklch(0.195 0.055 256);
+  --sidebar-foreground: oklch(0.985 0.006 240);
+  --sidebar-primary: oklch(0.62 0.19 253);
+  --sidebar-primary-foreground: oklch(0.99 0.004 240);
+  --sidebar-accent: oklch(0.33 0.1 250);
+  --sidebar-accent-foreground: oklch(0.99 0.004 240);
+  --sidebar-border: oklch(0.5 0.13 250 / 60%);
+  --sidebar-ring: oklch(0.72 0.17 240);
 
-  --gradient-primary: linear-gradient(135deg, oklch(0.63 0.265 296), oklch(0.74 0.21 315));
-  --gradient-surface: linear-gradient(160deg, oklch(0.235 0.085 298), oklch(0.175 0.062 297));
-  --gradient-neon: linear-gradient(135deg, oklch(0.85 0.24 145), oklch(0.78 0.2 175));
-  --shadow-glow: 0 18px 48px -18px color-mix(in oklab, var(--primary) 75%, transparent);
-  --shadow-card: 0 10px 34px -16px color-mix(in oklab, var(--primary) 60%, transparent),
-    inset 0 1px 0 0 color-mix(in oklab, var(--primary-glow) 22%, transparent);
+  --gradient-primary: linear-gradient(135deg, oklch(0.62 0.19 253), oklch(0.78 0.15 220));
+  --gradient-surface: linear-gradient(160deg, oklch(0.26 0.075 256), oklch(0.19 0.055 256));
+  --gradient-neon: linear-gradient(135deg, oklch(0.82 0.15 210), oklch(0.82 0.19 165));
+  --shadow-glow: 0 18px 48px -18px color-mix(in oklab, var(--primary) 78%, transparent);
+  --shadow-card: 0 10px 34px -16px color-mix(in oklab, var(--primary) 62%, transparent),
+    inset 0 1px 0 0 color-mix(in oklab, var(--primary-glow) 24%, transparent);
 }
+
+@keyframes vala-breathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-2px) scale(1.015); }
+}
+
+@keyframes vala-talk {
+  0%, 100% { filter: brightness(1); transform: translateY(0); }
+  50% { filter: brightness(1.18); transform: translateY(-1px); }
+}
+
 
 @layer base {
   * {
