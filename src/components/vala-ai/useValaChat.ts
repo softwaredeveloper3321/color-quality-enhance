@@ -3,7 +3,7 @@ import { useCallback, useRef, useState } from "react";
 export type ValaMessage = { id: string; role: "user" | "assistant"; content: string };
 
 const WELCOME =
-  "Hello Boss. Welcome back. Everything is running perfectly — today's revenue is up 18% and you have 6 approvals waiting. Would you like me to open your Executive Dashboard?";
+  "Hello Boss. Welcome back. All enterprise systems are online. How may I assist you today?";
 
 export function useValaChat() {
   const [messages, setMessages] = useState<ValaMessage[]>([
