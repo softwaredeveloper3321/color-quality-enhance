@@ -96,72 +96,100 @@ interface ControlPanelSidebarProps {
   onLogout: () => void;
 }
 
-// ===== COMPACT ROLE BUTTON (ALL FIT ON SCREEN - CLICKABLE) =====
+// ===== COMPACT ROLE BUTTON (ICON + ANIMATED LABEL) =====
 const RoleButton = memo<{
   role: typeof ROLE_CATEGORIES[number];
   isActive: boolean;
+  compact: boolean;
   onClick: () => void;
-}>(({ role, isActive, onClick }) => {
+}>(({ role, isActive, compact, onClick }) => {
   const Icon = role.icon;
-  
+
   return (
     <button
       onClick={onClick}
       type="button"
+      title={compact ? role.label : undefined}
       className={cn(
-        "w-full flex items-center gap-3 rounded-lg transition-all duration-100 cursor-pointer",
-        "px-3 py-2 text-left min-h-[36px] border border-transparent",
-        isActive 
-          ? "bg-blue-600" 
-          : "hover:bg-white/10"
+        "group relative w-full flex items-center gap-2.5 rounded-lg cursor-pointer",
+        "px-2 py-1.5 text-left min-h-[32px] border border-transparent",
+        "transition-all duration-200 ease-out",
+        isActive ? "" : "hover:bg-white/10 hover:translate-x-0.5",
       )}
       style={{
-        background: isActive 
+        background: isActive
           ? `linear-gradient(135deg, ${COLORS.activeHighlight} 0%, #e935c8 100%)`
           : undefined,
         boxShadow: isActive ? '0 10px 26px -12px rgba(180, 80, 255, 0.9)' : undefined,
       }}
     >
+      {/* Active indicator bar */}
+      {isActive && (
+        <span className="absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-r-full bg-white" />
+      )}
+
       {/* Icon */}
       <div className={cn(
-        "w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0",
-        isActive ? "bg-white/20" : "bg-white/10"
+        "w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 transition-transform duration-200",
+        "group-hover:scale-110 group-active:scale-95",
+        isActive ? "bg-white/25" : "bg-white/10"
       )}>
-        <Icon 
-          className="w-4 h-4" 
-          style={{ color: isActive ? '#ffffff' : COLORS.iconColor }} 
+        <Icon
+          className="w-[15px] h-[15px]"
+          style={{ color: isActive ? '#ffffff' : COLORS.iconColor }}
         />
       </div>
-      
+
       {/* Text */}
-      <span 
-        className={cn(
-          "text-sm font-bold truncate leading-tight tracking-tight",
-          isActive ? "text-white" : "text-white/90"
-        )}
-      >
-        {role.label}
-      </span>
+      {!compact && (
+        <span
+          className={cn(
+            "text-[12.5px] font-bold truncate leading-tight tracking-tight",
+            isActive ? "text-white" : "text-white/85"
+          )}
+        >
+          {role.label}
+        </span>
+      )}
+
+      {/* Premium tooltip in collapsed mode */}
+      {compact && (
+        <span className="pointer-events-none absolute left-[105%] z-50 hidden whitespace-nowrap rounded-md border border-primary/40 bg-[#1c0f36] px-2 py-1 text-[11px] font-semibold text-white opacity-0 shadow-xl transition-opacity duration-150 group-hover:block group-hover:opacity-100">
+          {role.label}
+        </span>
+      )}
     </button>
   );
 });
 RoleButton.displayName = 'RoleButton';
 
 // ===== MAIN SIDEBAR COMPONENT =====
+export const SIDEBAR_WIDTH = 244;
+export const SIDEBAR_COLLAPSED_WIDTH = 62;
+
 export const ControlPanelSidebar = memo<ControlPanelSidebarProps>(({
   activeRole,
   onRoleSelect,
+  collapsed = false,
+  onToggleCollapse,
   onLogout,
 }) => {
+  const [hovered, setHovered] = useState(false);
+  const expanded = !collapsed || hovered;
+  const compact = !expanded;
+
   const handleRoleClick = useCallback((roleId: RoleId) => {
     onRoleSelect(roleId);
   }, [onRoleSelect]);
 
   return (
-    <aside
+    <motion.aside
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      animate={{ width: expanded ? SIDEBAR_WIDTH : SIDEBAR_COLLAPSED_WIDTH }}
+      transition={{ type: 'spring', stiffness: 320, damping: 34 }}
       className="flex flex-col flex-shrink-0 fixed left-0 top-0 z-40"
       style={{
-        width: 320,
         height: '100vh',
         background: COLORS.bgGradient,
         borderRight: `2px solid ${COLORS.border}`,
@@ -170,17 +198,30 @@ export const ControlPanelSidebar = memo<ControlPanelSidebarProps>(({
       }}
     >
       {/* HEADER */}
-      <div className="px-4 py-3 flex-shrink-0" style={{ borderBottom: `1px solid ${COLORS.border}` }}>
-        <h1 className="text-xl font-bold text-white tracking-tight">Control Panel</h1>
-        <p className="text-xs text-white/60 font-medium">Super Admin</p>
+      <div className="px-3 py-2.5 flex-shrink-0 flex items-center justify-between gap-2" style={{ borderBottom: `1px solid ${COLORS.border}` }}>
+        {!compact && (
+          <div className="min-w-0">
+            <h1 className="text-base font-bold text-white tracking-tight truncate">Control Panel</h1>
+            <p className="text-[10px] text-white/60 font-medium">Super Admin</p>
+          </div>
+        )}
+        <button
+          type="button"
+          onClick={onToggleCollapse}
+          title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          className="w-7 h-7 flex-shrink-0 rounded-md bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/80 transition-colors"
+        >
+          {collapsed ? <PanelLeftOpen className="w-4 h-4" /> : <PanelLeftClose className="w-4 h-4" />}
+        </button>
       </div>
 
-      {/* ALL MODULES - SCROLLABLE */}
-      <nav className="flex-1 flex flex-col px-3 py-2" style={{ gap: '4px' }}>
+      {/* ALL MODULES */}
+      <nav className="flex-1 flex flex-col px-2 py-1.5" style={{ gap: '3px' }}>
         {ROLE_CATEGORIES.map((role) => (
           <RoleButton
             key={role.id}
             role={role}
+            compact={compact}
             isActive={activeRole === role.id}
             onClick={() => handleRoleClick(role.id)}
           />
@@ -188,36 +229,40 @@ export const ControlPanelSidebar = memo<ControlPanelSidebarProps>(({
       </nav>
 
       {/* STATUS + LOGOUT */}
-      <div className="px-3 py-3 flex-shrink-0" style={{ borderTop: `1px solid ${COLORS.border}` }}>
-        <div className="flex items-center gap-2 mb-3">
-          <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-xs font-bold text-emerald-400 uppercase">Live</span>
+      <div className="px-2 py-2.5 flex-shrink-0" style={{ borderTop: `1px solid ${COLORS.border}` }}>
+        {!compact && (
+          <div className="flex items-center gap-1.5 mb-2">
+            <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[10px] font-bold text-emerald-400 uppercase">Live</span>
+            </div>
+            <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-cyan-500/10 border border-cyan-500/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+              <span className="text-[10px] font-bold text-cyan-400 uppercase">AI</span>
+            </div>
+            <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-blue-500/10 border border-blue-500/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+              <span className="text-[10px] font-bold text-blue-400 uppercase">OK</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20">
-            <span className="w-2 h-2 rounded-full bg-cyan-400" />
-            <span className="text-xs font-bold text-cyan-400 uppercase">AI</span>
-          </div>
-          <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-blue-500/10 border border-blue-500/20">
-            <span className="w-2 h-2 rounded-full bg-blue-400" />
-            <span className="text-xs font-bold text-blue-400 uppercase">OK</span>
-          </div>
-        </div>
-        
+        )}
+
         {/* Logout */}
         <button
           onClick={onLogout}
           type="button"
-          className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-colors cursor-pointer"
+          title="Logout"
+          className="w-full flex items-center justify-center gap-2 px-2 py-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-colors cursor-pointer"
         >
           <LogOut className="w-4 h-4" />
-          <span className="text-sm font-semibold">Logout</span>
+          {!compact && <span className="text-[12px] font-semibold">Logout</span>}
         </button>
       </div>
-    </aside>
+    </motion.aside>
   );
 });
 
 ControlPanelSidebar.displayName = 'ControlPanelSidebar';
 export default ControlPanelSidebar;
 export type { RoleId };
+
