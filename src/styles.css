@@ -178,3 +178,55 @@
 @utility glow-primary {
   box-shadow: var(--shadow-glow);
 }
+
+/* ===== Living Vala AI avatar animations (GPU friendly: transform/opacity only) ===== */
+@keyframes vala-sway {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  33% { transform: translateX(-0.6%) rotate(-0.35deg); }
+  66% { transform: translateX(0.6%) rotate(0.35deg); }
+}
+@keyframes vala-bloom {
+  0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.06); }
+}
+@keyframes vala-blink {
+  0%, 92%, 100% { transform: scaleY(0); opacity: 0; }
+  94%, 96% { transform: scaleY(1); opacity: 1; }
+}
+@keyframes vala-trace {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+@keyframes vala-pulse {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: -100; }
+}
+@keyframes vala-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes vala-spin-rev {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+@keyframes vala-core {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.35); opacity: 1; }
+}
+@keyframes vala-ring {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  70%, 100% { transform: scale(4.2); opacity: 0; }
+}
+@keyframes vala-particle {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  15% { opacity: 0.9; }
+  100% { transform: translateY(-260px) scale(1.1); opacity: 0; }
+}
+@keyframes vala-wave {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-state] * { animation-duration: 0.001s !important; }
+}
