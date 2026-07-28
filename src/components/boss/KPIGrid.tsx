@@ -88,23 +88,27 @@ export function KPIBox({
   return (
     <motion.div
       onClick={onClick}
-      whileHover={{ scale: 1.02, y: -3 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={{ y: -4 }}
+      whileTap={{ scale: 0.985 }}
+      transition={{ type: 'spring', stiffness: 380, damping: 28 }}
       className={cn(
         // Base styles
         'relative overflow-hidden cursor-pointer transition-all duration-200 group',
         // Fixed height with flexible content
-        'min-h-[122px] h-full',
-        // Card styling — premium violet glass surface
-        'p-3.5 rounded-2xl border-2 border-primary/35 surface-rich backdrop-blur-md',
+        'min-h-[128px] h-full will-change-transform',
+        // Card styling — solid premium enterprise surface (no glass)
+        'p-4 rounded-2xl border border-primary/30',
+        'bg-[linear-gradient(158deg,rgba(139,61,255,0.18)_0%,rgba(28,15,54,0.96)_45%,rgba(14,7,30,0.98)_100%)]',
+        'shadow-[0_1px_0_0_rgba(255,255,255,0.06)_inset,0_18px_40px_-24px_rgba(139,61,255,0.85)]',
         // Hover/selected states
-        'hover:border-primary-glow/70 hover:glow-primary',
+        'hover:border-primary-glow/70 hover:shadow-[0_1px_0_0_rgba(255,255,255,0.1)_inset,0_26px_56px_-22px_rgba(180,80,255,0.95)]',
         isSelected && 'ring-2 ring-primary ring-offset-2 ring-offset-background border-primary',
         className
       )}
     >
       {/* Violet sheen */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/18 opacity-70 group-hover:opacity-100 transition-opacity" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary-glow/70 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/12 via-transparent to-accent/12 opacity-70 transition-opacity group-hover:opacity-100" />
       <div className="pointer-events-none absolute -top-16 -right-12 h-32 w-32 rounded-full bg-primary-glow/30 blur-3xl" />
 
       {/* Live Pulse Indicator */}
@@ -121,13 +125,13 @@ export function KPIBox({
         {/* Top Row: Label + Value + Icon */}
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
-            <p className="text-[11px] text-foreground/70 uppercase tracking-[0.12em] font-bold leading-none truncate">
+            <p className="text-[10.5px] text-foreground/60 uppercase tracking-[0.14em] font-bold leading-none truncate">
               {label}
             </p>
             <div className="flex items-baseline gap-2 mt-1">
               <p
                 className={cn(
-                  'text-[1.7rem] font-extrabold leading-none tracking-tight',
+                  'text-[1.85rem] font-extrabold leading-none tracking-[-0.02em]',
                   status === 'critical' && 'text-destructive',
                   status === 'healthy' && 'text-neon'
                 )}
@@ -142,8 +146,8 @@ export function KPIBox({
               </p>
             )}
           </div>
-          <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 border border-primary/40 bg-primary/25">
-            <Icon className="w-[18px] h-[18px] text-primary-glow" />
+          <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 border border-primary/40 bg-gradient-to-br from-primary/40 to-primary/15 transition-transform duration-200 group-hover:scale-110">
+            <Icon className="w-5 h-5 text-primary-glow" />
           </div>
         </div>
 
