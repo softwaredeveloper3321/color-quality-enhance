@@ -257,13 +257,18 @@ export function ValaAvatarLive({
         style={{ animation: `vala-bloom ${active ? 1.8 : 4.5}s ease-in-out infinite` }}
       />
 
-      {/* Character with breathing / idle sway / head micro-motion */}
+      {/* Character — human posture: breathing, weight shift, head turn, nods */}
       <div
-        className="relative h-full w-full [transform-style:preserve-3d]"
+        className="relative h-full w-full [transform-style:preserve-3d] [will-change:transform]"
         style={{
-          animation: `vala-breathe ${active ? 3.4 : 5.2}s ease-in-out infinite, vala-sway ${active ? 6 : 9}s ease-in-out infinite`,
-          transform: `perspective(700px) rotateY(${gaze.x * 4}deg) rotateX(${-gaze.y * 2.5}deg)`,
-          transition: "transform 700ms cubic-bezier(.22,1,.36,1)",
+          transform: [
+            "perspective(760px)",
+            `rotateY(${gaze.x * 4 + human.head.yaw}deg)`,
+            `rotateX(${-gaze.y * 2.5 + human.head.pitch}deg)`,
+            `rotateZ(${human.head.roll}deg)`,
+            `translateY(${(-human.breath * 0.5 - (reaction === "greet" ? 0.6 : 0)).toFixed(2)}%)`,
+            `scaleY(${(1 + human.breath * 0.006).toFixed(4)})`,
+          ].join(" "),
         }}
       >
         <img
@@ -271,27 +276,59 @@ export function ValaAvatarLive({
           alt="Vala AI executive assistant, a futuristic female android with glowing blue energy circuits"
           width={832}
           height={1216}
-          className={cn(
-            "h-full w-auto object-contain drop-shadow-[0_22px_60px_rgba(45,150,255,0.6)]",
-            state === "speaking" && "animate-[vala-talk_0.55s_ease-in-out_infinite]",
-          )}
+          className="h-full w-auto object-contain drop-shadow-[0_22px_60px_rgba(45,150,255,0.6)]"
         />
 
-        {/* Eye blink + gaze shimmer */}
+        {/* Eyelids — irregular human blinking (incl. occasional double blink) */}
         <span
           aria-hidden
-          className="pointer-events-none absolute left-[42%] top-[13.5%] h-[1.6%] w-[16%] rounded-full bg-[rgba(10,20,40,0.55)] blur-[1px]"
-          style={{ animation: "vala-blink 6.4s ease-in-out infinite" }}
+          className="pointer-events-none absolute left-[42%] top-[13.2%] w-[16%] rounded-full bg-[rgba(8,16,34,0.72)] blur-[1.2px]"
+          style={{
+            height: `${(0.35 + human.blink * 2.2).toFixed(2)}%`,
+            opacity: 0.35 + human.blink * 0.65,
+          }}
         />
+
+        {/* Pupil light — pointer tracking + micro-saccades + look-away glances */}
         <span
           aria-hidden
           className="pointer-events-none absolute left-[42%] top-[13%] h-[2.4%] w-[16%] rounded-full bg-[radial-gradient(circle,rgba(120,220,255,0.75),transparent_70%)] blur-[2px]"
           style={{
-            transform: `translate(${gaze.x * 12}%, ${gaze.y * 8}%)`,
-            transition: "transform 600ms cubic-bezier(.22,1,.36,1)",
-            opacity: state === "listening" ? 1 : 0.55,
+            transform: `translate(${(gaze.x * 12 + human.saccade.x * 4 + human.glance.x * 14).toFixed(2)}%, ${(gaze.y * 8 + human.saccade.y * 3 + human.glance.y * 8).toFixed(2)}%)`,
+            transition: "transform 180ms cubic-bezier(.22,1,.36,1)",
+            opacity: (state === "listening" ? 1 : 0.55) * (1 - human.blink),
           }}
         />
+
+        {/* Brow expression — raised when happy/listening, drawn in when thinking */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute left-[41%] top-[11.4%] h-[0.9%] w-[18%] rounded-full bg-[radial-gradient(circle,rgba(140,220,255,0.35),transparent_75%)]"
+          style={{
+            transform: `translateY(${(-human.brow * 0.6).toFixed(2)}%) scaleX(${(1 + human.brow * 0.04).toFixed(3)})`,
+            opacity: 0.25 + Math.abs(human.brow) * 0.35,
+            transition: "opacity 400ms ease-out",
+          }}
+        />
+
+        {/* Jaw / lips — uneven syllable-like movement while speaking */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute left-[45.5%] top-[17.4%] w-[9%] rounded-[50%] bg-[radial-gradient(ellipse,rgba(20,40,70,0.55),transparent_75%)] blur-[1px]"
+          style={{
+            height: `${(0.3 + human.jaw * 1.9).toFixed(2)}%`,
+            opacity: state === "speaking" ? 0.55 + human.jaw * 0.45 : 0,
+            transition: "opacity 220ms ease-out",
+          }}
+        />
+
+        {/* Smile / warmth flash on greeting or acknowledgement */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute left-[44%] top-[18.2%] h-[1.6%] w-[12%] rounded-b-full border-b-2 border-[rgba(150,225,255,0.55)] blur-[1px] transition-opacity duration-500"
+          style={{ opacity: reaction === "none" ? 0 : 0.8 }}
+        />
+
 
         {/* Energy circuit network */}
         <svg
