@@ -40,10 +40,13 @@ import {
 } from "lucide-react";
 
 import ControlPanelSidebar, {
+  SIDEBAR_WIDTH,
+  SIDEBAR_COLLAPSED_WIDTH,
   type RoleId,
 } from "@/components/super-admin-wireframe/ControlPanelSidebar";
-import { ControlPanelContent } from "@/components/control-panel";
+import { CommandCenter } from "@/components/command-center/CommandCenter";
 import { KPIGrid, KPIBox } from "@/components/boss/KPIGrid";
+import mascot from "@/assets/ai-mascot.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
