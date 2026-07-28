@@ -191,7 +191,7 @@ export function ValaAiAgent() {
         )}
         style={{
           background:
-            "linear-gradient(180deg, rgba(16,32,66,0.98) 0%, rgba(9,19,40,0.99) 55%, rgba(6,13,29,1) 100%)",
+            "linear-gradient(180deg, #102042 0%, #091327 55%, #060d1d 100%)",
           height: "min(620px, calc(100vh - 7rem))",
         }}
       >
