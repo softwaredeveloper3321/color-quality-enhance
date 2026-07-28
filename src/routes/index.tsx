@@ -178,20 +178,31 @@ function CockpitBanner() {
           </div>
         </div>
 
-        <div className="grid shrink-0 grid-cols-3 gap-3">
-          {[
-            { k: "Revenue", v: "₹42.5L" },
-            { k: "Uptime", v: "99.97%" },
-            { k: "AI Jobs", v: "12" },
-          ].map((s) => (
-            <div
-              key={s.k}
-              className="rounded-2xl border border-primary-foreground/20 bg-background/25 px-4 py-3 text-center backdrop-blur"
-            >
-              <p className="text-[10px] uppercase tracking-wider text-primary-foreground/70">{s.k}</p>
-              <p className="mt-1 whitespace-nowrap text-lg font-bold text-primary-foreground">{s.v}</p>
-            </div>
-          ))}
+        <div className="flex items-center gap-4">
+          <div className="grid shrink-0 grid-cols-1 gap-3 sm:grid-cols-3 xl:grid-cols-1">
+            {[
+              { k: "Revenue", v: "₹42.5L" },
+              { k: "Uptime", v: "99.97%" },
+              { k: "AI Jobs", v: "12" },
+            ].map((s) => (
+              <div
+                key={s.k}
+                className="rounded-2xl border border-primary-foreground/20 bg-background/25 px-4 py-3 text-center backdrop-blur"
+              >
+                <p className="text-[10px] uppercase tracking-wider text-primary-foreground/70">{s.k}</p>
+                <p className="mt-1 whitespace-nowrap text-lg font-bold text-primary-foreground">{s.v}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Corporate AI mascot */}
+          <img
+            src={mascot}
+            alt="Corporate AI assistant robot presenting the enterprise dashboard"
+            width={912}
+            height={1104}
+            className="hidden h-[220px] w-auto shrink-0 select-none object-contain drop-shadow-[0_24px_50px_rgba(90,40,180,0.65)] lg:block xl:h-[260px]"
+          />
         </div>
       </div>
     </section>
@@ -201,13 +212,19 @@ function CockpitBanner() {
 function Index() {
   const [activeRole, setActiveRole] = useState<RoleId>("boss_owner");
   const [selectedKpi, setSelectedKpi] = useState<string | null>(null);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
     <TooltipProvider>
       <div className="dark flex min-h-screen w-full" style={{ background: "radial-gradient(1200px 700px at 18% -10%, #34145e 0%, transparent 60%), radial-gradient(900px 600px at 100% 0%, #3d0f4d 0%, transparent 55%), #120727" }}>
-        <div className="w-[320px] flex-shrink-0">
+        <div
+          className="flex-shrink-0 transition-[width] duration-300 ease-out"
+          style={{ width: sidebarCollapsed ? SIDEBAR_COLLAPSED_WIDTH : SIDEBAR_WIDTH }}
+        >
           <ControlPanelSidebar
             activeRole={activeRole}
+            collapsed={sidebarCollapsed}
+            onToggleCollapse={() => setSidebarCollapsed((v) => !v)}
             onRoleSelect={(roleId) => {
               setActiveRole(roleId);
               toast.success(`Switched to ${roleId.replace(/_/g, " ")}`);
@@ -243,18 +260,31 @@ function Index() {
         </main>
 
         <aside
-          className="hidden w-[280px] flex-shrink-0 overflow-y-auto xl:block"
-          style={{ background: "linear-gradient(180deg, #221040 0%, #160a2c 100%)", borderLeft: "2px solid rgba(167,108,255,0.32)" }}
+          className="hidden w-[300px] flex-shrink-0 xl:block"
+          style={{ borderLeft: "2px solid rgba(167,108,255,0.32)" }}
         >
-          <div className="px-3 py-3" style={{ borderBottom: "2px solid rgba(167,108,255,0.32)" }}>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-foreground">
-              Control Panel
-            </h2>
+          <div
+            className="sticky top-0 flex h-screen flex-col overflow-y-auto"
+            style={{ background: "linear-gradient(180deg, #241041 0%, #170b2e 55%, #0e0620 100%)" }}
+          >
+            <div
+              className="flex items-center justify-between gap-2 px-3 py-2.5"
+              style={{ borderBottom: "2px solid rgba(167,108,255,0.32)" }}
+            >
+              <h2 className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-foreground">
+                Command Center
+              </h2>
+              <span className="inline-flex items-center gap-1 rounded-md border border-emerald-500/25 bg-emerald-500/10 px-1.5 py-0.5 text-[9px] font-bold text-emerald-400">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                LIVE
+              </span>
+            </div>
+            <CommandCenter />
           </div>
-          <ControlPanelContent />
         </aside>
       </div>
       <Toaster />
     </TooltipProvider>
   );
 }
+
