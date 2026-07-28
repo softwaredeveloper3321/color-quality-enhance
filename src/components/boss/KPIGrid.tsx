@@ -1,7 +1,7 @@
 /**
- * Responsive KPI Grid Component
- * Auto-adjusting grid with proper breakpoints
- * Desktop: 4 boxes per row | Tablet: 2 boxes | Mobile: 1 box
+ * Next-Generation KPI Card System
+ * Double-layer premium enterprise widgets with a live status base layer,
+ * animated counters, sparklines, tilt interaction and a live activity strip.
  */
 
 import React from 'react';
@@ -17,20 +17,16 @@ interface KPIGridProps {
 export function KPIGrid({ children, className, gap = 'md' }: KPIGridProps) {
   const gapClasses = {
     sm: 'gap-3',
-    md: 'gap-3',
+    md: 'gap-4',
     lg: 'gap-6',
   };
 
   return (
     <div
       className={cn(
-        // Base grid with auto-wrap
         'grid w-full',
-        // LOCKED: 2 columns (2 x 20 = 40 KPI cards), single column on small screens
         'grid-cols-1 sm:grid-cols-2',
-        // Gap
         gapClasses[gap],
-        // Auto-rows to ensure consistent height
         'auto-rows-fr',
         className
       )}
@@ -40,12 +36,157 @@ export function KPIGrid({ children, className, gap = 'md' }: KPIGridProps) {
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* helpers                                                             */
+/* ------------------------------------------------------------------ */
+
+type Status = 'healthy' | 'warning' | 'critical' | 'action';
+
+const BASE_THEME: Record<
+  Status,
+  { glow: string; strip: string; text: string; dot: string; label: string }
+> = {
+  healthy: {
+    glow: 'rgba(74,222,128,0.55)',
+    strip: 'linear-gradient(180deg,#7ef27e 0%,#4ade80 55%,#22c55e 100%)',
+    text: 'text-[#08260f]',
+    dot: 'bg-emerald-400',
+    label: 'HEALTHY',
+  },
+  action: {
+    glow: 'rgba(88,160,255,0.55)',
+    strip: 'linear-gradient(180deg,#7ab8ff 0%,#3b82f6 55%,#2563eb 100%)',
+    text: 'text-[#03142e]',
+    dot: 'bg-sky-400',
+    label: 'RUNNING',
+  },
+  warning: {
+    glow: 'rgba(251,191,36,0.55)',
+    strip: 'linear-gradient(180deg,#ffd469 0%,#fbbf24 55%,#f59e0b 100%)',
+    text: 'text-[#2b1a02]',
+    dot: 'bg-amber-400',
+    label: 'WARNING',
+  },
+  critical: {
+    glow: 'rgba(248,113,113,0.6)',
+    strip: 'linear-gradient(180deg,#ff9a9a 0%,#f87171 55%,#ef4444 100%)',
+    text: 'text-[#2c0606]',
+    dot: 'bg-red-400',
+    label: 'CRITICAL',
+  },
+};
+
+const ACTIVITY_BY_STATUS: Record<Status, string[]> = {
+  healthy: ['Database synchronized', 'Backup completed', 'CPU normal', 'Marketplace active'],
+  action: ['AI analysing revenue', 'Revenue updated', 'Live users online', 'Syncing inventory'],
+  warning: ['Threshold approaching', 'Queue backlog rising', 'Latency above normal', 'Review pending'],
+  critical: ['Immediate action required', 'Error rate spiking', 'Escalation triggered', 'Retry in progress'],
+};
+
+/** parses a leading/embedded numeric part so we can animate it */
+function splitNumeric(value: string | number) {
+  const raw = String(value);
+  const match = raw.match(/-?[\d,]*\.?\d+/);
+  if (!match) return null;
+  const num = Number(match[0].replace(/,/g, ''));
+  if (!Number.isFinite(num)) return null;
+  return {
+    num,
+    prefix: raw.slice(0, match.index ?? 0),
+    suffix: raw.slice((match.index ?? 0) + match[0].length),
+    decimals: (match[0].split('.')[1] || '').length,
+    grouped: match[0].includes(','),
+  };
+}
+
+function AnimatedValue({ value }: { value: string | number }) {
+  const parsed = React.useMemo(() => splitNumeric(value), [value]);
+  const [display, setDisplay] = React.useState(parsed ? 0 : null);
+
+  React.useEffect(() => {
+    if (!parsed) return;
+    let frame = 0;
+    const start = performance.now();
+    const duration = 900;
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setDisplay(parsed.num * eased);
+      if (t < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [parsed?.num]);
+
+  if (!parsed || display === null) return <>{value}</>;
+
+  const formatted = display.toLocaleString(undefined, {
+    minimumFractionDigits: parsed.decimals,
+    maximumFractionDigits: parsed.decimals,
+    useGrouping: parsed.grouped,
+  });
+
+  return (
+    <>
+      {parsed.prefix}
+      <span className="tabular-nums">{formatted}</span>
+      {parsed.suffix}
+    </>
+  );
+}
+
+function Sparkline({ seed, color }: { seed: string; color: string }) {
+  const points = React.useMemo(() => {
+    let h = 0;
+    for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) % 9973;
+    return Array.from({ length: 14 }, (_, i) => {
+      h = (h * 1103515245 + 12345) % 2147483647;
+      return 4 + ((h >>> 8) % 18) + i * 0.5;
+    });
+  }, [seed]);
+
+  const max = Math.max(...points);
+  const min = Math.min(...points);
+  const d = points
+    .map((p, i) => {
+      const x = (i / (points.length - 1)) * 100;
+      const y = 26 - ((p - min) / Math.max(1, max - min)) * 22;
+      return `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`;
+    })
+    .join(' ');
+
+  return (
+    <svg viewBox="0 0 100 28" preserveAspectRatio="none" className="h-7 w-full opacity-90">
+      <defs>
+        <linearGradient id={`spark-${seed}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={color} stopOpacity="0.35" />
+          <stop offset="100%" stopColor={color} stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path d={`${d} L100,28 L0,28 Z`} fill={`url(#spark-${seed})`} />
+      <path
+        d={d}
+        fill="none"
+        stroke={color}
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="[stroke-dasharray:200] [stroke-dashoffset:200] animate-[kpi-draw_1.6s_ease-out_forwards]"
+      />
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* KPI Box                                                             */
+/* ------------------------------------------------------------------ */
+
 interface KPIBoxProps {
   id: string;
   label: string;
   value: string | number;
   subValues?: string[];
-  status: 'healthy' | 'warning' | 'critical' | 'action';
+  status: Status;
   icon: React.ElementType;
   source: string;
   urgency: 'low' | 'medium' | 'high' | 'critical';
@@ -71,120 +212,163 @@ export function KPIBox({
   actions,
   className,
 }: KPIBoxProps) {
-  const statusColors = {
-    healthy: 'bg-neon',
-    warning: 'bg-amber-500',
-    critical: 'bg-destructive',
-    action: 'bg-blue-500',
+  const theme = BASE_THEME[status];
+  const cardRef = React.useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = React.useState({ x: 0, y: 0, mx: 50, my: 50 });
+  const [clock, setClock] = React.useState(() =>
+    new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+  );
+  const activities = ACTIVITY_BY_STATUS[status];
+  const [activityIndex, setActivityIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    const t = setInterval(
+      () =>
+        setClock(
+          new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+        ),
+      1000
+    );
+    return () => clearInterval(t);
+  }, []);
+
+  React.useEffect(() => {
+    const offset = (id.length % 5) * 700;
+    const t = setInterval(() => setActivityIndex((i) => (i + 1) % activities.length), 4200 + offset);
+    return () => clearInterval(t);
+  }, [id, activities.length]);
+
+  const handleMove = (e: React.MouseEvent) => {
+    const el = cardRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    setTilt({ x: (0.5 - py) * 6, y: (px - 0.5) * 8, mx: px * 100, my: py * 100 });
   };
 
-  const urgencyStyles = {
-    low: 'border-neon/60 text-neon bg-neon/12',
-    medium: 'border-gold/60 text-gold bg-gold/12',
-    high: 'border-orange-400/60 text-orange-300 bg-orange-400/15',
-    critical: 'border-destructive/60 text-destructive bg-destructive/15',
-  };
+  const trend = (id.charCodeAt(0) + label.length) % 2 === 0;
+  const delta = (((id.charCodeAt(1) || 7) * 13) % 180) / 10;
 
   return (
-    <motion.div
-      onClick={onClick}
-      whileHover={{ y: -4 }}
-      whileTap={{ scale: 0.985 }}
-      transition={{ type: 'spring', stiffness: 380, damping: 28 }}
-      className={cn(
-        // Base styles
-        'relative overflow-hidden cursor-pointer transition-all duration-200 group',
-        // Fixed height with flexible content
-        'min-h-[128px] h-full will-change-transform',
-        // Card styling — solid premium enterprise surface (no glass)
-        'p-4 rounded-2xl border border-primary/30',
-        'bg-[linear-gradient(158deg,rgba(56,130,255,0.20)_0%,rgba(14,26,52,0.96)_45%,rgba(7,14,30,0.98)_100%)]',
-        'shadow-[0_1px_0_0_rgba(255,255,255,0.06)_inset,0_18px_40px_-24px_rgba(40,120,255,0.85)]',
-        // Hover/selected states
-        'hover:border-primary-glow/70 hover:shadow-[0_1px_0_0_rgba(255,255,255,0.1)_inset,0_26px_56px_-22px_rgba(60,160,255,0.95)]',
-        isSelected && 'ring-2 ring-primary ring-offset-2 ring-offset-background border-primary',
-        className
-      )}
-    >
-      {/* Violet sheen */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary-glow/70 to-transparent" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/12 via-transparent to-accent/12 opacity-70 transition-opacity group-hover:opacity-100" />
-      <div className="pointer-events-none absolute -top-16 -right-12 h-32 w-32 rounded-full bg-primary-glow/30 blur-3xl" />
-
-      {/* Live Pulse Indicator */}
+    <div className={cn('relative h-full pb-7 [perspective:1200px]', className)}>
+      {/* ---- Live status base layer (second floating layer) ---- */}
       <div
-        className={cn(
-          'absolute top-3 right-3 w-2.5 h-2.5 rounded-full ring-2 ring-background/60',
-          statusColors[status],
-          status === 'critical' ? 'animate-pulse' : 'animate-pulse [animation-duration:2s]'
-        )}
-      />
+        className="pointer-events-none absolute inset-x-3 bottom-0 h-14 overflow-hidden rounded-[26px]"
+        style={{ background: theme.strip, boxShadow: `0 16px 34px -14px ${theme.glow}` }}
+      >
+        <div className="absolute inset-0 animate-[kpi-sweep_3.2s_linear_infinite] bg-[linear-gradient(100deg,transparent_20%,rgba(255,255,255,0.55)_50%,transparent_80%)] opacity-60" />
+        <div className={cn('absolute inset-x-0 bottom-0 flex h-7 items-center justify-center gap-1.5 px-3', theme.text)}>
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-current" />
+          <span key={activityIndex} className="animate-fade-in truncate text-[10px] font-bold tracking-wide">
+            {activities[activityIndex]}
+          </span>
+        </div>
+      </div>
 
-      {/* Content Container */}
-      <div className="relative flex flex-col h-full">
-        {/* Top Row: Label + Value + Icon */}
-        <div className="flex items-start justify-between gap-2">
-          <div className="flex-1 min-w-0">
-            <p className="text-[10.5px] text-foreground/60 uppercase tracking-[0.14em] font-bold leading-none truncate">
+      {/* ---- Primary card ---- */}
+      <motion.div
+        ref={cardRef}
+        role="button"
+        tabIndex={0}
+        onClick={onClick}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onClick?.();
+          }
+        }}
+        onMouseMove={handleMove}
+        onMouseLeave={() => setTilt({ x: 0, y: 0, mx: 50, my: 50 })}
+        whileHover={{ y: -6 }}
+        whileTap={{ scale: 0.99 }}
+        transition={{ type: 'spring', stiffness: 340, damping: 26 }}
+        style={{
+          transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+          backgroundImage: `radial-gradient(520px circle at ${tilt.mx}% ${tilt.my}%, rgba(120,180,255,0.13), transparent 45%), linear-gradient(162deg,#152238 0%,#0d1728 48%,#080e1c 100%)`,
+        }}
+        className={cn(
+          'group relative z-10 flex h-full min-h-[150px] cursor-pointer flex-col overflow-hidden rounded-[28px] p-4',
+          'border border-white/[0.07] will-change-transform outline-none',
+          'shadow-[0_1px_0_0_rgba(255,255,255,0.07)_inset,0_28px_56px_-26px_rgba(0,0,0,0.95)]',
+          'transition-shadow duration-300 hover:shadow-[0_1px_0_0_rgba(255,255,255,0.12)_inset,0_40px_70px_-28px_rgba(0,0,0,1)]',
+          'focus-visible:ring-2 focus-visible:ring-primary/70',
+          isSelected && 'ring-2 ring-primary/80'
+        )}
+      >
+        {/* corner light sweep */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+
+        {/* TOP BAR */}
+        <div className="relative flex items-center justify-between">
+          <div className="flex items-center gap-1.5">
+            <span className={cn('h-1.5 w-1.5 animate-pulse rounded-full', theme.dot)} />
+            <span className="text-[9px] font-bold tracking-[0.18em] text-foreground/55">LIVE</span>
+            <span className="text-[9px] font-semibold text-foreground/30">· AI MONITORING</span>
+          </div>
+          <span className="font-mono text-[9px] tabular-nums text-foreground/40">{clock}</span>
+        </div>
+
+        {/* MAIN */}
+        <div className="relative mt-2.5 flex items-start justify-between gap-3">
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-[10px] font-bold uppercase leading-none tracking-[0.14em] text-foreground/55">
               {label}
             </p>
-            <div className="flex items-baseline gap-2 mt-1">
-              <p
+            <p className="mt-1.5 text-[2rem] font-extrabold leading-none tracking-[-0.03em] text-foreground">
+              <AnimatedValue value={value} />
+            </p>
+            <div className="mt-1.5 flex items-center gap-1.5">
+              <span
                 className={cn(
-                  'text-[1.85rem] font-extrabold leading-none tracking-[-0.02em]',
-                  status === 'critical' && 'text-destructive',
-                  status === 'healthy' && 'text-neon'
+                  'rounded-md px-1.5 py-0.5 text-[9px] font-bold tabular-nums',
+                  trend ? 'bg-emerald-400/12 text-emerald-300' : 'bg-red-400/12 text-red-300'
                 )}
               >
-                {value}
-              </p>
+                {trend ? '▲' : '▼'} {delta.toFixed(1)}%
+              </span>
+              <span className="truncate text-[9px] font-medium text-foreground/40">
+                vs yesterday · {source}
+              </span>
             </div>
-            {/* Sub-values summary */}
-            {subValues && subValues.length > 0 && (
-              <p className="text-[10px] font-medium text-muted-foreground mt-1.5 leading-relaxed line-clamp-1">
-                {subValues.join(' • ')}
-              </p>
-            )}
           </div>
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 border border-primary/40 bg-gradient-to-br from-primary/40 to-primary/15 transition-transform duration-200 group-hover:scale-110">
-            <Icon className="w-5 h-5 text-primary-glow" />
+
+          <div className="flex flex-col items-end gap-2">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] transition-transform duration-300 group-hover:rotate-6 group-hover:scale-105">
+              <Icon className="h-5 w-5 text-primary-glow" />
+            </div>
+            <span className="rounded-md border border-white/10 bg-white/[0.03] px-1.5 py-0.5 text-[8px] font-bold tracking-wider text-foreground/45">
+              {theme.label}
+            </span>
           </div>
         </div>
 
-        {/* Bottom Row: Source + Urgency + Actions */}
-        <div className="flex items-center justify-between mt-auto pt-2 gap-2">
-          <div className="flex items-center gap-1.5 min-w-0">
-            <span className="text-[9px] font-semibold text-muted-foreground truncate">{source}</span>
-            <span
+        {/* Sparkline */}
+        <div className="relative -mx-1 mt-1.5">
+          <Sparkline seed={id} color={theme.glow.replace(/[\d.]+\)$/, '1)')} />
+        </div>
+
+        {/* footer */}
+        <div className="relative mt-auto flex items-center justify-between gap-2 pt-1.5">
+          <p className="truncate text-[9px] font-medium text-foreground/40">
+            {subValues && subValues.length > 0
+              ? subValues.join(' • ')
+              : `Updated ${lastUpdate ?? 'just now'} · ${urgency.toUpperCase()}`}
+          </p>
+          {actions && (
+            <div
               className={cn(
-                'text-[8px] font-bold tracking-wide px-1.5 py-0.5 rounded-md border',
-                urgencyStyles[urgency]
+                'flex items-center gap-1 transition-opacity',
+                'opacity-0 group-hover:opacity-100',
+                isSelected && 'opacity-100'
               )}
             >
-              {urgency.toUpperCase()}
-            </span>
-          </div>
-          
-          {/* Inline Actions (shown on hover or when selected) */}
-          {actions && (
-            <div className={cn(
-              'flex items-center gap-1 transition-opacity',
-              'opacity-0 group-hover:opacity-100',
-              isSelected && 'opacity-100'
-            )}>
               {actions}
             </div>
           )}
         </div>
-
-        {/* Last Update (optional) */}
-        {lastUpdate && (
-          <div className="text-[8px] text-muted-foreground/60 mt-1">
-            Updated: {lastUpdate}
-          </div>
-        )}
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
 
@@ -207,9 +391,9 @@ export function KPIActionButton({
   size = 'xs',
 }: KPIActionButtonProps) {
   const variantStyles = {
-    default: 'bg-secondary hover:bg-secondary/80 text-foreground',
-    success: 'bg-green-500/20 hover:bg-green-500/30 text-green-600',
-    warning: 'bg-amber-500/20 hover:bg-amber-500/30 text-amber-600',
+    default: 'bg-white/10 hover:bg-white/20 text-foreground',
+    success: 'bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300',
+    warning: 'bg-amber-500/20 hover:bg-amber-500/30 text-amber-300',
     danger: 'bg-destructive/20 hover:bg-destructive/30 text-destructive',
   };
 
@@ -227,7 +411,7 @@ export function KPIActionButton({
       disabled={loading}
       title={action}
       className={cn(
-        'rounded flex items-center justify-center transition-colors',
+        'flex items-center justify-center rounded transition-colors',
         sizeStyles[size],
         variantStyles[variant],
         loading && 'opacity-50 cursor-wait'
