@@ -47,6 +47,7 @@ import ControlPanelSidebar, {
 import { CommandCenter } from "@/components/command-center/CommandCenter";
 import { KPIGrid, KPIBox } from "@/components/boss/KPIGrid";
 import mascot from "@/assets/vala-ai-agent.png";
+import { ValaAiAgent } from "@/components/vala-ai/ValaAiAgent";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -287,6 +288,7 @@ function Index() {
           </div>
         </aside>
       </div>
+      <ValaAiAgent />
       <Toaster />
     </TooltipProvider>
   );
