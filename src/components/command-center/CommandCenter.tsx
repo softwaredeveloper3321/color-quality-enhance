@@ -44,7 +44,7 @@ import {
   Wallet,
   Zap,
 } from "lucide-react";
-import mascot from "@/assets/ai-mascot.png";
+import mascot from "@/assets/vala-ai-agent.png";
 
 /* ---------------------------------- shell --------------------------------- */
 
@@ -55,7 +55,7 @@ const Panel = memo<{
   right?: React.ReactNode;
   children: React.ReactNode;
 }>(({ icon: Icon, title, accent = "text-primary-glow", right, children }) => (
-  <section className="rounded-xl border border-primary/30 bg-[linear-gradient(160deg,rgba(139,61,255,0.16),rgba(20,10,40,0.75))] p-2.5 shadow-[0_10px_28px_-18px_rgba(139,61,255,0.9)] transition-colors hover:border-primary-glow/55">
+  <section className="rounded-xl border border-primary/30 bg-[linear-gradient(160deg,rgba(56,130,255,0.18),rgba(10,20,40,0.78))] p-2.5 shadow-[0_10px_28px_-18px_rgba(40,120,255,0.9)] transition-colors hover:border-primary-glow/55">
     <header className="mb-2 flex items-center justify-between gap-2">
       <div className="flex min-w-0 items-center gap-1.5">
         <Icon className={cn("h-3.5 w-3.5 shrink-0", accent)} />
@@ -189,7 +189,7 @@ const TimeWeather = memo(() => {
       <div className="mt-2 grid grid-cols-3 gap-1.5">
         {[
           { k: "Systems", v: "OK", c: "text-emerald-300 border-emerald-400/30 bg-emerald-400/10" },
-          { k: "AI", v: "LIVE", c: "text-violet-200 border-violet-400/30 bg-violet-400/10" },
+          { k: "AI", v: "LIVE", c: "text-sky-200 border-sky-400/30 bg-sky-400/10" },
           { k: "Alerts", v: "3", c: "text-amber-300 border-amber-400/30 bg-amber-400/10" },
         ].map((s) => (
           <div key={s.k} className={cn("rounded-lg border px-1.5 py-1 text-center", s.c)}>
@@ -328,7 +328,7 @@ const EnterpriseCalculator = memo(() => {
                 <button
                   key={f}
                   onClick={() => sci(f)}
-                  className="rounded-md border border-violet-400/25 bg-violet-400/10 py-1 text-[8.5px] font-bold text-violet-200 transition-colors hover:bg-violet-400/20"
+                  className="rounded-md border border-sky-400/25 bg-sky-400/10 py-1 text-[8.5px] font-bold text-sky-200 transition-colors hover:bg-sky-400/20"
                 >
                   {f}
                 </button>
@@ -343,7 +343,7 @@ const EnterpriseCalculator = memo(() => {
                 className={cn(
                   "rounded-md py-1.5 text-[11px] font-bold transition-all active:scale-95",
                   k === "="
-                    ? "bg-gradient-to-br from-primary to-fuchsia-600 text-white"
+                    ? "bg-gradient-to-br from-primary to-accent text-white"
                     : "border border-white/8 bg-white/[0.05] text-foreground/85 hover:bg-white/[0.12]",
                 )}
               >
@@ -449,10 +449,10 @@ ControlCenter.displayName = "ControlCenter";
 /* ---------------------------- 5. notifications ---------------------------- */
 
 const NOTIF = [
-  { i: ShieldAlert, t: "Founder Alert", m: "Board deck approval pending", c: "text-fuchsia-300 border-fuchsia-400/25 bg-fuchsia-400/10" },
+  { i: ShieldAlert, t: "Founder Alert", m: "Board deck approval pending", c: "text-cyan-300 border-cyan-400/25 bg-cyan-400/10" },
   { i: AlertTriangle, t: "Critical", m: "Node-07 CPU at 91%", c: "text-rose-300 border-rose-400/25 bg-rose-400/10" },
   { i: FileText, t: "Approvals", m: "6 requests awaiting sign-off", c: "text-amber-300 border-amber-400/25 bg-amber-400/10" },
-  { i: Sparkles, t: "AI Suggests", m: "Shift 12% budget to APAC ads", c: "text-violet-200 border-violet-400/25 bg-violet-400/10" },
+  { i: Sparkles, t: "AI Suggests", m: "Shift 12% budget to APAC ads", c: "text-sky-200 border-sky-400/25 bg-sky-400/10" },
   { i: Shield, t: "Security", m: "2 logins from new devices", c: "text-sky-300 border-sky-400/25 bg-sky-400/10" },
 ];
 
@@ -493,7 +493,7 @@ const SupportCenter = memo(() => (
     <div className="grid grid-cols-2 gap-1.5">
       {[
         { i: Headphones, l: "Live Support", s: "3 online", c: "border-emerald-400/25 bg-emerald-400/10 text-emerald-300" },
-        { i: Bot, l: "AI Assistant", s: "Instant", c: "border-violet-400/25 bg-violet-400/10 text-violet-200" },
+        { i: Bot, l: "AI Assistant", s: "Instant", c: "border-sky-400/25 bg-sky-400/10 text-sky-200" },
         { i: Users, l: "Team Chat", s: "12 active", c: "border-sky-400/25 bg-sky-400/10 text-sky-300" },
         { i: Phone, l: "Emergency", s: "24×7", c: "border-rose-400/25 bg-rose-400/10 text-rose-300" },
       ].map((b) => (
@@ -620,7 +620,7 @@ MiniAnalytics.displayName = "MiniAnalytics";
 /* --------------------------- 10. founder AI card -------------------------- */
 
 const FounderAI = memo(() => (
-  <section className="relative overflow-hidden rounded-xl border border-primary-glow/45 bg-[linear-gradient(150deg,rgba(139,61,255,0.35),rgba(233,53,200,0.18),rgba(12,6,26,0.92))] p-2.5 shadow-[0_18px_44px_-20px_rgba(180,80,255,0.95)]">
+  <section className="relative overflow-hidden rounded-xl border border-primary-glow/45 bg-[linear-gradient(150deg,rgba(56,130,255,0.38),rgba(90,200,255,0.20),rgba(6,14,30,0.94))] p-2.5 shadow-[0_18px_44px_-20px_rgba(60,160,255,0.95)]">
     <div className="pointer-events-none absolute -right-8 -top-10 h-28 w-28 rounded-full bg-primary-glow/35 blur-3xl" />
     <div className="relative flex items-start gap-2">
       <img
@@ -629,7 +629,7 @@ const FounderAI = memo(() => (
         loading="lazy"
         width={912}
         height={1104}
-        className="h-16 w-14 shrink-0 rounded-lg object-cover object-top drop-shadow-[0_8px_18px_rgba(120,60,255,0.55)]"
+        className="h-16 w-14 shrink-0 rounded-lg object-cover object-top drop-shadow-[0_8px_18px_rgba(50,140,255,0.6)]"
       />
       <div className="min-w-0">
         <p className="text-[11px] font-extrabold tracking-tight text-foreground">Founder AI Assistant</p>
@@ -655,7 +655,7 @@ const FounderAI = memo(() => (
     </div>
     <button
       onClick={() => toast.success("Voice command listening…")}
-      className="relative mt-2 flex w-full items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-primary via-fuchsia-600 to-primary-glow py-1.5 text-[10.5px] font-extrabold text-white shadow-[0_10px_24px_-12px_rgba(233,53,200,0.9)] transition-transform active:scale-[0.98]"
+      className="relative mt-2 flex w-full items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-primary via-accent to-primary-glow py-1.5 text-[10.5px] font-extrabold text-white shadow-[0_10px_24px_-12px_rgba(60,160,255,0.9)] transition-transform active:scale-[0.98]"
     >
       <Mic className="h-3.5 w-3.5" />
       Voice Command

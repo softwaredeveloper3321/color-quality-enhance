@@ -98,10 +98,10 @@ export function KPIBox({
         'min-h-[128px] h-full will-change-transform',
         // Card styling — solid premium enterprise surface (no glass)
         'p-4 rounded-2xl border border-primary/30',
-        'bg-[linear-gradient(158deg,rgba(139,61,255,0.18)_0%,rgba(28,15,54,0.96)_45%,rgba(14,7,30,0.98)_100%)]',
-        'shadow-[0_1px_0_0_rgba(255,255,255,0.06)_inset,0_18px_40px_-24px_rgba(139,61,255,0.85)]',
+        'bg-[linear-gradient(158deg,rgba(56,130,255,0.20)_0%,rgba(14,26,52,0.96)_45%,rgba(7,14,30,0.98)_100%)]',
+        'shadow-[0_1px_0_0_rgba(255,255,255,0.06)_inset,0_18px_40px_-24px_rgba(40,120,255,0.85)]',
         // Hover/selected states
-        'hover:border-primary-glow/70 hover:shadow-[0_1px_0_0_rgba(255,255,255,0.1)_inset,0_26px_56px_-22px_rgba(180,80,255,0.95)]',
+        'hover:border-primary-glow/70 hover:shadow-[0_1px_0_0_rgba(255,255,255,0.1)_inset,0_26px_56px_-22px_rgba(60,160,255,0.95)]',
         isSelected && 'ring-2 ring-primary ring-offset-2 ring-offset-background border-primary',
         className
       )}
