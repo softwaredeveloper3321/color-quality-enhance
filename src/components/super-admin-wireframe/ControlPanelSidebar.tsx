@@ -25,7 +25,7 @@ import {
   Star, Scale, ListTodo, DollarSign, Code2, 
   Megaphone, HeartHandshake, Users, LogOut, Zap, Timer, MonitorPlay, 
   Home, Shield, Settings, Search, User, UserCircle,
-  PanelLeftClose, PanelLeftOpen
+  PanelLeftClose, PanelLeftOpen, FlaskConical, Store, Bot, UserCog
 } from "lucide-react";
 // ScrollArea removed - NO SCROLLING in Control Panel
 
@@ -59,12 +59,16 @@ const ROLE_CATEGORIES = [
   { id: 'task_management', label: 'Task Manager', icon: ListTodo },
   { id: 'promise_tracker_manager', label: 'Promise Tracker', icon: Timer },
   { id: 'assist_manager', label: 'Assist Manager', icon: MonitorPlay },
+  { id: 'rnd_dashboard', label: 'R&D Innovation Lab', icon: FlaskConical },
   // GRADE 3
   { id: 'marketing_management', label: 'Marketing Manager', icon: Megaphone },
   { id: 'seo_manager', label: 'SEO Manager', icon: Search },
   { id: 'lead_manager', label: 'Lead Manager', icon: Target },
   { id: 'sales_support_manager', label: 'Sales & Support', icon: Headphones },
   { id: 'customer_support_management', label: 'Customer Support', icon: HeartHandshake },
+  { id: 'marketplace_manager', label: 'Marketplace Manager', icon: Store },
+  { id: 'internal_chatbot', label: 'Internal Chatbot', icon: Bot },
+  { id: 'role_manager', label: 'Role Manager', icon: UserCog },
   // GRADE 4
   { id: 'franchise_manager', label: 'Franchise Owner', icon: Building2 },
   { id: 'reseller_manager', label: 'Reseller Manager', icon: Handshake },
@@ -86,6 +90,7 @@ const ROLE_CATEGORIES = [
   { id: 'security', label: 'Security', icon: Shield },
   { id: 'settings', label: 'Settings', icon: Settings },
 ] as const;
+
 
 type RoleId = typeof ROLE_CATEGORIES[number]['id'];
 
