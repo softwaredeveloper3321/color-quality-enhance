@@ -55,9 +55,9 @@ export const ModuleWorkspace = memo(({ role }: { role: RoleId }) => {
       case "settings":
         return <SettingsDashboard />;
       case "continent_super_admin":
-        return <ContinentDashboard continent="asia" />;
+        return <ContinentDashboard continent="Asia" />;
       case "country_head":
-        return <CountryAdminDashboard country={DEMO_COUNTRY} continent="asia" onBack={() => {}} />;
+        return <CountryAdminDashboard country={DEMO_COUNTRY} continent="Asia" onBack={() => {}} />;
       case "rnd_dashboard":
         return <RnDDashboard />;
       default:
