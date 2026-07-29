@@ -25,7 +25,7 @@ const DEMO_COUNTRY = {
   resellers: 18,
   leads: 320,
   users: 12480,
-  status: "active",
+  status: "healthy" as const,
   revenue: 4250000,
   coordinates: [78.9629, 20.5937] as [number, number],
   admin: "Country Head — India",
