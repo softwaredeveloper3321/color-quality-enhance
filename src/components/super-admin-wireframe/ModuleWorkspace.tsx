@@ -20,16 +20,15 @@ const RnDDashboard = lazy(() => import("@/components/rnd/RnDDashboard"));
 const DEMO_COUNTRY = {
   id: "in",
   name: "India",
-  code: "IN",
+  admin: "Country Head — India",
+  status: "healthy" as const,
   franchises: 42,
   resellers: 18,
   leads: 320,
-  users: 12480,
-  status: "healthy" as const,
   revenue: 4250000,
-  coordinates: [78.9629, 20.5937] as [number, number],
-  admin: "Country Head — India",
-  performance: 92,
+  lat: 20.5937,
+  lng: 78.9629,
+  hasFranchise: true,
 };
 
 const MODULE_TITLES: Record<string, { title: string; subtitle: string }> = {
