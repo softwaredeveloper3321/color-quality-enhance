@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * LOCAL DATA CLIENT SHIM
  * Provides the same chainable surface the copied modules expect
@@ -19,8 +20,8 @@ interface QueryBuilder extends PromiseLike<Result<Record<string, unknown>[]>> {
   in: (col: string, value: unknown) => QueryBuilder;
   order: (col: string, opts?: unknown) => QueryBuilder;
   limit: (n: number) => QueryBuilder;
-  single: () => Promise<Result<Record<string, unknown>>>;
-  maybeSingle: () => Promise<Result<Record<string, unknown>>>;
+  single: () => Promise<Result<any>>;
+  maybeSingle: () => Promise<Result<any>>;
 }
 
 function createQueryBuilder(): QueryBuilder {
@@ -35,8 +36,8 @@ function createQueryBuilder(): QueryBuilder {
     in: () => builder,
     order: () => builder,
     limit: () => builder,
-    single: () => ok<Record<string, unknown>>({}),
-    maybeSingle: () => ok<Record<string, unknown>>({}),
+    single: () => ok<any>({}),
+    maybeSingle: () => ok<any>({}),
     then: (resolve: (value: Result<Record<string, unknown>[]>) => unknown) =>
       Promise.resolve({ data: rows, error: null } as Result<Record<string, unknown>[]>).then(resolve),
   } as unknown as QueryBuilder;
@@ -54,7 +55,7 @@ export const supabase = {
   },
   functions: {
     invoke: (_name: string, _opts?: unknown) =>
-      ok({ result: "AI service is running in local cockpit mode." }),
+      ok<any>({ result: "AI service is running in local cockpit mode." }),
   },
   channel: (_name: string) => ({
     on: () => ({ subscribe: () => ({}) }),

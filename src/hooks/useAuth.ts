@@ -31,7 +31,7 @@ export function useAuth() {
     user,
     session: null,
     loading: false,
-    userRole: "boss_owner" as const,
+    userRole: "boss_owner" as string,
     isBossOwner: true,
     isCEO: false,
     isAdmin: true,

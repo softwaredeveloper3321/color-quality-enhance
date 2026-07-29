@@ -28,5 +28,5 @@ export function useLocation() {
 }
 
 export function useParams<T extends Record<string, string> = Record<string, string>>() {
-  return useRouterState({ select: (s) => s.matches.at(-1)?.params ?? {} }) as T;
+  return useRouterState({ select: (s) => s.matches.at(-1)?.params ?? {} }) as unknown as T;
 }
