@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from "react-simple-maps";
@@ -458,8 +459,8 @@ const CountryHeadDashboard = ({ countryCode = "IN", onBack }: CountryHeadDashboa
               >
                 <ZoomableGroup zoom={1} center={config.mapCenter}>
                   <Geographies geography={geoUrl}>
-                    {({ geographies }) =>
-                      geographies.map((geo) => (
+                    {({ geographies }: { geographies: any[] }) =>
+                      geographies.map((geo: any) => (
                         <Geography
                           key={geo.rsmKey}
                           geography={geo}
