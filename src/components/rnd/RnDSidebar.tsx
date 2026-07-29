@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "@/lib/compat/router";
 import { 
   LayoutDashboard, 
   Users, 
