@@ -3,6 +3,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SliderBanner } from "@/components/slider-banner/SliderBanner";
+
 import {
   Activity,
   AlertTriangle,
