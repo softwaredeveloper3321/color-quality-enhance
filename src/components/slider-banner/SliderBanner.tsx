@@ -104,6 +104,10 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
   );
 
   const style = useMemo(() => KIND_STYLE[item?.kind ?? "notification"], [item?.kind]);
+  const variant = safeIndex % 3;
+  const hue = style.hues[variant % style.hues.length];
+  const glow = style.glows[variant % style.glows.length];
+
 
   if (!item) {
     return (
