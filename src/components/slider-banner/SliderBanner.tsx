@@ -187,12 +187,12 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
                 {style.label}
               </span>
               {item.meta && (
-                <span className="rounded-full border border-white/25 bg-black/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/85 backdrop-blur">
+                <span className="rounded-full border border-white/60 bg-white/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#12203f] backdrop-blur">
                   {item.meta}
                 </span>
               )}
               {item.done && (
-                <span className="inline-flex items-center gap-1 rounded-full border border-emerald-300/50 bg-emerald-400/20 px-2.5 py-1 text-[10px] font-bold uppercase text-emerald-100">
+                <span className="inline-flex items-center gap-1 rounded-full border border-white/60 bg-white/60 px-2.5 py-1 text-[10px] font-bold uppercase text-[#0d5a3f]">
                   <CheckCircle2 className="h-3 w-3" /> Done
                 </span>
               )}
@@ -200,13 +200,13 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
 
             <h2
               className={cn(
-                "mt-3 font-extrabold leading-tight tracking-[-0.02em] text-white drop-shadow-[0_6px_18px_rgba(0,0,0,0.55)]",
+                "mt-3 font-extrabold leading-tight tracking-[-0.02em] text-[#0f1b38] drop-shadow-[0_2px_10px_rgba(255,255,255,0.55)]",
                 compact ? "text-base" : "text-2xl sm:text-3xl",
               )}
             >
               {item.title}
             </h2>
-            <p className={cn("mt-2 max-w-2xl text-white/85", compact ? "text-[11px]" : "text-sm")}>
+            <p className={cn("mt-2 max-w-2xl text-[#1b2a4d]/85", compact ? "text-[11px]" : "text-sm")}>
               {item.detail}
             </p>
 
@@ -222,7 +222,7 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
                     toast.success(`${primaryLabel}d: ${item.title}`);
                   }
                 }}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-extrabold text-[#0b1a35] shadow-[0_12px_30px_-12px_rgba(0,0,0,0.9)] transition-transform hover:scale-105 active:scale-95"
+                className="inline-flex items-center gap-2 rounded-full bg-[#0f1b38] px-4 py-2 text-xs font-extrabold text-white shadow-[0_12px_30px_-12px_rgba(0,0,0,0.9)] transition-transform hover:scale-105 active:scale-95"
               >
                 <CheckCircle2 className="h-3.5 w-3.5" />
                 {primaryLabel}
@@ -233,7 +233,7 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
                   resolveBannerItem(item.id);
                   toast.info(`Dismissed: ${item.title}`);
                 }}
-                className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/25 px-4 py-2 text-xs font-bold text-white backdrop-blur transition-colors hover:bg-black/40"
+                className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/45 px-4 py-2 text-xs font-bold text-[#0f1b38] backdrop-blur transition-colors hover:bg-white/70"
               >
                 <X className="h-3.5 w-3.5" />
                 {item.secondaryLabel ?? "Dismiss"}
@@ -244,7 +244,7 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
                   setPlaying((p) => !p);
                   toast.message(playing ? "Slider paused" : "Slider playing");
                 }}
-                className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/25 px-3 py-2 text-xs font-bold text-white backdrop-blur transition-colors hover:bg-black/40"
+                className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/45 px-3 py-2 text-xs font-bold text-[#0f1b38] backdrop-blur transition-colors hover:bg-white/70"
               >
                 {playing ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
                 {playing ? "Pause" : "Play"}
@@ -258,18 +258,18 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
               type="button"
               aria-label="Previous slide"
               onClick={() => go(-1)}
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/35 bg-black/25 text-white backdrop-blur transition-transform hover:scale-110"
+              className="grid h-9 w-9 place-items-center rounded-full border border-white/70 bg-white/45 text-[#0f1b38] backdrop-blur transition-transform hover:scale-110"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
-            <span className="rounded-full border border-white/30 bg-black/30 px-3 py-1 text-[11px] font-bold text-white">
+            <span className="rounded-full border border-white/70 bg-white/45 px-3 py-1 text-[11px] font-bold text-[#0f1b38]">
               {safeIndex + 1}/{count}
             </span>
             <button
               type="button"
               aria-label="Next slide"
               onClick={() => go(1)}
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/35 bg-black/25 text-white backdrop-blur transition-transform hover:scale-110"
+              className="grid h-9 w-9 place-items-center rounded-full border border-white/70 bg-white/45 text-[#0f1b38] backdrop-blur transition-transform hover:scale-110"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
@@ -286,7 +286,7 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
               onClick={() => setIndex(i)}
               className={cn(
                 "h-1.5 rounded-full transition-all duration-300",
-                i === safeIndex ? "w-8 bg-white" : "w-3 bg-white/40 hover:bg-white/70",
+                i === safeIndex ? "w-8 bg-[#0f1b38]" : "w-3 bg-white/70 hover:bg-white",
               )}
             />
           ))}
