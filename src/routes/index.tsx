@@ -4,6 +4,8 @@ import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SliderBanner } from "@/components/slider-banner/SliderBanner";
+import { BannerThemeControls } from "@/components/slider-banner/BannerThemeControls";
+
 
 import {
   Activity,
