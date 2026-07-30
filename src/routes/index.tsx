@@ -4,6 +4,8 @@ import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SliderBanner } from "@/components/slider-banner/SliderBanner";
+import { BannerThemeControls } from "@/components/slider-banner/BannerThemeControls";
+
 
 import {
   Activity,
@@ -49,7 +51,6 @@ import ControlPanelSidebar, {
 import { CommandCenter } from "@/components/command-center/CommandCenter";
 import { KPIGrid, KPIBox } from "@/components/boss/KPIGrid";
 import { ValaAiAgent } from "@/components/vala-ai/ValaAiAgent";
-import { ValaAvatarLive } from "@/components/vala-ai/ValaAvatarLive";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -146,50 +147,13 @@ const KPI_BOXES: Kpi[] = [
 
 function CockpitBanner() {
   return (
-    <section className="relative overflow-hidden rounded-3xl border-2 border-primary-glow/40 p-6 shadow-[0_28px_70px_-30px] shadow-primary/80 sm:p-8">
-      <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary-glow/80 to-accent" />
-      <div className="absolute -left-16 -top-20 h-64 w-64 rounded-full bg-primary-glow/70 blur-3xl" />
-      <div className="absolute -right-10 bottom-[-6rem] h-72 w-72 rounded-full bg-accent/70 blur-3xl" />
-      <div className="absolute inset-0 opacity-35 [background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.4)_1px,transparent_0)] [background-size:20px_20px]" />
-
-
-      <div className="relative flex flex-col gap-6 xl:flex-row xl:items-center xl:justify-between">
-        <div className="min-w-0 flex-1">
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/30 bg-background/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground backdrop-blur">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-            Boss / Owner • Live Cockpit
-          </span>
-          <SliderBanner className="mt-4" />
-        </div>
-
-
-        <div className="flex items-center gap-4">
-          <div className="grid shrink-0 grid-cols-1 gap-3 sm:grid-cols-3 xl:grid-cols-1">
-            {[
-              { k: "Revenue", v: "₹42.5L" },
-              { k: "Uptime", v: "99.97%" },
-              { k: "AI Jobs", v: "12" },
-            ].map((s) => (
-              <div
-                key={s.k}
-                className="rounded-2xl border border-primary-foreground/20 bg-background/25 px-4 py-3 text-center backdrop-blur"
-              >
-                <p className="text-[10px] uppercase tracking-wider text-primary-foreground/70">{s.k}</p>
-                <p className="mt-1 whitespace-nowrap text-lg font-bold text-primary-foreground">{s.v}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Living Vala AI agent */}
-          <ValaAvatarLive
-            state="idle"
-            className="hidden h-[290px] w-auto shrink-0 lg:block xl:h-[340px]"
-          />
-        </div>
-      </div>
+    <section className="flex flex-col gap-3">
+      <BannerThemeControls />
+      <SliderBanner />
     </section>
   );
 }
+
 
 function Index() {
   const [activeRole, setActiveRole] = useState<RoleId>("boss_owner");

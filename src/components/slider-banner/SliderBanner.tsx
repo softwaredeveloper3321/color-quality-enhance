@@ -28,37 +28,54 @@ import {
 
 const KIND_STYLE: Record<
   BannerKind,
-  { label: string; icon: typeof Bell; hue: string; glow: string; chip: string }
+  { label: string; icon: typeof Bell; hues: string[]; glows: string[]; chip: string }
 > = {
   alert: {
     label: "Alert",
     icon: AlertTriangle,
-    hue: "linear-gradient(135deg,#ff7a45 0%,#ff4d6d 55%,#7a1f5c 100%)",
-    glow: "rgba(255,110,90,0.55)",
-    chip: "bg-orange-400/20 text-orange-200 border-orange-300/40",
+    hues: [
+      "linear-gradient(135deg,#ff8f8f 0%,#ff5470 48%,#ff2d55 100%)",
+      "linear-gradient(135deg,#ffb0a0 0%,#ff6b6b 50%,#e8305a 100%)",
+      "linear-gradient(135deg,#ff9db6 0%,#ff4d6d 52%,#d92e4e 100%)",
+    ],
+    glows: ["rgba(255,99,120,0.85)", "rgba(255,140,120,0.85)", "rgba(255,110,150,0.85)"],
+    chip: "bg-white/25 text-white border-white/50",
   },
   approval: {
     label: "Approval",
     icon: ClipboardCheck,
-    hue: "linear-gradient(135deg,#2f7dff 0%,#48c6ff 55%,#0b2a63 100%)",
-    glow: "rgba(72,168,255,0.6)",
-    chip: "bg-sky-400/20 text-sky-200 border-sky-300/40",
+    hues: [
+      "linear-gradient(135deg,#8fd7ff 0%,#4facfe 48%,#2f7dff 100%)",
+      "linear-gradient(135deg,#a5e4ff 0%,#58c7ff 50%,#3a8dff 100%)",
+      "linear-gradient(135deg,#9be7f5 0%,#49b8ff 52%,#2f95ff 100%)",
+    ],
+    glows: ["rgba(120,200,255,0.85)", "rgba(110,190,255,0.85)", "rgba(140,220,255,0.85)"],
+    chip: "bg-white/25 text-white border-white/50",
   },
   notification: {
     label: "Notification",
     icon: Bell,
-    hue: "linear-gradient(135deg,#3b6bff 0%,#7f5bff 55%,#12184a 100%)",
-    glow: "rgba(120,120,255,0.55)",
-    chip: "bg-indigo-400/20 text-indigo-200 border-indigo-300/40",
+    hues: [
+      "linear-gradient(135deg,#c0b3ff 0%,#8f7bff 48%,#6a5bff 100%)",
+      "linear-gradient(135deg,#b7c6ff 0%,#7f9bff 50%,#5d7bff 100%)",
+      "linear-gradient(135deg,#d5b8ff 0%,#a184ff 52%,#7b62ff 100%)",
+    ],
+    glows: ["rgba(170,160,255,0.85)", "rgba(150,175,255,0.85)", "rgba(190,150,255,0.85)"],
+    chip: "bg-white/25 text-white border-white/50",
   },
   todo: {
     label: "To-Do",
     icon: ListTodo,
-    hue: "linear-gradient(135deg,#0fb99a 0%,#34d0ff 55%,#0a2d4d 100%)",
-    glow: "rgba(46,214,190,0.55)",
-    chip: "bg-emerald-400/20 text-emerald-200 border-emerald-300/40",
+    hues: [
+      "linear-gradient(135deg,#9ff5d8 0%,#43e0b7 48%,#16c79a 100%)",
+      "linear-gradient(135deg,#aef2e9 0%,#4dd8d0 50%,#19b3b8 100%)",
+      "linear-gradient(135deg,#c6f7b0 0%,#68e08e 52%,#22c281 100%)",
+    ],
+    glows: ["rgba(110,240,205,0.85)", "rgba(110,230,225,0.85)", "rgba(150,240,170,0.85)"],
+    chip: "bg-white/25 text-white border-white/50",
   },
 };
+
 
 interface SliderBannerProps {
   className?: string;
@@ -87,6 +104,10 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
   );
 
   const style = useMemo(() => KIND_STYLE[item?.kind ?? "notification"], [item?.kind]);
+  const variant = safeIndex % 3;
+  const hue = style.hues[variant % style.hues.length];
+  const glow = style.glows[variant % style.glows.length];
+
 
   if (!item) {
     return (
@@ -117,25 +138,38 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
       {/* glow base layer (3D poster depth) */}
       <div
         className="absolute inset-x-6 -bottom-3 h-16 rounded-[2rem] blur-2xl transition-all duration-700"
-        style={{ background: style.glow, opacity: 0.85 }}
+        style={{
+          background: glow,
+          opacity: "calc(0.9 * var(--banner-glow-density, 0.9))",
+        }}
         aria-hidden
       />
 
       <div
         key={item.id}
         className={cn(
-          "relative overflow-hidden rounded-3xl border-2 border-primary-glow/45 animate-fade-in",
+          "relative overflow-hidden rounded-3xl border-2 border-white/40 animate-fade-in",
           "shadow-[0_36px_90px_-32px] shadow-primary/90",
           compact ? "p-4" : "p-6 sm:p-8",
         )}
-        style={{ background: style.hue, transform: "rotateX(0.6deg)" }}
+        style={{ background: hue, transform: "rotateX(0.6deg)" }}
       >
         {/* shine + density layers */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_10%_-20%,rgba(255,255,255,0.38),transparent_55%)]" />
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.16),transparent_35%,rgba(0,0,0,0.42))]" />
-        <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.45)_1px,transparent_0)] [background-size:18px_18px]" />
-        <div className="pointer-events-none absolute -left-16 -top-24 h-64 w-64 rounded-full bg-white/25 blur-3xl" />
         <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_10%_-20%,rgba(255,255,255,0.55),transparent_58%)]"
+          style={{ opacity: "var(--banner-shine, 0.85)" }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.34),transparent_38%,rgba(0,0,0,0.18))]"
+          style={{ opacity: "calc(0.5 + 0.5 * var(--banner-shine, 0.85))" }}
+        />
+        <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.5)_1px,transparent_0)] [background-size:18px_18px]" />
+        <div
+          className="pointer-events-none absolute -left-16 -top-24 h-64 w-64 rounded-full bg-white/40 blur-3xl"
+          style={{ opacity: "var(--banner-glow-density, 0.9)" }}
+        />
+        <div
+
           className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-12 bg-white/20 blur-xl"
           style={{ animation: "kpi-sweep 4.5s ease-in-out infinite" }}
         />
@@ -153,12 +187,12 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
                 {style.label}
               </span>
               {item.meta && (
-                <span className="rounded-full border border-white/25 bg-black/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/85 backdrop-blur">
+                <span className="rounded-full border border-white/60 bg-white/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#12203f] backdrop-blur">
                   {item.meta}
                 </span>
               )}
               {item.done && (
-                <span className="inline-flex items-center gap-1 rounded-full border border-emerald-300/50 bg-emerald-400/20 px-2.5 py-1 text-[10px] font-bold uppercase text-emerald-100">
+                <span className="inline-flex items-center gap-1 rounded-full border border-white/60 bg-white/60 px-2.5 py-1 text-[10px] font-bold uppercase text-[#0d5a3f]">
                   <CheckCircle2 className="h-3 w-3" /> Done
                 </span>
               )}
@@ -166,13 +200,13 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
 
             <h2
               className={cn(
-                "mt-3 font-extrabold leading-tight tracking-[-0.02em] text-white drop-shadow-[0_6px_18px_rgba(0,0,0,0.55)]",
+                "mt-3 font-extrabold leading-tight tracking-[-0.02em] text-[#0f1b38] drop-shadow-[0_2px_10px_rgba(255,255,255,0.55)]",
                 compact ? "text-base" : "text-2xl sm:text-3xl",
               )}
             >
               {item.title}
             </h2>
-            <p className={cn("mt-2 max-w-2xl text-white/85", compact ? "text-[11px]" : "text-sm")}>
+            <p className={cn("mt-2 max-w-2xl text-[#1b2a4d]/85", compact ? "text-[11px]" : "text-sm")}>
               {item.detail}
             </p>
 
@@ -188,7 +222,7 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
                     toast.success(`${primaryLabel}d: ${item.title}`);
                   }
                 }}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-extrabold text-[#0b1a35] shadow-[0_12px_30px_-12px_rgba(0,0,0,0.9)] transition-transform hover:scale-105 active:scale-95"
+                className="inline-flex items-center gap-2 rounded-full bg-[#0f1b38] px-4 py-2 text-xs font-extrabold text-white shadow-[0_12px_30px_-12px_rgba(0,0,0,0.9)] transition-transform hover:scale-105 active:scale-95"
               >
                 <CheckCircle2 className="h-3.5 w-3.5" />
                 {primaryLabel}
@@ -199,7 +233,7 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
                   resolveBannerItem(item.id);
                   toast.info(`Dismissed: ${item.title}`);
                 }}
-                className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/25 px-4 py-2 text-xs font-bold text-white backdrop-blur transition-colors hover:bg-black/40"
+                className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/45 px-4 py-2 text-xs font-bold text-[#0f1b38] backdrop-blur transition-colors hover:bg-white/70"
               >
                 <X className="h-3.5 w-3.5" />
                 {item.secondaryLabel ?? "Dismiss"}
@@ -210,7 +244,7 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
                   setPlaying((p) => !p);
                   toast.message(playing ? "Slider paused" : "Slider playing");
                 }}
-                className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-black/25 px-3 py-2 text-xs font-bold text-white backdrop-blur transition-colors hover:bg-black/40"
+                className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/45 px-3 py-2 text-xs font-bold text-[#0f1b38] backdrop-blur transition-colors hover:bg-white/70"
               >
                 {playing ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
                 {playing ? "Pause" : "Play"}
@@ -224,18 +258,18 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
               type="button"
               aria-label="Previous slide"
               onClick={() => go(-1)}
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/35 bg-black/25 text-white backdrop-blur transition-transform hover:scale-110"
+              className="grid h-9 w-9 place-items-center rounded-full border border-white/70 bg-white/45 text-[#0f1b38] backdrop-blur transition-transform hover:scale-110"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
-            <span className="rounded-full border border-white/30 bg-black/30 px-3 py-1 text-[11px] font-bold text-white">
+            <span className="rounded-full border border-white/70 bg-white/45 px-3 py-1 text-[11px] font-bold text-[#0f1b38]">
               {safeIndex + 1}/{count}
             </span>
             <button
               type="button"
               aria-label="Next slide"
               onClick={() => go(1)}
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/35 bg-black/25 text-white backdrop-blur transition-transform hover:scale-110"
+              className="grid h-9 w-9 place-items-center rounded-full border border-white/70 bg-white/45 text-[#0f1b38] backdrop-blur transition-transform hover:scale-110"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
@@ -252,7 +286,7 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
               onClick={() => setIndex(i)}
               className={cn(
                 "h-1.5 rounded-full transition-all duration-300",
-                i === safeIndex ? "w-8 bg-white" : "w-3 bg-white/40 hover:bg-white/70",
+                i === safeIndex ? "w-8 bg-[#0f1b38]" : "w-3 bg-white/70 hover:bg-white",
               )}
             />
           ))}
