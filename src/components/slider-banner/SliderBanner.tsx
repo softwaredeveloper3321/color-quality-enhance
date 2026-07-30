@@ -28,37 +28,54 @@ import {
 
 const KIND_STYLE: Record<
   BannerKind,
-  { label: string; icon: typeof Bell; hue: string; glow: string; chip: string }
+  { label: string; icon: typeof Bell; hues: string[]; glows: string[]; chip: string }
 > = {
   alert: {
     label: "Alert",
     icon: AlertTriangle,
-    hue: "linear-gradient(135deg,#ff7a45 0%,#ff4d6d 55%,#7a1f5c 100%)",
-    glow: "rgba(255,110,90,0.55)",
-    chip: "bg-orange-400/20 text-orange-200 border-orange-300/40",
+    hues: [
+      "linear-gradient(135deg,#ff8f8f 0%,#ff5470 48%,#ff2d55 100%)",
+      "linear-gradient(135deg,#ffb0a0 0%,#ff6b6b 50%,#e8305a 100%)",
+      "linear-gradient(135deg,#ff9db6 0%,#ff4d6d 52%,#d92e4e 100%)",
+    ],
+    glows: ["rgba(255,99,120,0.85)", "rgba(255,140,120,0.85)", "rgba(255,110,150,0.85)"],
+    chip: "bg-white/25 text-white border-white/50",
   },
   approval: {
     label: "Approval",
     icon: ClipboardCheck,
-    hue: "linear-gradient(135deg,#2f7dff 0%,#48c6ff 55%,#0b2a63 100%)",
-    glow: "rgba(72,168,255,0.6)",
-    chip: "bg-sky-400/20 text-sky-200 border-sky-300/40",
+    hues: [
+      "linear-gradient(135deg,#8fd7ff 0%,#4facfe 48%,#2f7dff 100%)",
+      "linear-gradient(135deg,#a5e4ff 0%,#58c7ff 50%,#3a8dff 100%)",
+      "linear-gradient(135deg,#9be7f5 0%,#49b8ff 52%,#2f95ff 100%)",
+    ],
+    glows: ["rgba(120,200,255,0.85)", "rgba(110,190,255,0.85)", "rgba(140,220,255,0.85)"],
+    chip: "bg-white/25 text-white border-white/50",
   },
   notification: {
     label: "Notification",
     icon: Bell,
-    hue: "linear-gradient(135deg,#3b6bff 0%,#7f5bff 55%,#12184a 100%)",
-    glow: "rgba(120,120,255,0.55)",
-    chip: "bg-indigo-400/20 text-indigo-200 border-indigo-300/40",
+    hues: [
+      "linear-gradient(135deg,#c0b3ff 0%,#8f7bff 48%,#6a5bff 100%)",
+      "linear-gradient(135deg,#b7c6ff 0%,#7f9bff 50%,#5d7bff 100%)",
+      "linear-gradient(135deg,#d5b8ff 0%,#a184ff 52%,#7b62ff 100%)",
+    ],
+    glows: ["rgba(170,160,255,0.85)", "rgba(150,175,255,0.85)", "rgba(190,150,255,0.85)"],
+    chip: "bg-white/25 text-white border-white/50",
   },
   todo: {
     label: "To-Do",
     icon: ListTodo,
-    hue: "linear-gradient(135deg,#0fb99a 0%,#34d0ff 55%,#0a2d4d 100%)",
-    glow: "rgba(46,214,190,0.55)",
-    chip: "bg-emerald-400/20 text-emerald-200 border-emerald-300/40",
+    hues: [
+      "linear-gradient(135deg,#9ff5d8 0%,#43e0b7 48%,#16c79a 100%)",
+      "linear-gradient(135deg,#aef2e9 0%,#4dd8d0 50%,#19b3b8 100%)",
+      "linear-gradient(135deg,#c6f7b0 0%,#68e08e 52%,#22c281 100%)",
+    ],
+    glows: ["rgba(110,240,205,0.85)", "rgba(110,230,225,0.85)", "rgba(150,240,170,0.85)"],
+    chip: "bg-white/25 text-white border-white/50",
   },
 };
+
 
 interface SliderBannerProps {
   className?: string;
