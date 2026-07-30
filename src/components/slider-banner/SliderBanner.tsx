@@ -138,25 +138,38 @@ export function SliderBanner({ className, intervalMs = 5000, compact = false }: 
       {/* glow base layer (3D poster depth) */}
       <div
         className="absolute inset-x-6 -bottom-3 h-16 rounded-[2rem] blur-2xl transition-all duration-700"
-        style={{ background: style.glow, opacity: 0.85 }}
+        style={{
+          background: glow,
+          opacity: "calc(0.9 * var(--banner-glow-density, 0.9))",
+        }}
         aria-hidden
       />
 
       <div
         key={item.id}
         className={cn(
-          "relative overflow-hidden rounded-3xl border-2 border-primary-glow/45 animate-fade-in",
+          "relative overflow-hidden rounded-3xl border-2 border-white/40 animate-fade-in",
           "shadow-[0_36px_90px_-32px] shadow-primary/90",
           compact ? "p-4" : "p-6 sm:p-8",
         )}
-        style={{ background: style.hue, transform: "rotateX(0.6deg)" }}
+        style={{ background: hue, transform: "rotateX(0.6deg)" }}
       >
         {/* shine + density layers */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_10%_-20%,rgba(255,255,255,0.38),transparent_55%)]" />
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.16),transparent_35%,rgba(0,0,0,0.42))]" />
-        <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.45)_1px,transparent_0)] [background-size:18px_18px]" />
-        <div className="pointer-events-none absolute -left-16 -top-24 h-64 w-64 rounded-full bg-white/25 blur-3xl" />
         <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_10%_-20%,rgba(255,255,255,0.55),transparent_58%)]"
+          style={{ opacity: "var(--banner-shine, 0.85)" }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.34),transparent_38%,rgba(0,0,0,0.18))]"
+          style={{ opacity: "calc(0.5 + 0.5 * var(--banner-shine, 0.85))" }}
+        />
+        <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.5)_1px,transparent_0)] [background-size:18px_18px]" />
+        <div
+          className="pointer-events-none absolute -left-16 -top-24 h-64 w-64 rounded-full bg-white/40 blur-3xl"
+          style={{ opacity: "var(--banner-glow-density, 0.9)" }}
+        />
+        <div
+
           className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-12 bg-white/20 blur-xl"
           style={{ animation: "kpi-sweep 4.5s ease-in-out infinite" }}
         />
