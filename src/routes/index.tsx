@@ -261,7 +261,11 @@ function Index() {
                 LIVE
               </span>
             </div>
+            <div className="px-2.5 pt-2.5">
+              <SliderBanner compact intervalMs={6000} />
+            </div>
             <CommandCenter />
+
           </div>
         </aside>
       </div>
