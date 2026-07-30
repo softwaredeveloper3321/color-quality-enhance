@@ -51,7 +51,6 @@ import ControlPanelSidebar, {
 import { CommandCenter } from "@/components/command-center/CommandCenter";
 import { KPIGrid, KPIBox } from "@/components/boss/KPIGrid";
 import { ValaAiAgent } from "@/components/vala-ai/ValaAiAgent";
-import { ValaAvatarLive } from "@/components/vala-ai/ValaAvatarLive";
 
 export const Route = createFileRoute("/")({
   head: () => ({
