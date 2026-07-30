@@ -152,35 +152,14 @@ function CockpitBanner() {
 
 
       <div className="relative flex flex-col gap-6 xl:flex-row xl:items-center xl:justify-between">
-        <div className="max-w-2xl">
+        <div className="min-w-0 flex-1">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/30 bg-background/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground backdrop-blur">
             <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
             Boss / Owner • Live Cockpit
           </span>
-          <h1 className="mt-4 text-3xl font-bold leading-tight text-primary-foreground sm:text-4xl">
-            Master Control Panel
-          </h1>
-          <p className="mt-2 max-w-xl text-sm text-primary-foreground/80">
-            Har module ek hi jagah — revenue, servers, Vala AI, franchise, finance aur alerts.
-            40 unified KPI cards, ek 2 × 20 grid me.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {[
-              { label: "Open Approvals", icon: FileCheck },
-              { label: "Deploy Now", icon: Rocket },
-              { label: "Ask Vala AI", icon: Brain },
-            ].map((a) => (
-              <button
-                key={a.label}
-                onClick={() => toast.info(`${a.label} — coming soon`)}
-                className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-background/25 px-4 py-2 text-xs font-semibold text-primary-foreground backdrop-blur transition-colors hover:bg-background/40"
-              >
-                <a.icon className="h-3.5 w-3.5" />
-                {a.label}
-              </button>
-            ))}
-          </div>
+          <SliderBanner className="mt-4" />
         </div>
+
 
         <div className="flex items-center gap-4">
           <div className="grid shrink-0 grid-cols-1 gap-3 sm:grid-cols-3 xl:grid-cols-1">

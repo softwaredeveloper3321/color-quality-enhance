@@ -59,6 +59,8 @@ const ROLE_CATEGORIES = [
   { id: 'task_management', label: 'Task Manager', icon: ListTodo },
   { id: 'promise_tracker_manager', label: 'Promise Tracker', icon: Timer },
   { id: 'assist_manager', label: 'Assist Manager', icon: MonitorPlay },
+  { id: 'ams_manager', label: 'AMS Manager', icon: Boxes },
+
   // GRADE 3
   { id: 'marketing_management', label: 'Marketing Manager', icon: Megaphone },
   { id: 'seo_manager', label: 'SEO Manager', icon: Search },
