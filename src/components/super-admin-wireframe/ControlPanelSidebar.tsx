@@ -60,6 +60,8 @@ const ROLE_CATEGORIES = [
   { id: 'promise_tracker_manager', label: 'Promise Tracker', icon: Timer },
   { id: 'assist_manager', label: 'Assist Manager', icon: MonitorPlay },
   { id: 'ams_manager', label: 'AMS Manager', icon: Boxes },
+  { id: 'marketplace_manager', label: 'Marketplace Manager', icon: Store },
+
 
   // GRADE 3
   { id: 'marketing_management', label: 'Marketing Manager', icon: Megaphone },
