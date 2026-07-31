@@ -1,5 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
+
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -156,6 +157,7 @@ function CockpitBanner() {
 
 
 function Index() {
+  const navigate = useNavigate();
   const [activeRole, setActiveRole] = useState<RoleId>("boss_owner");
   const [selectedKpi, setSelectedKpi] = useState<string | null>(null);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -173,11 +175,16 @@ function Index() {
             onToggleCollapse={() => setSidebarCollapsed((v) => !v)}
             onRoleSelect={(roleId) => {
               setActiveRole(roleId);
+              if (roleId === "marketplace_manager") {
+                void navigate({ to: "/marketplace" });
+                return;
+              }
               toast.success(`Switched to ${roleId.replace(/_/g, " ")}`);
             }}
             onLogout={() => toast.info("Logging out...")}
           />
         </div>
+
 
         <main className="flex min-w-0 flex-1 flex-col gap-6 p-5">
           <CockpitBanner />

@@ -215,14 +215,19 @@ export function KPIBox({
   const theme = BASE_THEME[status];
   const cardRef = React.useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = React.useState({ x: 0, y: 0, mx: 50, my: 50 });
-  const [clock, setClock] = React.useState(() =>
-    new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
-  );
+  const [clock, setClock] = React.useState('--:--:--');
+
   const activities = ACTIVITY_BY_STATUS[status];
   const [activityIndex, setActivityIndex] = React.useState(0);
 
   React.useEffect(() => {
+    const tick = () =>
+      setClock(
+        new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+      );
+    tick();
     const t = setInterval(
+
       () =>
         setClock(
           new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })

@@ -24,7 +24,7 @@ import {
   Headphones, Handshake, Target, Box, Terminal, 
   Star, Scale, ListTodo, DollarSign, Code2, 
   Megaphone, HeartHandshake, Users, LogOut, Zap, Timer, MonitorPlay, 
-  Home, Shield, Settings, Search, User, UserCircle, Boxes,
+  Home, Shield, Settings, Search, User, UserCircle, Boxes, Store,
   PanelLeftClose, PanelLeftOpen
 } from "lucide-react";
 // ScrollArea removed - NO SCROLLING in Control Panel
@@ -60,6 +60,8 @@ const ROLE_CATEGORIES = [
   { id: 'promise_tracker_manager', label: 'Promise Tracker', icon: Timer },
   { id: 'assist_manager', label: 'Assist Manager', icon: MonitorPlay },
   { id: 'ams_manager', label: 'AMS Manager', icon: Boxes },
+  { id: 'marketplace_manager', label: 'Marketplace Manager', icon: Store },
+
 
   // GRADE 3
   { id: 'marketing_management', label: 'Marketing Manager', icon: Megaphone },
