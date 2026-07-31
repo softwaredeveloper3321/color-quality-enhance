@@ -88,9 +88,9 @@ let hydrated = false;
 const listeners = new Set<() => void>();
 
 function emit() {
-  listeners.add;
   for (const l of listeners) l();
 }
+
 
 function persist() {
   if (typeof window === "undefined") return;
