@@ -221,7 +221,13 @@ export function KPIBox({
   const [activityIndex, setActivityIndex] = React.useState(0);
 
   React.useEffect(() => {
+    const tick = () =>
+      setClock(
+        new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+      );
+    tick();
     const t = setInterval(
+
       () =>
         setClock(
           new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
