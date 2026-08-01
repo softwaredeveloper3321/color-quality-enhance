@@ -50,6 +50,8 @@ import ControlPanelSidebar, {
   type RoleId,
 } from "@/components/super-admin-wireframe/ControlPanelSidebar";
 import { CommandCenter } from "@/components/command-center/CommandCenter";
+import { ExecutiveRotator } from "@/components/command-center/ExecutiveRotator";
+
 import { KPIGrid, KPIBox } from "@/components/boss/KPIGrid";
 import { ValaAiAgent } from "@/components/vala-ai/ValaAiAgent";
 
