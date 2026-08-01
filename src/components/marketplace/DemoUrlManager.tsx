@@ -408,8 +408,22 @@ export function DemoUrlManager() {
               <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
 
               <div className="flex flex-wrap items-start justify-between gap-3">
-                <div className="min-w-0">
+                <div className="flex min-w-0 items-start gap-2.5">
+                  <button
+                    type="button"
+                    aria-label={`Select ${demo.demoName}`}
+                    onClick={() => toggleSelect(demo.id)}
+                    className="mt-0.5 shrink-0 rounded-md border border-white/15 bg-white/[0.05] p-1 transition-colors hover:border-primary/60"
+                  >
+                    {selected.includes(demo.id) ? (
+                      <CheckSquare className="h-4 w-4 text-primary" />
+                    ) : (
+                      <Square className="h-4 w-4 text-foreground/45" />
+                    )}
+                  </button>
+                  <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
+
                     <h3 className="truncate text-base font-extrabold tracking-[-0.02em] text-foreground">
                       {demo.demoName}
                     </h3>
