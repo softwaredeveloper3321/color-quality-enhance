@@ -195,6 +195,57 @@ export function DemoUrlManager() {
     toast.success(`Tested ${filtered.length} demo URLs`);
   }
 
+  /* ------------------------------ bulk actions ----------------------------- */
+
+  const selectedDemos = useMemo(
+    () => demos.filter((d) => selected.includes(d.id)),
+    [demos, selected],
+  );
+  const allFilteredSelected = filtered.length > 0 && filtered.every((d) => selected.includes(d.id));
+
+  function toggleSelect(id: string) {
+    setSelected((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
+  }
+
+  function toggleSelectAll() {
+    setSelected(allFilteredSelected ? [] : filtered.map((d) => d.id));
+  }
+
+  function bulkSetActive(active: boolean) {
+    if (!selected.length) return toast.error("Select at least one demo URL");
+    setActiveMany(selected, active);
+    toast.success(`${selected.length} demo URLs ${active ? "enabled" : "disabled"}`);
+  }
+
+  function bulkDelete() {
+    if (!selected.length) return toast.error("Select at least one demo URL");
+    const count = selected.length;
+    deleteMany(selected);
+    setSelected([]);
+    toast.success(`${count} demo URLs deleted`);
+  }
+
+  async function bulkTest() {
+    if (!selectedDemos.length) return toast.error("Select at least one demo URL");
+    setBulkTesting(true);
+    for (const demo of selectedDemos) await testOne(demo, true);
+    setBulkTesting(false);
+    toast.success(`Tested ${selectedDemos.length} selected demo URLs`);
+  }
+
+  function runImport() {
+    const rows = parseImportText(importText);
+    if (!rows.length) return toast.error("Nothing to import — check the CSV/JSON format");
+    const fallback = importProduct || productFilter !== "all" ? importProduct || productFilter : products[0]?.id ?? "";
+    if (!fallback) return toast.error("Create a product first");
+    const count = importDemos(rows, fallback);
+    if (!count) return toast.error("No valid rows (each row needs a http(s) URL)");
+    toast.success(`Imported ${count} demo URLs`);
+    setImportText("");
+    setImportOpen(false);
+  }
+
+
   function openCreate() {
     setEditingId(null);
     setDraft({ ...EMPTY, productId: productFilter !== "all" ? productFilter : products[0]?.id ?? "" });
