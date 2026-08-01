@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import {
   Activity,
+  CheckSquare,
   Copy,
   CopyPlus,
   ExternalLink,
@@ -12,11 +13,16 @@ import {
   Lock,
   Pencil,
   Plus,
+  Power,
+  PowerOff,
   RefreshCw,
   ShieldCheck,
+  Square,
   Trash2,
+  Upload,
   User,
 } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
