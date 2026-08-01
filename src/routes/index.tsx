@@ -233,8 +233,9 @@ function Index() {
               </span>
             </div>
             <div className="px-2.5 pt-2.5">
-              <SliderBanner compact intervalMs={6000} />
+              <ExecutiveRotator />
             </div>
+
             <CommandCenter />
 
           </div>
