@@ -616,7 +616,63 @@ export function DemoUrlManager() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Bulk import dialog */}
+      <Dialog open={importOpen} onOpenChange={setImportOpen}>
+        <DialogContent className="sm:max-w-[620px]">
+          <DialogHeader>
+            <DialogTitle>Bulk Import Demo URLs</DialogTitle>
+            <DialogDescription>
+              Paste CSV or JSON. CSV columns: demoName, roleName, url, username, password, environment, description.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="grid gap-3">
+            <div className="grid gap-1.5">
+              <Label>Assign to product (when a row has no product)</Label>
+              <Select value={importProduct} onValueChange={setImportProduct}>
+                <SelectTrigger><SelectValue placeholder="Select product" /></SelectTrigger>
+                <SelectContent>
+                  {products.map((p) => (
+                    <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid gap-1.5">
+              <Label>Data</Label>
+              <Textarea
+                value={importText}
+                onChange={(e) => setImportText(e.target.value)}
+                rows={9}
+                className="font-mono text-[11px]"
+                placeholder={`demoName,roleName,url,username,password,environment\nVendor Demo,Vendor,https://demo.example.com/vendor,vendor@demo.com,Pass@123,production`}
+              />
+            </div>
+            <input
+              type="file"
+              accept=".csv,.json,text/csv,application/json"
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+                setImportText(await file.text());
+                toast.success(`Loaded ${file.name}`);
+              }}
+              className="text-[11px] text-foreground/60 file:mr-2 file:rounded-md file:border-0 file:bg-primary/25 file:px-2 file:py-1 file:text-[11px] file:font-bold file:text-foreground"
+            />
+            <p className="text-[11px] text-foreground/45">
+              {parseImportText(importText).length} row(s) detected
+            </p>
+          </div>
+
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setImportOpen(false)}>Cancel</Button>
+            <Button onClick={runImport}>Import</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
+
   );
 }
 
