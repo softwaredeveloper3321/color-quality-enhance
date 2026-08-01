@@ -122,6 +122,11 @@ export function DemoUrlManager() {
   const [draft, setDraft] = useState<DemoDraft>({ ...EMPTY, productId: products[0]?.id ?? "" });
   const [testing, setTesting] = useState<Record<string, boolean>>({});
   const [bulkTesting, setBulkTesting] = useState(false);
+  const [selected, setSelected] = useState<string[]>([]);
+  const [importOpen, setImportOpen] = useState(false);
+  const [importText, setImportText] = useState("");
+  const [importProduct, setImportProduct] = useState("");
+
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
