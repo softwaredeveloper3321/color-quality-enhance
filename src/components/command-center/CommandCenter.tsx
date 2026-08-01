@@ -140,20 +140,24 @@ Bar.displayName = "Bar";
 /* ------------------------------ 1. time / wx ------------------------------ */
 
 const TimeWeather = memo(() => {
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
   useEffect(() => {
+    setNow(new Date());
     const t = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(t);
   }, []);
 
-  const local = now.toLocaleTimeString([], { hour12: false });
-  const utc = now.toUTCString().slice(17, 25);
-  const date = now.toLocaleDateString(undefined, {
-    weekday: "short",
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
+  const local = now ? now.toLocaleTimeString([], { hour12: false }) : "--:--:--";
+  const utc = now ? now.toUTCString().slice(17, 25) : "--:--:--";
+  const date = now
+    ? now.toLocaleDateString(undefined, {
+        weekday: "short",
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      })
+    : "—";
+
 
   return (
     <Panel icon={Clock} title="Live Time & Weather">
