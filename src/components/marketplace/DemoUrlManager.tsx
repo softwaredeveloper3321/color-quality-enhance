@@ -453,7 +453,9 @@ export function DemoUrlManager() {
                   >
                     <Globe className="h-3.5 w-3.5" /> {demo.url}
                   </a>
+                  </div>
                 </div>
+
 
                 <div className="flex items-center gap-2">
                   <Switch checked={demo.active} onCheckedChange={() => toggleDemo(demo.id)} aria-label="Enable demo" />
