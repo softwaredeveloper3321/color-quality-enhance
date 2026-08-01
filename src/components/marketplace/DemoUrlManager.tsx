@@ -514,16 +514,17 @@ export function DemoUrlManager() {
               </div>
 
               <div className="mt-3 flex flex-wrap items-center gap-2">
-                <Button size="sm" onClick={() => void testOne(demo)} disabled={!!testing[demo.id]}>
-                  {testing[demo.id] ? <Loader2 className="mr-1 h-3.5 w-3.5 animate-spin" /> : <RefreshCw className="mr-1 h-3.5 w-3.5" />}
+                <button className="btn-premium btn-premium-hover text-[12px]" onClick={() => void testOne(demo)} disabled={!!testing[demo.id]}>
+                  {testing[demo.id] ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <RefreshCw className="h-3.5 w-3.5" />}
                   Test Demo
-                </Button>
-                <Button variant="outline" size="sm" onClick={() => window.open(demo.url, "_blank", "noopener,noreferrer")}>
-                  <ExternalLink className="mr-1 h-3.5 w-3.5" /> Open Demo
-                </Button>
-                <Button variant="outline" size="sm" onClick={() => copy(demo.url, "URL")}>
-                  <Copy className="mr-1 h-3.5 w-3.5" /> Copy URL
-                </Button>
+                </button>
+                <button className="btn-graphite btn-premium-hover text-[12px]" onClick={() => window.open(demo.url, "_blank", "noopener,noreferrer")}>
+                  <ExternalLink className="h-3.5 w-3.5" /> Open Demo
+                </button>
+                <button className="btn-graphite btn-premium-hover text-[12px]" onClick={() => copy(demo.url, "URL")}>
+                  <Copy className="h-3.5 w-3.5" /> Copy URL
+                </button>
+
               </div>
             </div>
           );
