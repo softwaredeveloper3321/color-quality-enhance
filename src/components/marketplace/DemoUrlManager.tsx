@@ -325,18 +325,62 @@ export function DemoUrlManager() {
           className="h-9 w-[260px]"
         />
         <div className="ml-auto flex flex-wrap items-center gap-2">
-          <Button variant="outline" size="sm" onClick={newProduct}>
-            <Plus className="mr-1 h-4 w-4" /> Product
-          </Button>
-          <Button variant="outline" size="sm" onClick={testAll} disabled={bulkTesting || filtered.length === 0}>
-            {bulkTesting ? <Loader2 className="mr-1 h-4 w-4 animate-spin" /> : <Activity className="mr-1 h-4 w-4" />}
+          <button className="btn-graphite btn-premium-hover text-[12px]" onClick={newProduct}>
+            <Plus className="h-4 w-4" /> Product
+          </button>
+          <button
+            className="btn-graphite btn-premium-hover text-[12px]"
+            onClick={() => {
+              setImportProduct(productFilter !== "all" ? productFilter : products[0]?.id ?? "");
+              setImportOpen(true);
+            }}
+          >
+            <Upload className="h-4 w-4" /> Bulk Import
+          </button>
+          <button
+            className="btn-graphite btn-premium-hover text-[12px]"
+            onClick={testAll}
+            disabled={bulkTesting || filtered.length === 0}
+          >
+            {bulkTesting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Activity className="h-4 w-4" />}
             Test All
-          </Button>
-          <Button size="sm" onClick={openCreate}>
-            <Plus className="mr-1 h-4 w-4" /> Add Demo URL
-          </Button>
+          </button>
+          <button className="btn-premium btn-premium-hover text-[12px]" onClick={openCreate}>
+            <Plus className="h-4 w-4" /> Add Demo URL
+          </button>
         </div>
       </div>
+
+      {/* Bulk action bar */}
+      <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-primary/25 bg-[linear-gradient(180deg,rgba(40,68,120,0.4),rgba(12,24,46,0.65))] p-2.5">
+        <button className="btn-graphite btn-premium-hover text-[12px]" onClick={toggleSelectAll} disabled={filtered.length === 0}>
+          {allFilteredSelected ? <CheckSquare className="h-4 w-4" /> : <Square className="h-4 w-4" />}
+          {allFilteredSelected ? "Clear selection" : "Select all"}
+        </button>
+        <span className="rounded-md border border-white/12 bg-white/[0.06] px-2 py-1 text-[11px] font-bold text-foreground/70">
+          {selected.length} selected
+        </span>
+        <div className="ml-auto flex flex-wrap items-center gap-2">
+          <button className="btn-graphite btn-premium-hover text-[12px]" onClick={() => bulkSetActive(true)} disabled={!selected.length}>
+            <Power className="h-4 w-4 text-emerald-300" /> Enable
+          </button>
+          <button className="btn-graphite btn-premium-hover text-[12px]" onClick={() => bulkSetActive(false)} disabled={!selected.length}>
+            <PowerOff className="h-4 w-4 text-amber-300" /> Disable
+          </button>
+          <button
+            className="btn-premium btn-premium-hover text-[12px]"
+            onClick={() => void bulkTest()}
+            disabled={bulkTesting || !selected.length}
+          >
+            {bulkTesting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Activity className="h-4 w-4" />}
+            Test Selected
+          </button>
+          <button className="btn-graphite btn-premium-hover text-[12px] text-rose-200" onClick={bulkDelete} disabled={!selected.length}>
+            <Trash2 className="h-4 w-4" /> Delete
+          </button>
+        </div>
+      </div>
+
 
       {/* List */}
       <div className="flex flex-col gap-3">
