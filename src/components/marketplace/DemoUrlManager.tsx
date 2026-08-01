@@ -43,7 +43,11 @@ import {
   addDemo,
   addProduct,
   deleteDemo,
+  deleteMany,
   duplicateDemo,
+  importDemos,
+  parseImportText,
+  setActiveMany,
   toggleDemo,
   updateDemo,
   useDemoState,
@@ -51,6 +55,7 @@ import {
   type DemoEnvironment,
   type DemoUrl,
 } from "./demoUrlStore";
+
 
 const ROLE_PRESETS = [
   "User", "Admin", "Super Admin", "Teacher", "Student", "Parent", "Vendor",
