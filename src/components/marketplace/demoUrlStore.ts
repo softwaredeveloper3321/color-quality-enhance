@@ -198,3 +198,94 @@ export function addProduct(name: string): DemoProduct {
   setState({ ...state, products: [...state.products, product] });
   return product;
 }
+
+/* ------------------------------ bulk actions ------------------------------ */
+
+export function setActiveMany(ids: string[], active: boolean) {
+  const set = new Set(ids);
+  setState({
+    ...state,
+    demos: state.demos.map((d) => (set.has(d.id) ? { ...d, active } : d)),
+  });
+}
+
+export function deleteMany(ids: string[]) {
+  const set = new Set(ids);
+  setState({ ...state, demos: state.demos.filter((d) => !set.has(d.id)) });
+}
+
+export function importDemos(rows: Partial<DemoDraft>[], fallbackProductId: string): number {
+  const created: DemoUrl[] = [];
+  for (const row of rows) {
+    const url = String(row.url ?? "").trim();
+    if (!/^https?:\/\/.+/i.test(url)) continue;
+    created.push({
+      id: uid(),
+      productId: row.productId || fallbackProductId,
+      demoName: String(row.demoName ?? "").trim() || url,
+      roleName: String(row.roleName ?? "").trim() || "User",
+      url,
+      username: String(row.username ?? ""),
+      password: String(row.password ?? ""),
+      description: String(row.description ?? ""),
+      environment: (["production", "staging", "testing"] as const).includes(
+        row.environment as DemoEnvironment,
+      )
+        ? (row.environment as DemoEnvironment)
+        : "production",
+      active: row.active !== false,
+      lastChecked: null,
+      responseTimeMs: null,
+      httpStatus: null,
+      health: "unknown",
+      ssl: url.toLowerCase().startsWith("https://"),
+      loginPageAccessible: null,
+    });
+  }
+  if (created.length) setState({ ...state, demos: [...created, ...state.demos] });
+  return created.length;
+}
+
+/**
+ * Parse CSV or JSON bulk-import text into demo drafts.
+ * CSV header (any order): demoName,roleName,url,username,password,environment,description
+ */
+export function parseImportText(text: string): Partial<DemoDraft>[] {
+  const trimmed = text.trim();
+  if (!trimmed) return [];
+  if (trimmed.startsWith("[") || trimmed.startsWith("{")) {
+    try {
+      const parsed = JSON.parse(trimmed);
+      return Array.isArray(parsed) ? parsed : [parsed];
+    } catch {
+      return [];
+    }
+  }
+  const lines = trimmed.split(/\r?\n/).filter((l) => l.trim());
+  if (!lines.length) return [];
+  const split = (line: string) => line.split(",").map((c) => c.trim().replace(/^"|"$/g, ""));
+  const first = split(lines[0]!).map((h) => h.toLowerCase());
+  const known = ["demoname", "rolename", "url", "username", "password", "environment", "description"];
+  const hasHeader = first.some((h) => known.includes(h));
+  const header = hasHeader ? first : ["demoname", "rolename", "url", "username", "password", "environment", "description"];
+  const body = hasHeader ? lines.slice(1) : lines;
+  const keyMap: Record<string, keyof DemoDraft> = {
+    demoname: "demoName",
+    rolename: "roleName",
+    url: "url",
+    username: "username",
+    password: "password",
+    environment: "environment",
+    description: "description",
+  };
+  return body.map((line) => {
+    const cells = split(line);
+    const row: Partial<DemoDraft> = {};
+    header.forEach((h, i) => {
+      const key = keyMap[h];
+      if (key) (row as Record<string, unknown>)[key] = cells[i] ?? "";
+    });
+    return row;
+  });
+}
+

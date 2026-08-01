@@ -50,6 +50,8 @@ import ControlPanelSidebar, {
   type RoleId,
 } from "@/components/super-admin-wireframe/ControlPanelSidebar";
 import { CommandCenter } from "@/components/command-center/CommandCenter";
+import { ExecutiveRotator } from "@/components/command-center/ExecutiveRotator";
+
 import { KPIGrid, KPIBox } from "@/components/boss/KPIGrid";
 import { ValaAiAgent } from "@/components/vala-ai/ValaAiAgent";
 
@@ -233,8 +235,9 @@ function Index() {
               </span>
             </div>
             <div className="px-2.5 pt-2.5">
-              <SliderBanner compact intervalMs={6000} />
+              <ExecutiveRotator />
             </div>
+
             <CommandCenter />
 
           </div>

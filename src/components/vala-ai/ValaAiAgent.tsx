@@ -138,7 +138,9 @@ export function ValaAiAgent() {
     <>
       {/* Floating trigger */}
       <button
+        data-vala-launcher
         onClick={() => setOpen((v) => !v)}
+
         aria-label="Open Vala AI assistant"
         className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full border-2 border-primary-glow/50 bg-gradient-to-r from-primary to-accent px-4 py-3 text-xs font-extrabold uppercase tracking-wider text-primary-foreground shadow-[0_18px_44px_-14px_rgba(40,140,255,0.9)] transition-transform hover:scale-105 active:scale-95"
       >

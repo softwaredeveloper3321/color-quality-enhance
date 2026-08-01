@@ -140,20 +140,24 @@ Bar.displayName = "Bar";
 /* ------------------------------ 1. time / wx ------------------------------ */
 
 const TimeWeather = memo(() => {
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
   useEffect(() => {
+    setNow(new Date());
     const t = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(t);
   }, []);
 
-  const local = now.toLocaleTimeString([], { hour12: false });
-  const utc = now.toUTCString().slice(17, 25);
-  const date = now.toLocaleDateString(undefined, {
-    weekday: "short",
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
+  const local = now ? now.toLocaleTimeString([], { hour12: false }) : "--:--:--";
+  const utc = now ? now.toUTCString().slice(17, 25) : "--:--:--";
+  const date = now
+    ? now.toLocaleDateString(undefined, {
+        weekday: "short",
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      })
+    : "—";
+
 
   return (
     <Panel icon={Clock} title="Live Time & Weather">
@@ -177,8 +181,9 @@ const TimeWeather = memo(() => {
       <div className="mt-2 grid grid-cols-3 gap-1.5">
         {[
           { k: "UTC", v: utc },
-          { k: "NY", v: new Date(now.getTime() - 5.5 * 36e5 - 4.5 * 36e5).toLocaleTimeString([], { hour12: false }).slice(0, 5) },
-          { k: "LDN", v: new Date(now.getTime() - 4.5 * 36e5).toLocaleTimeString([], { hour12: false }).slice(0, 5) },
+          { k: "NY", v: now ? new Date(now.getTime() - 5.5 * 36e5 - 4.5 * 36e5).toLocaleTimeString([], { hour12: false }).slice(0, 5) : "--:--" },
+          { k: "LDN", v: now ? new Date(now.getTime() - 4.5 * 36e5).toLocaleTimeString([], { hour12: false }).slice(0, 5) : "--:--" },
+
         ].map((c) => (
           <div key={c.k} className="rounded-lg border border-white/8 bg-white/[0.04] px-1.5 py-1 text-center">
             <p className="text-[8.5px] uppercase tracking-wider text-foreground/50">{c.k}</p>

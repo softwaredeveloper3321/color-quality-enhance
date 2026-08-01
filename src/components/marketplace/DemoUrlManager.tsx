@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import {
   Activity,
+  CheckSquare,
   Copy,
   CopyPlus,
   ExternalLink,
@@ -12,11 +13,16 @@ import {
   Lock,
   Pencil,
   Plus,
+  Power,
+  PowerOff,
   RefreshCw,
   ShieldCheck,
+  Square,
   Trash2,
+  Upload,
   User,
 } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -43,7 +49,11 @@ import {
   addDemo,
   addProduct,
   deleteDemo,
+  deleteMany,
   duplicateDemo,
+  importDemos,
+  parseImportText,
+  setActiveMany,
   toggleDemo,
   updateDemo,
   useDemoState,
@@ -51,6 +61,7 @@ import {
   type DemoEnvironment,
   type DemoUrl,
 } from "./demoUrlStore";
+
 
 const ROLE_PRESETS = [
   "User", "Admin", "Super Admin", "Teacher", "Student", "Parent", "Vendor",
@@ -111,6 +122,11 @@ export function DemoUrlManager() {
   const [draft, setDraft] = useState<DemoDraft>({ ...EMPTY, productId: products[0]?.id ?? "" });
   const [testing, setTesting] = useState<Record<string, boolean>>({});
   const [bulkTesting, setBulkTesting] = useState(false);
+  const [selected, setSelected] = useState<string[]>([]);
+  const [importOpen, setImportOpen] = useState(false);
+  const [importText, setImportText] = useState("");
+  const [importProduct, setImportProduct] = useState("");
+
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -178,6 +194,57 @@ export function DemoUrlManager() {
     setBulkTesting(false);
     toast.success(`Tested ${filtered.length} demo URLs`);
   }
+
+  /* ------------------------------ bulk actions ----------------------------- */
+
+  const selectedDemos = useMemo(
+    () => demos.filter((d) => selected.includes(d.id)),
+    [demos, selected],
+  );
+  const allFilteredSelected = filtered.length > 0 && filtered.every((d) => selected.includes(d.id));
+
+  function toggleSelect(id: string) {
+    setSelected((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
+  }
+
+  function toggleSelectAll() {
+    setSelected(allFilteredSelected ? [] : filtered.map((d) => d.id));
+  }
+
+  function bulkSetActive(active: boolean) {
+    if (!selected.length) return toast.error("Select at least one demo URL");
+    setActiveMany(selected, active);
+    toast.success(`${selected.length} demo URLs ${active ? "enabled" : "disabled"}`);
+  }
+
+  function bulkDelete() {
+    if (!selected.length) return toast.error("Select at least one demo URL");
+    const count = selected.length;
+    deleteMany(selected);
+    setSelected([]);
+    toast.success(`${count} demo URLs deleted`);
+  }
+
+  async function bulkTest() {
+    if (!selectedDemos.length) return toast.error("Select at least one demo URL");
+    setBulkTesting(true);
+    for (const demo of selectedDemos) await testOne(demo, true);
+    setBulkTesting(false);
+    toast.success(`Tested ${selectedDemos.length} selected demo URLs`);
+  }
+
+  function runImport() {
+    const rows = parseImportText(importText);
+    if (!rows.length) return toast.error("Nothing to import — check the CSV/JSON format");
+    const fallback = importProduct || productFilter !== "all" ? importProduct || productFilter : products[0]?.id ?? "";
+    if (!fallback) return toast.error("Create a product first");
+    const count = importDemos(rows, fallback);
+    if (!count) return toast.error("No valid rows (each row needs a http(s) URL)");
+    toast.success(`Imported ${count} demo URLs`);
+    setImportText("");
+    setImportOpen(false);
+  }
+
 
   function openCreate() {
     setEditingId(null);
@@ -258,18 +325,62 @@ export function DemoUrlManager() {
           className="h-9 w-[260px]"
         />
         <div className="ml-auto flex flex-wrap items-center gap-2">
-          <Button variant="outline" size="sm" onClick={newProduct}>
-            <Plus className="mr-1 h-4 w-4" /> Product
-          </Button>
-          <Button variant="outline" size="sm" onClick={testAll} disabled={bulkTesting || filtered.length === 0}>
-            {bulkTesting ? <Loader2 className="mr-1 h-4 w-4 animate-spin" /> : <Activity className="mr-1 h-4 w-4" />}
+          <button className="btn-graphite btn-premium-hover text-[12px]" onClick={newProduct}>
+            <Plus className="h-4 w-4" /> Product
+          </button>
+          <button
+            className="btn-graphite btn-premium-hover text-[12px]"
+            onClick={() => {
+              setImportProduct(productFilter !== "all" ? productFilter : products[0]?.id ?? "");
+              setImportOpen(true);
+            }}
+          >
+            <Upload className="h-4 w-4" /> Bulk Import
+          </button>
+          <button
+            className="btn-graphite btn-premium-hover text-[12px]"
+            onClick={testAll}
+            disabled={bulkTesting || filtered.length === 0}
+          >
+            {bulkTesting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Activity className="h-4 w-4" />}
             Test All
-          </Button>
-          <Button size="sm" onClick={openCreate}>
-            <Plus className="mr-1 h-4 w-4" /> Add Demo URL
-          </Button>
+          </button>
+          <button className="btn-premium btn-premium-hover text-[12px]" onClick={openCreate}>
+            <Plus className="h-4 w-4" /> Add Demo URL
+          </button>
         </div>
       </div>
+
+      {/* Bulk action bar */}
+      <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-primary/25 bg-[linear-gradient(180deg,rgba(40,68,120,0.4),rgba(12,24,46,0.65))] p-2.5">
+        <button className="btn-graphite btn-premium-hover text-[12px]" onClick={toggleSelectAll} disabled={filtered.length === 0}>
+          {allFilteredSelected ? <CheckSquare className="h-4 w-4" /> : <Square className="h-4 w-4" />}
+          {allFilteredSelected ? "Clear selection" : "Select all"}
+        </button>
+        <span className="rounded-md border border-white/12 bg-white/[0.06] px-2 py-1 text-[11px] font-bold text-foreground/70">
+          {selected.length} selected
+        </span>
+        <div className="ml-auto flex flex-wrap items-center gap-2">
+          <button className="btn-graphite btn-premium-hover text-[12px]" onClick={() => bulkSetActive(true)} disabled={!selected.length}>
+            <Power className="h-4 w-4 text-emerald-300" /> Enable
+          </button>
+          <button className="btn-graphite btn-premium-hover text-[12px]" onClick={() => bulkSetActive(false)} disabled={!selected.length}>
+            <PowerOff className="h-4 w-4 text-amber-300" /> Disable
+          </button>
+          <button
+            className="btn-premium btn-premium-hover text-[12px]"
+            onClick={() => void bulkTest()}
+            disabled={bulkTesting || !selected.length}
+          >
+            {bulkTesting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Activity className="h-4 w-4" />}
+            Test Selected
+          </button>
+          <button className="btn-graphite btn-premium-hover text-[12px] text-rose-200" onClick={bulkDelete} disabled={!selected.length}>
+            <Trash2 className="h-4 w-4" /> Delete
+          </button>
+        </div>
+      </div>
+
 
       {/* List */}
       <div className="flex flex-col gap-3">
@@ -297,8 +408,22 @@ export function DemoUrlManager() {
               <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
 
               <div className="flex flex-wrap items-start justify-between gap-3">
-                <div className="min-w-0">
+                <div className="flex min-w-0 items-start gap-2.5">
+                  <button
+                    type="button"
+                    aria-label={`Select ${demo.demoName}`}
+                    onClick={() => toggleSelect(demo.id)}
+                    className="mt-0.5 shrink-0 rounded-md border border-white/15 bg-white/[0.05] p-1 transition-colors hover:border-primary/60"
+                  >
+                    {selected.includes(demo.id) ? (
+                      <CheckSquare className="h-4 w-4 text-primary" />
+                    ) : (
+                      <Square className="h-4 w-4 text-foreground/45" />
+                    )}
+                  </button>
+                  <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
+
                     <h3 className="truncate text-base font-extrabold tracking-[-0.02em] text-foreground">
                       {demo.demoName}
                     </h3>
@@ -328,7 +453,9 @@ export function DemoUrlManager() {
                   >
                     <Globe className="h-3.5 w-3.5" /> {demo.url}
                   </a>
+                  </div>
                 </div>
+
 
                 <div className="flex items-center gap-2">
                   <Switch checked={demo.active} onCheckedChange={() => toggleDemo(demo.id)} aria-label="Enable demo" />
@@ -387,16 +514,17 @@ export function DemoUrlManager() {
               </div>
 
               <div className="mt-3 flex flex-wrap items-center gap-2">
-                <Button size="sm" onClick={() => void testOne(demo)} disabled={!!testing[demo.id]}>
-                  {testing[demo.id] ? <Loader2 className="mr-1 h-3.5 w-3.5 animate-spin" /> : <RefreshCw className="mr-1 h-3.5 w-3.5" />}
+                <button className="btn-premium btn-premium-hover text-[12px]" onClick={() => void testOne(demo)} disabled={!!testing[demo.id]}>
+                  {testing[demo.id] ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <RefreshCw className="h-3.5 w-3.5" />}
                   Test Demo
-                </Button>
-                <Button variant="outline" size="sm" onClick={() => window.open(demo.url, "_blank", "noopener,noreferrer")}>
-                  <ExternalLink className="mr-1 h-3.5 w-3.5" /> Open Demo
-                </Button>
-                <Button variant="outline" size="sm" onClick={() => copy(demo.url, "URL")}>
-                  <Copy className="mr-1 h-3.5 w-3.5" /> Copy URL
-                </Button>
+                </button>
+                <button className="btn-graphite btn-premium-hover text-[12px]" onClick={() => window.open(demo.url, "_blank", "noopener,noreferrer")}>
+                  <ExternalLink className="h-3.5 w-3.5" /> Open Demo
+                </button>
+                <button className="btn-graphite btn-premium-hover text-[12px]" onClick={() => copy(demo.url, "URL")}>
+                  <Copy className="h-3.5 w-3.5" /> Copy URL
+                </button>
+
               </div>
             </div>
           );
@@ -489,7 +617,63 @@ export function DemoUrlManager() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Bulk import dialog */}
+      <Dialog open={importOpen} onOpenChange={setImportOpen}>
+        <DialogContent className="sm:max-w-[620px]">
+          <DialogHeader>
+            <DialogTitle>Bulk Import Demo URLs</DialogTitle>
+            <DialogDescription>
+              Paste CSV or JSON. CSV columns: demoName, roleName, url, username, password, environment, description.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="grid gap-3">
+            <div className="grid gap-1.5">
+              <Label>Assign to product (when a row has no product)</Label>
+              <Select value={importProduct} onValueChange={setImportProduct}>
+                <SelectTrigger><SelectValue placeholder="Select product" /></SelectTrigger>
+                <SelectContent>
+                  {products.map((p) => (
+                    <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid gap-1.5">
+              <Label>Data</Label>
+              <Textarea
+                value={importText}
+                onChange={(e) => setImportText(e.target.value)}
+                rows={9}
+                className="font-mono text-[11px]"
+                placeholder={`demoName,roleName,url,username,password,environment\nVendor Demo,Vendor,https://demo.example.com/vendor,vendor@demo.com,Pass@123,production`}
+              />
+            </div>
+            <input
+              type="file"
+              accept=".csv,.json,text/csv,application/json"
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+                setImportText(await file.text());
+                toast.success(`Loaded ${file.name}`);
+              }}
+              className="text-[11px] text-foreground/60 file:mr-2 file:rounded-md file:border-0 file:bg-primary/25 file:px-2 file:py-1 file:text-[11px] file:font-bold file:text-foreground"
+            />
+            <p className="text-[11px] text-foreground/45">
+              {parseImportText(importText).length} row(s) detected
+            </p>
+          </div>
+
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setImportOpen(false)}>Cancel</Button>
+            <Button onClick={runImport}>Import</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
+
   );
 }
 
