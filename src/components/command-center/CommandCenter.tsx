@@ -6,6 +6,18 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { WeatherEngine } from "./WeatherEngine";
+import { LiveClock } from "./LiveClock";
+import { GlobalMarkets } from "./GlobalMarkets";
+import { ControlCenterLive } from "./ControlCenterLive";
+import {
+  TodaysPriority,
+  LiveNotifications,
+  RunningPipelines,
+  SupportCenterLive,
+  QuickActionsLive,
+  MiniAnalyticsLive,
+} from "./LiveOps";
 import {
   Activity,
   AlertTriangle,
