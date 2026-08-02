@@ -6,6 +6,18 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { WeatherEngine } from "./WeatherEngine";
+import { LiveClock } from "./LiveClock";
+import { GlobalMarkets } from "./GlobalMarkets";
+import { ControlCenterLive } from "./ControlCenterLive";
+import {
+  TodaysPriority,
+  LiveNotifications,
+  RunningPipelines,
+  SupportCenterLive,
+  QuickActionsLive,
+  MiniAnalyticsLive,
+} from "./LiveOps";
 import {
   Activity,
   AlertTriangle,
@@ -673,22 +685,26 @@ FounderAI.displayName = "FounderAI";
 
 export const CommandCenter: React.FC = memo(() => (
   <div className="flex flex-col gap-2 p-2">
-    <TimeWeather />
+    <WeatherEngine />
+    <LiveClock />
+    <TodaysPriority />
     <ExecCalendar />
     <EnterpriseCalculator />
-    <ControlCenter />
-    <Notifications />
-    <SupportCenter />
-    <RunningProcesses />
-    <QuickActionsGrid />
-    <MiniAnalytics />
+    <ControlCenterLive />
+    <GlobalMarkets />
+    <LiveNotifications />
+    <SupportCenterLive />
+    <RunningPipelines />
+    <QuickActionsLive />
+    <MiniAnalyticsLive />
     <FounderAI />
     <p className="pb-1 text-center text-[8.5px] uppercase tracking-[0.2em] text-foreground/35">
       <Info className="mr-1 inline h-2.5 w-2.5" />
-      Command Center · v3.0
+      Live Operations Center · real-time feeds
     </p>
   </div>
 ));
+
 CommandCenter.displayName = "CommandCenter";
 
 export default CommandCenter;
