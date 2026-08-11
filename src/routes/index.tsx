@@ -157,6 +157,19 @@ function CockpitBanner() {
   );
 }
 
+// Control Panel button id -> role dashboard route param
+const ROLE_DASHBOARD_ROUTES: Partial<Record<RoleId, string>> = {
+  developer_dashboard: "developer",
+  influencer_dashboard: "influencer",
+  pro_dashboard: "pro",
+  author_dashboard: "author",
+  vendor_dashboard: "vendor",
+  reseller_dashboard: "reseller",
+  affiliate_dashboard: "affiliate",
+  franchise_dashboard: "franchise",
+  admin_dashboard: "admin",
+};
+
 
 function Index() {
   const navigate = useNavigate();
