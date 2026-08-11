@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import roundLogoAsset from "@/assets/softwarevala-logo-round-v2.jpg.asset.json";
+import roundLogoUrl from "@/assets/sv-logo-round.jpg";
 
 type Reward =
   | "gold"      // Gold Particle Rain
@@ -121,7 +121,7 @@ export function LogoButton({ size = 36 }: { size?: number }) {
       title="Click me ✦"
     >
       <img
-        src={roundLogoAsset.url}
+        src={roundLogoUrl}
         alt="Software Vala"
         className="h-full w-full rounded-full object-cover"
         draggable={false}

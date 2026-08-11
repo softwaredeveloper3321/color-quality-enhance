@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { Home, Compass, Layers, FolderOpen, Settings, LifeBuoy, LogOut, Sparkles, Calculator } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
-import logoAsset from "@/assets/softwarevala-logo-round-v2.jpg.asset.json";
+import logoUrl from "@/assets/sv-logo-round.jpg";
 import type { RoleConfig } from "@/lib/roles";
 import { signOut } from "@/lib/auth-bridge";
 import { notifyPending } from "@/lib/ui-actions";
@@ -29,7 +29,7 @@ function SidebarBase({ role, activeModule, onSelectModule }: Props) {
         <div className="flex items-center gap-3">
           <span className="logo-3d h-11 w-11 shrink-0 block">
             <img
-              src={logoAsset.url}
+              src={logoUrl}
               alt="Software Vala"
               className="h-full w-full rounded-full object-cover"
               draggable={false}

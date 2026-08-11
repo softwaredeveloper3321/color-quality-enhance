@@ -3,8 +3,8 @@ import {
   Camera, ImageIcon, ShieldCheck, Pencil, Crown, Layers, Briefcase, Trophy,
   Target as TargetIcon, Gauge, TrendingUp, RotateCcw, Trash2, Upload,
 } from "lucide-react";
-import defaultLogoAsset from "@/assets/softwarevala-logo-round-v2.jpg.asset.json";
-import defaultBannerAsset from "@/assets/softwarevala-banner-checker.jpg.asset.json";
+import defaultLogoUrl from "@/assets/sv-logo-round.jpg";
+import defaultBannerUrl from "@/assets/sv-banner.jpg";
 
 type ResellerProfile = {
   name: string;
@@ -36,8 +36,8 @@ export function ResellerProfileHero({
 }: ProfileHeroProps = {}) {
   const EMPTY: ResellerProfile = {
     name: accountLabel ?? `Your ${roleName} Account`,
-    logoUrl: defaultLogoAsset.url,
-    bannerUrl: defaultBannerAsset.url,
+    logoUrl: defaultLogoUrl,
+    bannerUrl: defaultBannerUrl,
     verified: false,
     membershipPlan: "—",
     whiteLabelActive: false,
@@ -71,7 +71,7 @@ export function ResellerProfileHero({
   function resetImage(field: "logoUrl" | "bannerUrl") {
     setProfile((p) => ({
       ...p,
-      [field]: field === "logoUrl" ? defaultLogoAsset.url : defaultBannerAsset.url,
+      [field]: field === "logoUrl" ? defaultLogoUrl : defaultBannerUrl,
     }));
     setMenuOpen(null);
   }
@@ -86,13 +86,13 @@ export function ResellerProfileHero({
       <div
         className="relative h-40 md:h-52 w-full overflow-hidden"
         style={
-          profile.bannerUrl === defaultBannerAsset.url
+          profile.bannerUrl === defaultBannerUrl
             ? {
                 // Professional composition: brand gradient + tiled checker watermark
                 backgroundColor: "oklch(0.32 0.16 260)",
                 backgroundImage: [
                   "linear-gradient(115deg, oklch(0.22 0.14 260) 0%, oklch(0.32 0.18 258) 45%, oklch(0.48 0.22 25) 100%)",
-                  `url(${defaultBannerAsset.url})`,
+                  `url(${defaultBannerUrl})`,
                 ].join(", "),
                 backgroundSize: "cover, 96px 96px",
                 backgroundRepeat: "no-repeat, repeat",
@@ -104,7 +104,7 @@ export function ResellerProfileHero({
         }
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/55" />
-        {profile.bannerUrl === defaultBannerAsset.url && (
+        {profile.bannerUrl === defaultBannerUrl && (
           <div className="absolute inset-0 flex items-center">
             <div className="pl-6 md:pl-10 max-w-[70%]">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 backdrop-blur px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/90">
@@ -129,7 +129,7 @@ export function ResellerProfileHero({
             <Upload className="h-3.5 w-3.5" />
             {profile.bannerUrl ? "Change" : "Upload"}
           </button>
-          {profile.bannerUrl && profile.bannerUrl !== defaultBannerAsset.url && (
+          {profile.bannerUrl && profile.bannerUrl !== defaultBannerUrl && (
             <button
               onClick={() => resetImage("bannerUrl")}
               className="inline-flex items-center gap-1 rounded-lg bg-black/50 hover:bg-black/70 backdrop-blur border border-white/20 px-2 py-1.5 text-[11px] font-medium text-white transition"
