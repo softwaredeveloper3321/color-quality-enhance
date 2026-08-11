@@ -25,7 +25,9 @@ import {
   Star, Scale, ListTodo, DollarSign, Code2, 
   Megaphone, HeartHandshake, Users, LogOut, Zap, Timer, MonitorPlay, 
   Home, Shield, Settings, Search, User, UserCircle, Boxes, Store,
+  FileSignature, ShieldCheck,
   PanelLeftClose, PanelLeftOpen
+
 } from "lucide-react";
 // ScrollArea removed - NO SCROLLING in Control Panel
 
@@ -89,7 +91,17 @@ const ROLE_CATEGORIES = [
   { id: 'home', label: 'Home', icon: Home },
   { id: 'security', label: 'Security', icon: Shield },
   { id: 'settings', label: 'Settings', icon: Settings },
+  // ===== ROLE DASHBOARDS (LAST SECTION) =====
+  // Developer Dashboard + Influencer Dashboard already exist above and are connected there.
+  { id: 'pro_dashboard', label: 'Pro Dashboard', icon: Star },
+  { id: 'author_dashboard', label: 'Author Dashboard', icon: FileSignature },
+  { id: 'vendor_dashboard', label: 'Vendor Dashboard', icon: Store },
+  { id: 'reseller_dashboard', label: 'Reseller Dashboard', icon: Handshake },
+  { id: 'affiliate_dashboard', label: 'Affiliate Dashboard', icon: Target },
+  { id: 'franchise_dashboard', label: 'Franchise Dashboard', icon: Building2 },
+  { id: 'admin_dashboard', label: 'Admin Dashboard', icon: ShieldCheck },
 ] as const;
+
 
 type RoleId = typeof ROLE_CATEGORIES[number]['id'];
 
