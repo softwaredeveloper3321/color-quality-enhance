@@ -44,6 +44,7 @@ const ROLE_BANNER_GRADIENTS: Record<RoleKey, string> = {
   developer:        "linear-gradient(120deg, oklch(0.24 0.05 260), oklch(0.32 0.14 250), oklch(0.42 0.18 235))",
   "dev-manager":    "linear-gradient(120deg, oklch(0.24 0.06 220), oklch(0.32 0.14 210), oklch(0.42 0.18 195))",
   "promise-tracker":"linear-gradient(120deg, oklch(0.26 0.06 325), oklch(0.34 0.16 335), oklch(0.44 0.20 350))",
+  pro:              "linear-gradient(120deg, oklch(0.22 0.05 250), oklch(0.30 0.12 240), oklch(0.42 0.18 230))",
 };
 import { RESELLER_CENTER_ORDER, type CenterKey } from "@/lib/reseller-extras";
 

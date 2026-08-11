@@ -27,6 +27,7 @@ const CAPABILITIES: Record<RoleKey, Capability[]> = {
     "view", "create", "update", "delete", "export", "import",
     "approve", "reset_data", "switch_role",
   ],
+  pro: ["view", "create", "update", "export", "import"],
   "dev-manager": ["view", "create", "update", "delete", "export", "import", "approve", "reset_data"],
   "promise-tracker": ["view", "create", "update", "delete", "export", "approve"],
   franchise: ["view", "create", "update", "delete", "export", "import", "approve"],
@@ -52,6 +53,7 @@ const EXTRA_SURFACES: Record<RoleKey, string[]> = {
   developer: ["ai-chat"],
   "dev-manager": ["ai-chat"],
   "promise-tracker": ["ai-chat"],
+  pro: ["ai-chat"],
 };
 
 export function can(role: RoleKey | null | undefined, cap: Capability): boolean {

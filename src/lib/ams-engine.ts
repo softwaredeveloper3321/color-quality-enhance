@@ -497,6 +497,7 @@ const promiseTracker: AmsRoleConfig = {
 export const AMS_ROLE: Record<RoleKey, AmsRoleConfig> = {
   author, reseller, vendor, affiliate, influencer, franchise, seo, admin,
   developer, "dev-manager": devManager, "promise-tracker": promiseTracker,
+  pro: { ...author, accent: "oklch(0.80 0.16 235)", gradient: "linear-gradient(120deg, oklch(0.22 0.05 250) 0%, oklch(0.30 0.12 240) 55%, oklch(0.42 0.18 230) 100%)" },
 };
 
 export type AmsUserState = {

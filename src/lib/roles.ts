@@ -22,7 +22,7 @@ const AMSC = { key: "ams-center",   label: "AMS Center",   icon: Sparkles };
 export type RoleKey =
   | "author" | "vendor" | "reseller" | "affiliate"
   | "influencer" | "franchise" | "seo" | "admin"
-  | "developer" | "dev-manager" | "promise-tracker";
+  | "developer" | "dev-manager" | "promise-tracker" | "pro";
 
 export type Kpi = {
   key: string;
@@ -109,6 +109,14 @@ const banners: Record<RoleKey, RoleBanner> = {
     cta: "New Project",
     gradient: "linear-gradient(120deg, oklch(0.24 0.05 150) 0%, oklch(0.3 0.14 140) 55%, oklch(0.4 0.18 130) 100%)",
     accent: "oklch(0.8 0.18 140)",
+  },
+  pro: {
+    eyebrow: "Pro Membership",
+    headline: "Everything Pro, in one place.",
+    sub: "Licenses, subscriptions, downloads & priority support.",
+    cta: "Open Pro Workspace",
+    gradient: "linear-gradient(120deg, oklch(0.22 0.05 250) 0%, oklch(0.30 0.12 240) 55%, oklch(0.42 0.18 230) 100%)",
+    accent: "oklch(0.80 0.16 235)",
   },
   admin: {
     eyebrow: "Platform Control",
@@ -344,6 +352,29 @@ export const ROLES: Record<RoleKey, RoleConfig> = {
 
     banner: banners.seo,
   },
+  pro: {
+    key:"pro", name:"Pro", title:"Pro Dashboard",
+    tagline:"Pro licenses, subscriptions & priority support",
+    benchmarks:["Software Vala Pro"],
+    modules:[
+      { key:"licenses", label:"Licenses", icon:FileBadge },
+      { key:"subscriptions", label:"Subscriptions", icon:Repeat },
+      { key:"downloads", label:"Downloads", icon:Download },
+      { key:"billing", label:"Billing", icon:Wallet },
+      { key:"tickets", label:"Priority Support", icon:Ticket },
+      { key:"ai", label:"AI Suite", icon:Brain },
+      ACHV, AMS, AMSC,
+    ],
+    kpis:[
+      { key:"licenses", label:"Active Licenses", icon:FileBadge, tone:"brand" },
+      { key:"subscriptions", label:"Subscriptions", icon:Repeat, tone:"cyan" },
+      { key:"downloads", label:"Downloads", icon:Download, tone:"violet" },
+      { key:"billing", label:"Spend", icon:Wallet, tone:"success", unit:"$" },
+      { key:"tickets", label:"Open Tickets", icon:Ticket, tone:"warning" },
+      { key:"renewals", label:"Renewals Due", icon:Hourglass, tone:"danger" },
+    ],
+    banner: banners.pro,
+  },
   admin: {
     key:"admin", name:"Admin", title:"Admin Dashboard",
     tagline:"Platform overview & approvals",
@@ -477,7 +508,7 @@ export const ROLES: Record<RoleKey, RoleConfig> = {
   },
 };
 
-export const ROLE_ORDER: RoleKey[] = ["author","vendor","reseller","affiliate","influencer","franchise","seo","admin","developer","dev-manager","promise-tracker"];
+export const ROLE_ORDER: RoleKey[] = ["author","vendor","reseller","affiliate","influencer","franchise","seo","admin","developer","dev-manager","promise-tracker","pro"];
 
 export function isRoleKey(s: string | undefined | null): s is RoleKey {
   return !!s && (ROLE_ORDER as string[]).includes(s);
