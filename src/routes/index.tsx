@@ -181,8 +181,14 @@ function Index() {
                 void navigate({ to: "/marketplace" });
                 return;
               }
+              const dashRole = ROLE_DASHBOARD_ROUTES[roleId];
+              if (dashRole) {
+                void navigate({ to: "/dashboard/$role", params: { role: dashRole } });
+                return;
+              }
               toast.success(`Switched to ${roleId.replace(/_/g, " ")}`);
             }}
+
             onLogout={() => toast.info("Logging out...")}
           />
         </div>
