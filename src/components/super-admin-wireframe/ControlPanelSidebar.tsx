@@ -1,3 +1,4 @@
+import brandLogo from "@/assets/software-vala-logo.jpg.asset.json";
 /**
  * CONTROL PANEL SIDEBAR - FINAL STRUCTURE
  * ========================================
