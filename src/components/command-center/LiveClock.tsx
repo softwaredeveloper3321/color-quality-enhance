@@ -3,13 +3,13 @@
  * status, ISO week, holiday/working-day awareness, smooth animated dial.
  */
 
-import React, { memo, useMemo, useState } from "react";
+import React, { memo, useEffect, useMemo, useState } from "react";
 import { Clock, Globe2, Briefcase } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLiveClock } from "./useLive";
 
 const ZONES = [
-  { k: "Local", tz: Intl.DateTimeFormat().resolvedOptions().timeZone },
+  { k: "Local", tz: "UTC" },
   { k: "UTC", tz: "UTC" },
   { k: "NY", tz: "America/New_York" },
   { k: "LDN", tz: "Europe/London" },
@@ -17,6 +17,7 @@ const ZONES = [
   { k: "TYO", tz: "Asia/Tokyo" },
   { k: "SGP", tz: "Asia/Singapore" },
 ];
+
 
 function partsIn(d: Date, tz: string) {
   const f = new Intl.DateTimeFormat("en-GB", {
