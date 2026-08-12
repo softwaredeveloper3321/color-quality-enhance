@@ -216,12 +216,20 @@ export const ControlPanelSidebar = memo<ControlPanelSidebarProps>(({
     >
       {/* HEADER */}
       <div className="px-3 py-2.5 flex-shrink-0 flex items-center justify-between gap-2" style={{ borderBottom: `1px solid ${COLORS.border}` }}>
-        {!compact && (
-          <div className="min-w-0">
-            <h1 className="text-base font-bold text-white tracking-tight truncate">Control Panel</h1>
-            <p className="text-[10px] text-white/60 font-medium">Super Admin</p>
-          </div>
-        )}
+        <div className="flex items-center gap-2 min-w-0">
+          <img
+            src={brandLogo.url}
+            alt="Software Vala logo"
+            className="w-8 h-8 flex-shrink-0 rounded-full object-cover ring-2 ring-white/25"
+            style={{ boxShadow: '0 6px 18px -6px rgba(37,99,235,0.85)' }}
+          />
+          {!compact && (
+            <div className="min-w-0">
+              <h1 className="text-base font-bold text-white tracking-tight truncate">Control Panel</h1>
+              <p className="text-[10px] text-white/60 font-medium">Super Admin</p>
+            </div>
+          )}
+        </div>
         <button
           type="button"
           onClick={onToggleCollapse}
