@@ -10,12 +10,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "press-3d bg-primary text-primary-foreground bg-[linear-gradient(180deg,oklch(1_0_0/0.14),oklch(1_0_0/0)_55%)] hover:bg-primary/90",
+          "btn-3d press-3d sheen-3d bg-primary text-primary-foreground bg-[linear-gradient(180deg,oklch(1_0_0/0.22),oklch(1_0_0/0)_58%)] hover:bg-primary/95",
         destructive:
-          "press-3d bg-destructive text-destructive-foreground bg-[linear-gradient(180deg,oklch(1_0_0/0.14),oklch(1_0_0/0)_55%)] hover:bg-destructive/90",
+          "btn-3d press-3d sheen-3d bg-destructive text-destructive-foreground bg-[linear-gradient(180deg,oklch(1_0_0/0.2),oklch(1_0_0/0)_58%)] hover:bg-destructive/95",
         outline:
-          "press-3d border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary: "press-3d bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "btn-3d press-3d border border-input bg-background bg-[linear-gradient(180deg,oklch(1_0_0/0.08),oklch(0_0_0/0.05)_100%)] hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "btn-3d press-3d sheen-3d bg-secondary text-secondary-foreground bg-[linear-gradient(180deg,oklch(1_0_0/0.14),oklch(1_0_0/0)_58%)] hover:bg-secondary/85",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
