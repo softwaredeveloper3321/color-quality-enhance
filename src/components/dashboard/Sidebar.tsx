@@ -1,7 +1,8 @@
 import { memo } from "react";
 import { Home, Compass, Layers, FolderOpen, Settings, LifeBuoy, LogOut, Sparkles, Calculator } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
-import logoUrl from "@/assets/sv-logo-round.jpg";
+import logoAsset from "@/assets/software-vala-logo.jpg.asset.json";
+const logoUrl = logoAsset.url;
 import type { RoleConfig } from "@/lib/roles";
 import { signOut } from "@/lib/auth-bridge";
 import { notifyPending } from "@/lib/ui-actions";
