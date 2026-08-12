@@ -48,6 +48,15 @@ export const LiveClock = memo(() => {
   const [tz, setTz] = useState(ZONES[0]!.tz);
   const [zoneKey, setZoneKey] = useState("Local");
 
+  // Resolve the visitor's real timezone only after hydration (avoids SSR mismatch)
+  useEffect(() => {
+    const local = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    ZONES[0]!.tz = local;
+    setTz((cur) => (zoneKey === "Local" ? local : cur));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+
   const p = useMemo(() => (now ? partsIn(now, tz) : null), [now, tz]);
   const ms = now ? String(now.getMilliseconds()).padStart(3, "0") : "---";
   const hourNum = p ? Number(p["hour"]) : 0;
