@@ -13,7 +13,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useAiGeneration, useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/content")({
+export const Route = createFileRoute("/seo-manager/content")({
   head: seoHead(
     "/content",
     "Content Generator",

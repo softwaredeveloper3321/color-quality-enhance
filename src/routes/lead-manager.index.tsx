@@ -30,7 +30,7 @@ import { TeamScreen } from "@/components/lead-manager/screens/TeamScreen";
 import { Panel, exportLeadsCsv } from "@/components/lead-manager/shared";
 
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/lead-manager/")({
   head: () => ({
     meta: [
       { title: "Lead Manager — Software Vala" },

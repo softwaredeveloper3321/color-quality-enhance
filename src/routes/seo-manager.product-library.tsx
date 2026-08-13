@@ -14,7 +14,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/product-library")({
+export const Route = createFileRoute("/seo-manager/product-library")({
   head: seoHead("/product-library", "Product SEO Library", "Product-level metadata, target keywords and schema markup for every Software Vala product."),
   component: Screen,
 });

@@ -14,7 +14,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/behavior")({
+export const Route = createFileRoute("/seo-manager/behavior")({
   head: seoHead("/behavior", "Heatmap & Behavior", "Scroll depth, dwell time, rage clicks and bounce rate for every landing page."),
   component: Screen,
 });

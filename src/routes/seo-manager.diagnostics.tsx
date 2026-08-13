@@ -19,7 +19,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useResolveError, useRunBenchmarks } from "@/lib/use-diagnostics";
 
-export const Route = createFileRoute("/diagnostics")({
+export const Route = createFileRoute("/seo-manager/diagnostics")({
   head: seoHead(
     "/diagnostics",
     "Admin Diagnostics",

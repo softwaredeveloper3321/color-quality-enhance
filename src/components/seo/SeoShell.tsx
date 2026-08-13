@@ -212,7 +212,7 @@ function AppSidebar({
           collapsed && "justify-center px-0",
         )}
       >
-        <Link to="/" className="flex min-w-0 items-center gap-2" onClick={onCloseMobile}>
+        <Link to="/seo-manager/" className="flex min-w-0 items-center gap-2" onClick={onCloseMobile}>
           <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-primary to-primary-glow font-bold text-primary-foreground">
             SV
           </span>

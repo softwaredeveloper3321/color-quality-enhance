@@ -14,7 +14,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/inbox")({
+export const Route = createFileRoute("/seo-manager/inbox")({
   head: seoHead("/inbox", "Comments & Inbox", "Unified inbox for social, chat and form messages with AI-drafted replies."),
   component: Screen,
 });

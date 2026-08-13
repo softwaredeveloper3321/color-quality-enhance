@@ -24,7 +24,7 @@ import { seoQueries } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useSearchConsoleSync } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/performance")({
+export const Route = createFileRoute("/seo-manager/performance")({
   head: seoHead(
     "/performance",
     "Performance",

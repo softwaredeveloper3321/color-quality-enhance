@@ -16,7 +16,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useTechnicalChecks } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/technical")({
+export const Route = createFileRoute("/seo-manager/technical")({
   head: seoHead(
     "/technical",
     "Technical SEO",

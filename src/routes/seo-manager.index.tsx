@@ -24,7 +24,7 @@ import {
 import { seoQueries } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/seo-manager/")({
   head: seoHead(
     "/",
     "SEO Command Center",
@@ -179,7 +179,7 @@ function Overview() {
         <Panel
           title="Biggest keyword movers"
           actions={
-            <Link to="/keywords" className="text-xs text-primary hover:underline">
+            <Link to="/seo-manager/keywords" className="text-xs text-primary hover:underline">
               All keywords
             </Link>
           }
@@ -214,7 +214,7 @@ function Overview() {
         <Panel
           title="Open issues"
           actions={
-            <Link to="/issues" className="text-xs text-primary hover:underline">
+            <Link to="/seo-manager/issues" className="text-xs text-primary hover:underline">
               Fix queue
             </Link>
           }
@@ -239,7 +239,7 @@ function Overview() {
         <Panel
           title="AI recommendations"
           actions={
-            <Link to="/ai-assistant" className="inline-flex items-center gap-1 text-xs text-primary hover:underline">
+            <Link to="/seo-manager/ai-assistant" className="inline-flex items-center gap-1 text-xs text-primary hover:underline">
               Open assistant <ArrowUpRight className="h-3 w-3" />
             </Link>
           }

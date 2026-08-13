@@ -20,7 +20,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions, useRecrawlUrl } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/indexing")({
+export const Route = createFileRoute("/seo-manager/indexing")({
   head: seoHead(
     "/indexing",
     "Indexing & Crawl",

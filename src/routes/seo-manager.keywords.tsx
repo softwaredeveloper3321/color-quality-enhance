@@ -14,7 +14,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions, useSemrushSync } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/keywords")({
+export const Route = createFileRoute("/seo-manager/keywords")({
   head: seoHead(
     "/keywords",
     "Keyword Manager",

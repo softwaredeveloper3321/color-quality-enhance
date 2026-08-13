@@ -16,7 +16,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/social")({
+export const Route = createFileRoute("/seo-manager/social")({
   head: seoHead("/social", "Social Auto-Post", "Scheduled and published cross-platform social posts with reach and engagement tracking."),
   component: Screen,
 });

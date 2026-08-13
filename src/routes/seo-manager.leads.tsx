@@ -15,7 +15,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/leads")({
+export const Route = createFileRoute("/seo-manager/leads")({
   head: seoHead("/leads", "Lead Intelligence", "Organic-sourced leads with scoring, keyword attribution and pipeline value."),
   component: Screen,
 });

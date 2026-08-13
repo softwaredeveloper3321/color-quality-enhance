@@ -15,7 +15,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/email")({
+export const Route = createFileRoute("/seo-manager/email")({
   head: seoHead("/email", "Email Automation", "Lifecycle email campaigns with open, click and reply performance by segment."),
   component: Screen,
 });

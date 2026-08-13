@@ -17,7 +17,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/issues")({
+export const Route = createFileRoute("/seo-manager/issues")({
   head: seoHead(
     "/issues",
     "Issues & Fixes",

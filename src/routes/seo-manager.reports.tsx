@@ -19,7 +19,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useGenerateReport } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/reports")({
+export const Route = createFileRoute("/seo-manager/reports")({
   head: seoHead(
     "/reports",
     "Reports",

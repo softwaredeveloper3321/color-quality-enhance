@@ -15,7 +15,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/alerts")({
+export const Route = createFileRoute("/seo-manager/alerts")({
   head: seoHead("/alerts", "Alerts", "Real-time alerts for ranking drops, crawl errors, indexing changes and traffic anomalies."),
   component: Screen,
 });

@@ -16,7 +16,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/ads")({
+export const Route = createFileRoute("/seo-manager/ads")({
   head: seoHead("/ads", "Ads Automation", "Paid search and social campaign spend, CPA and ROAS tracked next to organic results."),
   component: Screen,
 });

@@ -12,7 +12,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useAiGeneration } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/reels")({
+export const Route = createFileRoute("/seo-manager/reels")({
   head: seoHead("/reels", "AI Reels Creator", "Generate short-form vertical video scripts from SEO topics and track their reach."),
   component: ReelsScreen,
 });

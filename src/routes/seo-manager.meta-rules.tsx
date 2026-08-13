@@ -22,7 +22,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useAiGeneration, useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/meta-rules")({
+export const Route = createFileRoute("/seo-manager/meta-rules")({
   head: seoHead(
     "/meta-rules",
     "Meta Rules",

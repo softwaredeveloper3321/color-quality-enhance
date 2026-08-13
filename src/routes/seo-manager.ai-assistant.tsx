@@ -11,7 +11,7 @@ import { seoQueries } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useAiGeneration, useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/ai-assistant")({
+export const Route = createFileRoute("/seo-manager/ai-assistant")({
   head: seoHead(
     "/ai-assistant",
     "AI SEO Assistant",

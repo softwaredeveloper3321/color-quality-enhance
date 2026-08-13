@@ -14,7 +14,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/regions")({
+export const Route = createFileRoute("/seo-manager/regions")({
   head: seoHead("/regions", "Regional Modes", "Country-level SEO coverage, traffic share and growth for every target market."),
   component: Screen,
 });

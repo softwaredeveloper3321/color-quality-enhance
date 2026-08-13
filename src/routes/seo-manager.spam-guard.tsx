@@ -15,7 +15,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/spam-guard")({
+export const Route = createFileRoute("/seo-manager/spam-guard")({
   head: seoHead("/spam-guard", "Spam Guard", "Bot, scraper and spam-submission events blocked to protect crawl budget and lead quality."),
   component: Screen,
 });

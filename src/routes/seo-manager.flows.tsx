@@ -15,7 +15,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/flows")({
+export const Route = createFileRoute("/seo-manager/flows")({
   head: seoHead("/flows", "Automation Flows", "Trigger-based multi-step marketing flows with execution counts and conversion rates."),
   component: Screen,
 });

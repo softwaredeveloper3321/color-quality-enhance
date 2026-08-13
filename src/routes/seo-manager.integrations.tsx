@@ -13,7 +13,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useSearchConsoleSync, useSemrushSync } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/integrations")({
+export const Route = createFileRoute("/seo-manager/integrations")({
   head: seoHead("/integrations", "Settings & Integrations", "Connect Search Console, Semrush, analytics and social providers to sync live SEO data."),
   component: IntegrationsScreen,
 });

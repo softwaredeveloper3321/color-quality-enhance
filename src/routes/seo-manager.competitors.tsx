@@ -10,7 +10,7 @@ import { entities } from "@/lib/seo-entities";
 import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 
-export const Route = createFileRoute("/competitors")({
+export const Route = createFileRoute("/seo-manager/competitors")({
   head: seoHead(
     "/competitors",
     "Competitors",

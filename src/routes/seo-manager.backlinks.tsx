@@ -17,7 +17,7 @@ import { seoQueries, type Row } from "@/lib/seo-queries";
 import { seoHead } from "@/lib/seo-head";
 import { useRecordActions } from "@/lib/use-seo-actions";
 
-export const Route = createFileRoute("/backlinks")({
+export const Route = createFileRoute("/seo-manager/backlinks")({
   head: seoHead(
     "/backlinks",
     "Backlinks",
