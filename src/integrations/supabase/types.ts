@@ -14,6 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
+      accessibility_compliance: {
+        Row: {
+          alt_text_pass: boolean | null
+          auditor_notes: string | null
+          color_contrast_pass: boolean | null
+          created_at: string | null
+          id: string
+          issues_found: number | null
+          issues_resolved: number | null
+          keyboard_nav_pass: boolean | null
+          language_support: string[] | null
+          last_audit_date: string | null
+          page_url: string | null
+          screen_reader_pass: boolean | null
+          status: string | null
+          wcag_level: string | null
+        }
+        Insert: {
+          alt_text_pass?: boolean | null
+          auditor_notes?: string | null
+          color_contrast_pass?: boolean | null
+          created_at?: string | null
+          id?: string
+          issues_found?: number | null
+          issues_resolved?: number | null
+          keyboard_nav_pass?: boolean | null
+          language_support?: string[] | null
+          last_audit_date?: string | null
+          page_url?: string | null
+          screen_reader_pass?: boolean | null
+          status?: string | null
+          wcag_level?: string | null
+        }
+        Update: {
+          alt_text_pass?: boolean | null
+          auditor_notes?: string | null
+          color_contrast_pass?: boolean | null
+          created_at?: string | null
+          id?: string
+          issues_found?: number | null
+          issues_resolved?: number | null
+          keyboard_nav_pass?: boolean | null
+          language_support?: string[] | null
+          last_audit_date?: string | null
+          page_url?: string | null
+          screen_reader_pass?: boolean | null
+          status?: string | null
+          wcag_level?: string | null
+        }
+        Relationships: []
+      }
       announcements: {
         Row: {
           badge: string
@@ -151,6 +202,36 @@ export type Database = {
         }
         Relationships: []
       }
+      audit_logs: {
+        Row: {
+          action: string | null
+          id: string
+          meta_json: Json | null
+          module: string | null
+          role: string | null
+          timestamp: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action?: string | null
+          id?: string
+          meta_json?: Json | null
+          module?: string | null
+          role?: string | null
+          timestamp?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string | null
+          id?: string
+          meta_json?: Json | null
+          module?: string | null
+          role?: string | null
+          timestamp?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       auth_gate_events: {
         Row: {
           email: string | null
@@ -277,6 +358,579 @@ export type Database = {
         }
         Relationships: []
       }
+      business_categories: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          display_order: number | null
+          icon: string | null
+          id: string
+          is_active: boolean | null
+          name: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      demo_alerts: {
+        Row: {
+          acknowledged_at: string | null
+          acknowledged_by: string | null
+          action_taken: string | null
+          alert_type: string | null
+          created_at: string | null
+          demo_id: string | null
+          escalated_to: string[] | null
+          id: string
+          is_active: boolean | null
+          message: string | null
+          requires_action: boolean | null
+        }
+        Insert: {
+          acknowledged_at?: string | null
+          acknowledged_by?: string | null
+          action_taken?: string | null
+          alert_type?: string | null
+          created_at?: string | null
+          demo_id?: string | null
+          escalated_to?: string[] | null
+          id?: string
+          is_active?: boolean | null
+          message?: string | null
+          requires_action?: boolean | null
+        }
+        Update: {
+          acknowledged_at?: string | null
+          acknowledged_by?: string | null
+          action_taken?: string | null
+          alert_type?: string | null
+          created_at?: string | null
+          demo_id?: string | null
+          escalated_to?: string[] | null
+          id?: string
+          is_active?: boolean | null
+          message?: string | null
+          requires_action?: boolean | null
+        }
+        Relationships: []
+      }
+      demo_analytics: {
+        Row: {
+          avg_duration_seconds: number | null
+          bounce_rate: number | null
+          conversion_count: number | null
+          conversion_rate: number | null
+          created_at: string | null
+          date: string | null
+          demo_id: string | null
+          device_breakdown: Json | null
+          id: string
+          region_breakdown: Json | null
+          top_pages: Json | null
+          total_views: number | null
+          unique_views: number | null
+        }
+        Insert: {
+          avg_duration_seconds?: number | null
+          bounce_rate?: number | null
+          conversion_count?: number | null
+          conversion_rate?: number | null
+          created_at?: string | null
+          date?: string | null
+          demo_id?: string | null
+          device_breakdown?: Json | null
+          id?: string
+          region_breakdown?: Json | null
+          top_pages?: Json | null
+          total_views?: number | null
+          unique_views?: number | null
+        }
+        Update: {
+          avg_duration_seconds?: number | null
+          bounce_rate?: number | null
+          conversion_count?: number | null
+          conversion_rate?: number | null
+          created_at?: string | null
+          date?: string | null
+          demo_id?: string | null
+          device_breakdown?: Json | null
+          id?: string
+          region_breakdown?: Json | null
+          top_pages?: Json | null
+          total_views?: number | null
+          unique_views?: number | null
+        }
+        Relationships: []
+      }
+      demo_categories: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          display_order: number | null
+          icon: string | null
+          id: string
+          is_active: boolean | null
+          name: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string | null
+        }
+        Relationships: []
+      }
+      demo_clicks: {
+        Row: {
+          browser: string | null
+          city: string | null
+          clicked_at: string | null
+          converted: boolean | null
+          country: string | null
+          demo_id: string | null
+          device_type: string | null
+          franchise_id: string | null
+          id: string
+          ip_address: string | null
+          referrer: string | null
+          region: string | null
+          reseller_id: string | null
+          session_duration: number | null
+          user_id: string | null
+          user_role: string | null
+        }
+        Insert: {
+          browser?: string | null
+          city?: string | null
+          clicked_at?: string | null
+          converted?: boolean | null
+          country?: string | null
+          demo_id?: string | null
+          device_type?: string | null
+          franchise_id?: string | null
+          id?: string
+          ip_address?: string | null
+          referrer?: string | null
+          region?: string | null
+          reseller_id?: string | null
+          session_duration?: number | null
+          user_id?: string | null
+          user_role?: string | null
+        }
+        Update: {
+          browser?: string | null
+          city?: string | null
+          clicked_at?: string | null
+          converted?: boolean | null
+          country?: string | null
+          demo_id?: string | null
+          device_type?: string | null
+          franchise_id?: string | null
+          id?: string
+          ip_address?: string | null
+          referrer?: string | null
+          region?: string | null
+          reseller_id?: string | null
+          session_duration?: number | null
+          user_id?: string | null
+          user_role?: string | null
+        }
+        Relationships: []
+      }
+      demo_deployments: {
+        Row: {
+          approved_domain: string | null
+          approved_ips: string[] | null
+          blocked_attempts: number | null
+          created_at: string | null
+          created_by: string | null
+          daily_demo_id: string | null
+          demo_id: string | null
+          deployment_status: string | null
+          encryption_key_ref: string | null
+          expires_at: string | null
+          id: string
+          is_active: boolean | null
+          is_domain_locked: boolean | null
+          is_encrypted: boolean | null
+          is_obfuscated: boolean | null
+          last_verification_at: string | null
+          license_key: string | null
+          license_key_hash: string | null
+          order_id: string | null
+          verification_count: number | null
+        }
+        Insert: {
+          approved_domain?: string | null
+          approved_ips?: string[] | null
+          blocked_attempts?: number | null
+          created_at?: string | null
+          created_by?: string | null
+          daily_demo_id?: string | null
+          demo_id?: string | null
+          deployment_status?: string | null
+          encryption_key_ref?: string | null
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_domain_locked?: boolean | null
+          is_encrypted?: boolean | null
+          is_obfuscated?: boolean | null
+          last_verification_at?: string | null
+          license_key?: string | null
+          license_key_hash?: string | null
+          order_id?: string | null
+          verification_count?: number | null
+        }
+        Update: {
+          approved_domain?: string | null
+          approved_ips?: string[] | null
+          blocked_attempts?: number | null
+          created_at?: string | null
+          created_by?: string | null
+          daily_demo_id?: string | null
+          demo_id?: string | null
+          deployment_status?: string | null
+          encryption_key_ref?: string | null
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_domain_locked?: boolean | null
+          is_encrypted?: boolean | null
+          is_obfuscated?: boolean | null
+          last_verification_at?: string | null
+          license_key?: string | null
+          license_key_hash?: string | null
+          order_id?: string | null
+          verification_count?: number | null
+        }
+        Relationships: []
+      }
+      demo_escalations: {
+        Row: {
+          acknowledged_at: string | null
+          alert_id: string | null
+          auto_escalated: boolean | null
+          created_at: string | null
+          demo_id: string | null
+          escalated_to_role: string | null
+          escalated_to_user: string | null
+          escalation_level: number | null
+          id: string
+          reason: string | null
+          resolution_notes: string | null
+          resolved_at: string | null
+          status: string | null
+        }
+        Insert: {
+          acknowledged_at?: string | null
+          alert_id?: string | null
+          auto_escalated?: boolean | null
+          created_at?: string | null
+          demo_id?: string | null
+          escalated_to_role?: string | null
+          escalated_to_user?: string | null
+          escalation_level?: number | null
+          id?: string
+          reason?: string | null
+          resolution_notes?: string | null
+          resolved_at?: string | null
+          status?: string | null
+        }
+        Update: {
+          acknowledged_at?: string | null
+          alert_id?: string | null
+          auto_escalated?: boolean | null
+          created_at?: string | null
+          demo_id?: string | null
+          escalated_to_role?: string | null
+          escalated_to_user?: string | null
+          escalation_level?: number | null
+          id?: string
+          reason?: string | null
+          resolution_notes?: string | null
+          resolved_at?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
+      demo_health: {
+        Row: {
+          checked_at: string | null
+          demo_id: string | null
+          error_message: string | null
+          id: string
+          response_time: number | null
+          status: string | null
+        }
+        Insert: {
+          checked_at?: string | null
+          demo_id?: string | null
+          error_message?: string | null
+          id?: string
+          response_time?: number | null
+          status?: string | null
+        }
+        Update: {
+          checked_at?: string | null
+          demo_id?: string | null
+          error_message?: string | null
+          id?: string
+          response_time?: number | null
+          status?: string | null
+        }
+        Relationships: []
+      }
+      demo_login_credentials: {
+        Row: {
+          created_at: string | null
+          demo_id: string | null
+          id: string
+          is_active: boolean | null
+          login_url: string | null
+          notes: string | null
+          password: string | null
+          role_type: string | null
+          username: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          demo_id?: string | null
+          id?: string
+          is_active?: boolean | null
+          login_url?: string | null
+          notes?: string | null
+          password?: string | null
+          role_type?: string | null
+          username?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          demo_id?: string | null
+          id?: string
+          is_active?: boolean | null
+          login_url?: string | null
+          notes?: string | null
+          password?: string | null
+          role_type?: string | null
+          username?: string | null
+        }
+        Relationships: []
+      }
+      demo_login_roles: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          demo_id: string | null
+          display_order: number | null
+          id: string
+          is_active: boolean | null
+          password_encrypted: string | null
+          role_name: string | null
+          updated_at: string | null
+          username: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          demo_id?: string | null
+          display_order?: number | null
+          id?: string
+          is_active?: boolean | null
+          password_encrypted?: string | null
+          role_name?: string | null
+          updated_at?: string | null
+          username?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          demo_id?: string | null
+          display_order?: number | null
+          id?: string
+          is_active?: boolean | null
+          password_encrypted?: string | null
+          role_name?: string | null
+          updated_at?: string | null
+          username?: string | null
+        }
+        Relationships: []
+      }
+      demo_renewal_logs: {
+        Row: {
+          auto_renewed: boolean | null
+          created_at: string | null
+          demo_id: string | null
+          id: string
+          new_expiry: string | null
+          notes: string | null
+          previous_expiry: string | null
+          renewed_by: string | null
+        }
+        Insert: {
+          auto_renewed?: boolean | null
+          created_at?: string | null
+          demo_id?: string | null
+          id?: string
+          new_expiry?: string | null
+          notes?: string | null
+          previous_expiry?: string | null
+          renewed_by?: string | null
+        }
+        Update: {
+          auto_renewed?: boolean | null
+          created_at?: string | null
+          demo_id?: string | null
+          id?: string
+          new_expiry?: string | null
+          notes?: string | null
+          previous_expiry?: string | null
+          renewed_by?: string | null
+        }
+        Relationships: []
+      }
+      demo_report_cards: {
+        Row: {
+          action_timestamp: string | null
+          action_type: string | null
+          auto_registered: boolean | null
+          completion_time_seconds: number | null
+          created_at: string | null
+          demo_id: string | null
+          demo_name: string | null
+          demo_status: string | null
+          error_details: string | null
+          fix_details: string | null
+          id: string
+          new_values: Json | null
+          old_values: Json | null
+          performed_by: string | null
+          performed_by_role: string | null
+          sector: string | null
+          sub_category: string | null
+          uptime_state: string | null
+          workflow_status: string | null
+        }
+        Insert: {
+          action_timestamp?: string | null
+          action_type?: string | null
+          auto_registered?: boolean | null
+          completion_time_seconds?: number | null
+          created_at?: string | null
+          demo_id?: string | null
+          demo_name?: string | null
+          demo_status?: string | null
+          error_details?: string | null
+          fix_details?: string | null
+          id?: string
+          new_values?: Json | null
+          old_values?: Json | null
+          performed_by?: string | null
+          performed_by_role?: string | null
+          sector?: string | null
+          sub_category?: string | null
+          uptime_state?: string | null
+          workflow_status?: string | null
+        }
+        Update: {
+          action_timestamp?: string | null
+          action_type?: string | null
+          auto_registered?: boolean | null
+          completion_time_seconds?: number | null
+          created_at?: string | null
+          demo_id?: string | null
+          demo_name?: string | null
+          demo_status?: string | null
+          error_details?: string | null
+          fix_details?: string | null
+          id?: string
+          new_values?: Json | null
+          old_values?: Json | null
+          performed_by?: string | null
+          performed_by_role?: string | null
+          sector?: string | null
+          sub_category?: string | null
+          uptime_state?: string | null
+          workflow_status?: string | null
+        }
+        Relationships: []
+      }
+      demo_requests: {
+        Row: {
+          client_email: string | null
+          client_name: string | null
+          company_name: string | null
+          created_at: string | null
+          id: string
+          interested_category: string | null
+          message: string | null
+          notes: string | null
+          phone: string | null
+          responded_at: string | null
+          responded_by: string | null
+          status: string | null
+        }
+        Insert: {
+          client_email?: string | null
+          client_name?: string | null
+          company_name?: string | null
+          created_at?: string | null
+          id?: string
+          interested_category?: string | null
+          message?: string | null
+          notes?: string | null
+          phone?: string | null
+          responded_at?: string | null
+          responded_by?: string | null
+          status?: string | null
+        }
+        Update: {
+          client_email?: string | null
+          client_name?: string | null
+          company_name?: string | null
+          created_at?: string | null
+          id?: string
+          interested_category?: string | null
+          message?: string | null
+          notes?: string | null
+          phone?: string | null
+          responded_at?: string | null
+          responded_by?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
       demo_url_audit_log: {
         Row: {
           action: string
@@ -304,6 +958,180 @@ export type Database = {
           demo_url_id?: string | null
           id?: string
           metadata?: Json
+        }
+        Relationships: []
+      }
+      demo_validation_logs: {
+        Row: {
+          created_at: string | null
+          demo_id: string | null
+          demo_url: string | null
+          error_message: string | null
+          http_status: number | null
+          id: string
+          response_time_ms: number | null
+          status: string | null
+          validated_at: string | null
+          validated_by: string | null
+          validation_type: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          demo_id?: string | null
+          demo_url?: string | null
+          error_message?: string | null
+          http_status?: number | null
+          id?: string
+          response_time_ms?: number | null
+          status?: string | null
+          validated_at?: string | null
+          validated_by?: string | null
+          validation_type?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          demo_id?: string | null
+          demo_url?: string | null
+          error_message?: string | null
+          http_status?: number | null
+          id?: string
+          response_time_ms?: number | null
+          status?: string | null
+          validated_at?: string | null
+          validated_by?: string | null
+          validation_type?: string | null
+        }
+        Relationships: []
+      }
+      demos: {
+        Row: {
+          activated_at: string | null
+          activated_by: string | null
+          ai_category_suggestion: string | null
+          ai_tech_suggestion: string | null
+          backup_url: string | null
+          category: string | null
+          category_id: string | null
+          created_at: string | null
+          created_by: string | null
+          demo_banner_text: string | null
+          demo_type: string | null
+          description: string | null
+          disable_destructive: boolean | null
+          disable_exports: boolean | null
+          expiry_date: string | null
+          health_check_interval: number | null
+          health_score: number | null
+          http_status: number | null
+          id: string
+          is_bulk_created: boolean | null
+          is_trending: boolean | null
+          last_health_check: string | null
+          last_verified_at: string | null
+          lifecycle_status: string | null
+          login_url: string | null
+          masked_url: string | null
+          max_concurrent_logins: number | null
+          multi_login_enabled: boolean | null
+          normalized_url: string | null
+          renewal_date: string | null
+          response_time_ms: number | null
+          status: string | null
+          tech_stack: string | null
+          technology_id: string | null
+          title: string | null
+          total_login_roles: number | null
+          updated_at: string | null
+          uptime_percentage: number | null
+          url: string | null
+          verification_status: string | null
+          video_fallback_url: string | null
+        }
+        Insert: {
+          activated_at?: string | null
+          activated_by?: string | null
+          ai_category_suggestion?: string | null
+          ai_tech_suggestion?: string | null
+          backup_url?: string | null
+          category?: string | null
+          category_id?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          demo_banner_text?: string | null
+          demo_type?: string | null
+          description?: string | null
+          disable_destructive?: boolean | null
+          disable_exports?: boolean | null
+          expiry_date?: string | null
+          health_check_interval?: number | null
+          health_score?: number | null
+          http_status?: number | null
+          id?: string
+          is_bulk_created?: boolean | null
+          is_trending?: boolean | null
+          last_health_check?: string | null
+          last_verified_at?: string | null
+          lifecycle_status?: string | null
+          login_url?: string | null
+          masked_url?: string | null
+          max_concurrent_logins?: number | null
+          multi_login_enabled?: boolean | null
+          normalized_url?: string | null
+          renewal_date?: string | null
+          response_time_ms?: number | null
+          status?: string | null
+          tech_stack?: string | null
+          technology_id?: string | null
+          title?: string | null
+          total_login_roles?: number | null
+          updated_at?: string | null
+          uptime_percentage?: number | null
+          url?: string | null
+          verification_status?: string | null
+          video_fallback_url?: string | null
+        }
+        Update: {
+          activated_at?: string | null
+          activated_by?: string | null
+          ai_category_suggestion?: string | null
+          ai_tech_suggestion?: string | null
+          backup_url?: string | null
+          category?: string | null
+          category_id?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          demo_banner_text?: string | null
+          demo_type?: string | null
+          description?: string | null
+          disable_destructive?: boolean | null
+          disable_exports?: boolean | null
+          expiry_date?: string | null
+          health_check_interval?: number | null
+          health_score?: number | null
+          http_status?: number | null
+          id?: string
+          is_bulk_created?: boolean | null
+          is_trending?: boolean | null
+          last_health_check?: string | null
+          last_verified_at?: string | null
+          lifecycle_status?: string | null
+          login_url?: string | null
+          masked_url?: string | null
+          max_concurrent_logins?: number | null
+          multi_login_enabled?: boolean | null
+          normalized_url?: string | null
+          renewal_date?: string | null
+          response_time_ms?: number | null
+          status?: string | null
+          tech_stack?: string | null
+          technology_id?: string | null
+          title?: string | null
+          total_login_roles?: number | null
+          updated_at?: string | null
+          uptime_percentage?: number | null
+          url?: string | null
+          verification_status?: string | null
+          video_fallback_url?: string | null
         }
         Relationships: []
       }
@@ -708,6 +1536,63 @@ export type Database = {
         }
         Relationships: []
       }
+      product_action_logs: {
+        Row: {
+          action: string | null
+          action_details: Json | null
+          created_at: string | null
+          id: string
+          performed_by: string | null
+          performer_role: string | null
+          product_id: string | null
+          product_name: string | null
+        }
+        Insert: {
+          action?: string | null
+          action_details?: Json | null
+          created_at?: string | null
+          id?: string
+          performed_by?: string | null
+          performer_role?: string | null
+          product_id?: string | null
+          product_name?: string | null
+        }
+        Update: {
+          action?: string | null
+          action_details?: Json | null
+          created_at?: string | null
+          id?: string
+          performed_by?: string | null
+          performer_role?: string | null
+          product_id?: string | null
+          product_name?: string | null
+        }
+        Relationships: []
+      }
+      product_demo_mappings: {
+        Row: {
+          demo_id: string | null
+          id: string
+          linked_at: string | null
+          linked_by: string | null
+          product_id: string | null
+        }
+        Insert: {
+          demo_id?: string | null
+          id?: string
+          linked_at?: string | null
+          linked_by?: string | null
+          product_id?: string | null
+        }
+        Update: {
+          demo_id?: string | null
+          id?: string
+          linked_at?: string | null
+          linked_by?: string | null
+          product_id?: string | null
+        }
+        Relationships: []
+      }
       product_demo_urls: {
         Row: {
           created_at: string
@@ -816,46 +1701,265 @@ export type Database = {
       }
       products: {
         Row: {
+          abuse_reported: boolean | null
+          additional_files: Json | null
           author_id: string | null
+          blog_url: string | null
+          business_category_id: string | null
+          canonical_url: string | null
           category: string
+          changelog: string | null
+          compatibility: string[] | null
+          conversion_count: number | null
+          coupon_code: string | null
           created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          demo_click_count: number | null
+          demo_credentials: Json | null
+          demo_embed: string | null
+          demo_type: string | null
+          demo_url: string | null
+          demo_video_url: string | null
+          description: string | null
+          difficulty_level: string | null
+          discount_price: number | null
+          documentation_url: string | null
           downloads: number
+          dynamic_pricing: Json | null
+          feature_list: string[] | null
+          featured_rank: number | null
+          features_json: Json | null
+          gallery_urls: string[] | null
+          has_broken_demo: boolean | null
           id: string
+          industry_tags: string[] | null
+          installation_guide: string | null
+          is_active: boolean | null
+          is_featured: boolean | null
+          is_free: boolean | null
+          is_new: boolean | null
+          is_subscription: boolean | null
+          keywords: string[] | null
+          last_updated_at: string | null
+          license_tier: string | null
+          license_type: string | null
+          lifetime_price: number | null
+          main_file_url: string | null
+          manual_rank: number | null
+          meta_description: string | null
+          meta_title: string | null
+          monthly_price: number | null
           name: string
+          og_description: string | null
+          og_image: string | null
+          og_title: string | null
+          popular_score: number | null
+          preview_urls: string[] | null
           price: number
+          pricing_model: string | null
+          product_id: string | null
+          product_name: string | null
+          product_type: string | null
           rating: number | null
+          release_notes: string | null
+          requirements: string | null
+          review_flagged: boolean | null
+          search_keywords: string[] | null
+          sections_json: Json | null
+          short_description: string | null
+          slug: string | null
           status: string
+          subcategory_id: string | null
+          support_response_time: string | null
+          support_url: string | null
+          synonyms: string[] | null
+          tags: string[] | null
+          tech_stack: string | null
+          tech_stack_tags: string[] | null
+          thumbnail_url: string | null
+          trending: boolean | null
           type: string
           updated_at: string
+          use_case_tags: string[] | null
+          verified_author: boolean | null
           version: string
+          video_thumbnail_url: string | null
+          view_count: number | null
         }
         Insert: {
+          abuse_reported?: boolean | null
+          additional_files?: Json | null
           author_id?: string | null
+          blog_url?: string | null
+          business_category_id?: string | null
+          canonical_url?: string | null
           category?: string
+          changelog?: string | null
+          compatibility?: string[] | null
+          conversion_count?: number | null
+          coupon_code?: string | null
           created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          demo_click_count?: number | null
+          demo_credentials?: Json | null
+          demo_embed?: string | null
+          demo_type?: string | null
+          demo_url?: string | null
+          demo_video_url?: string | null
+          description?: string | null
+          difficulty_level?: string | null
+          discount_price?: number | null
+          documentation_url?: string | null
           downloads?: number
+          dynamic_pricing?: Json | null
+          feature_list?: string[] | null
+          featured_rank?: number | null
+          features_json?: Json | null
+          gallery_urls?: string[] | null
+          has_broken_demo?: boolean | null
           id?: string
+          industry_tags?: string[] | null
+          installation_guide?: string | null
+          is_active?: boolean | null
+          is_featured?: boolean | null
+          is_free?: boolean | null
+          is_new?: boolean | null
+          is_subscription?: boolean | null
+          keywords?: string[] | null
+          last_updated_at?: string | null
+          license_tier?: string | null
+          license_type?: string | null
+          lifetime_price?: number | null
+          main_file_url?: string | null
+          manual_rank?: number | null
+          meta_description?: string | null
+          meta_title?: string | null
+          monthly_price?: number | null
           name: string
+          og_description?: string | null
+          og_image?: string | null
+          og_title?: string | null
+          popular_score?: number | null
+          preview_urls?: string[] | null
           price?: number
+          pricing_model?: string | null
+          product_id?: string | null
+          product_name?: string | null
+          product_type?: string | null
           rating?: number | null
+          release_notes?: string | null
+          requirements?: string | null
+          review_flagged?: boolean | null
+          search_keywords?: string[] | null
+          sections_json?: Json | null
+          short_description?: string | null
+          slug?: string | null
           status?: string
+          subcategory_id?: string | null
+          support_response_time?: string | null
+          support_url?: string | null
+          synonyms?: string[] | null
+          tags?: string[] | null
+          tech_stack?: string | null
+          tech_stack_tags?: string[] | null
+          thumbnail_url?: string | null
+          trending?: boolean | null
           type?: string
           updated_at?: string
+          use_case_tags?: string[] | null
+          verified_author?: boolean | null
           version?: string
+          video_thumbnail_url?: string | null
+          view_count?: number | null
         }
         Update: {
+          abuse_reported?: boolean | null
+          additional_files?: Json | null
           author_id?: string | null
+          blog_url?: string | null
+          business_category_id?: string | null
+          canonical_url?: string | null
           category?: string
+          changelog?: string | null
+          compatibility?: string[] | null
+          conversion_count?: number | null
+          coupon_code?: string | null
           created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          demo_click_count?: number | null
+          demo_credentials?: Json | null
+          demo_embed?: string | null
+          demo_type?: string | null
+          demo_url?: string | null
+          demo_video_url?: string | null
+          description?: string | null
+          difficulty_level?: string | null
+          discount_price?: number | null
+          documentation_url?: string | null
           downloads?: number
+          dynamic_pricing?: Json | null
+          feature_list?: string[] | null
+          featured_rank?: number | null
+          features_json?: Json | null
+          gallery_urls?: string[] | null
+          has_broken_demo?: boolean | null
           id?: string
+          industry_tags?: string[] | null
+          installation_guide?: string | null
+          is_active?: boolean | null
+          is_featured?: boolean | null
+          is_free?: boolean | null
+          is_new?: boolean | null
+          is_subscription?: boolean | null
+          keywords?: string[] | null
+          last_updated_at?: string | null
+          license_tier?: string | null
+          license_type?: string | null
+          lifetime_price?: number | null
+          main_file_url?: string | null
+          manual_rank?: number | null
+          meta_description?: string | null
+          meta_title?: string | null
+          monthly_price?: number | null
           name?: string
+          og_description?: string | null
+          og_image?: string | null
+          og_title?: string | null
+          popular_score?: number | null
+          preview_urls?: string[] | null
           price?: number
+          pricing_model?: string | null
+          product_id?: string | null
+          product_name?: string | null
+          product_type?: string | null
           rating?: number | null
+          release_notes?: string | null
+          requirements?: string | null
+          review_flagged?: boolean | null
+          search_keywords?: string[] | null
+          sections_json?: Json | null
+          short_description?: string | null
+          slug?: string | null
           status?: string
+          subcategory_id?: string | null
+          support_response_time?: string | null
+          support_url?: string | null
+          synonyms?: string[] | null
+          tags?: string[] | null
+          tech_stack?: string | null
+          tech_stack_tags?: string[] | null
+          thumbnail_url?: string | null
+          trending?: boolean | null
           type?: string
           updated_at?: string
+          use_case_tags?: string[] | null
+          verified_author?: boolean | null
           version?: string
+          video_thumbnail_url?: string | null
+          view_count?: number | null
         }
         Relationships: []
       }
@@ -886,6 +1990,75 @@ export type Database = {
           phone?: string | null
           updated_at?: string
           username?: string | null
+        }
+        Relationships: []
+      }
+      server_backups: {
+        Row: {
+          backup_name: string | null
+          backup_type: string | null
+          checksum: string | null
+          completed_at: string | null
+          created_at: string | null
+          encryption_enabled: boolean | null
+          encryption_key_id: string | null
+          error_message: string | null
+          expires_at: string | null
+          id: string
+          is_auto_backup: boolean | null
+          metadata: Json | null
+          restore_point_id: string | null
+          retention_days: number | null
+          server_id: string | null
+          size_gb: number | null
+          started_at: string | null
+          status: string | null
+          storage_location: string | null
+          triggered_by: string | null
+        }
+        Insert: {
+          backup_name?: string | null
+          backup_type?: string | null
+          checksum?: string | null
+          completed_at?: string | null
+          created_at?: string | null
+          encryption_enabled?: boolean | null
+          encryption_key_id?: string | null
+          error_message?: string | null
+          expires_at?: string | null
+          id?: string
+          is_auto_backup?: boolean | null
+          metadata?: Json | null
+          restore_point_id?: string | null
+          retention_days?: number | null
+          server_id?: string | null
+          size_gb?: number | null
+          started_at?: string | null
+          status?: string | null
+          storage_location?: string | null
+          triggered_by?: string | null
+        }
+        Update: {
+          backup_name?: string | null
+          backup_type?: string | null
+          checksum?: string | null
+          completed_at?: string | null
+          created_at?: string | null
+          encryption_enabled?: boolean | null
+          encryption_key_id?: string | null
+          error_message?: string | null
+          expires_at?: string | null
+          id?: string
+          is_auto_backup?: boolean | null
+          metadata?: Json | null
+          restore_point_id?: string | null
+          retention_days?: number | null
+          server_id?: string | null
+          size_gb?: number | null
+          started_at?: string | null
+          status?: string | null
+          storage_location?: string | null
+          triggered_by?: string | null
         }
         Relationships: []
       }
@@ -946,6 +2119,48 @@ export type Database = {
           key?: string
           updated_at?: string
           value?: Json
+        }
+        Relationships: []
+      }
+      software_catalog: {
+        Row: {
+          base_price: number | null
+          category: string | null
+          created_at: string | null
+          demo_id: string | null
+          demo_url: string | null
+          id: string
+          is_demo_registered: boolean | null
+          name: string | null
+          type: string | null
+          updated_at: string | null
+          vendor: string | null
+        }
+        Insert: {
+          base_price?: number | null
+          category?: string | null
+          created_at?: string | null
+          demo_id?: string | null
+          demo_url?: string | null
+          id?: string
+          is_demo_registered?: boolean | null
+          name?: string | null
+          type?: string | null
+          updated_at?: string | null
+          vendor?: string | null
+        }
+        Update: {
+          base_price?: number | null
+          category?: string | null
+          created_at?: string | null
+          demo_id?: string | null
+          demo_url?: string | null
+          id?: string
+          is_demo_registered?: boolean | null
+          name?: string | null
+          type?: string | null
+          updated_at?: string | null
+          vendor?: string | null
         }
         Relationships: []
       }
