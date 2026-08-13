@@ -10,14 +10,80 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ProductDemoManagerRouteImport } from './routes/product-demo-manager'
 import { Route as MarketplaceRouteImport } from './routes/marketplace'
+import { Route as DemoWorkspaceRouteImport } from './routes/demo-workspace'
+import { Route as DemoOpsRouteImport } from './routes/demo-ops'
+import { Route as DemoManagerRouteImport } from './routes/demo-manager'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SeoManagerIndexRouteImport } from './routes/seo-manager.index'
+import { Route as MarketplaceManagerIndexRouteImport } from './routes/marketplace-manager.index'
+import { Route as LeadManagerIndexRouteImport } from './routes/lead-manager.index'
+import { Route as SeoManagerTechnicalRouteImport } from './routes/seo-manager.technical'
+import { Route as SeoManagerSpamGuardRouteImport } from './routes/seo-manager.spam-guard'
+import { Route as SeoManagerSocialRouteImport } from './routes/seo-manager.social'
+import { Route as SeoManagerSchedulerRouteImport } from './routes/seo-manager.scheduler'
+import { Route as SeoManagerReportsRouteImport } from './routes/seo-manager.reports'
+import { Route as SeoManagerRegionsRouteImport } from './routes/seo-manager.regions'
+import { Route as SeoManagerReelsRouteImport } from './routes/seo-manager.reels'
+import { Route as SeoManagerProductLibraryRouteImport } from './routes/seo-manager.product-library'
+import { Route as SeoManagerPerformanceRouteImport } from './routes/seo-manager.performance'
+import { Route as SeoManagerPagesRouteImport } from './routes/seo-manager.pages'
+import { Route as SeoManagerMetaRulesRouteImport } from './routes/seo-manager.meta-rules'
+import { Route as SeoManagerLeadsRouteImport } from './routes/seo-manager.leads'
+import { Route as SeoManagerKeywordsRouteImport } from './routes/seo-manager.keywords'
+import { Route as SeoManagerIssuesRouteImport } from './routes/seo-manager.issues'
+import { Route as SeoManagerIntegrationsRouteImport } from './routes/seo-manager.integrations'
+import { Route as SeoManagerIndexingRouteImport } from './routes/seo-manager.indexing'
+import { Route as SeoManagerInboxRouteImport } from './routes/seo-manager.inbox'
+import { Route as SeoManagerFlowsRouteImport } from './routes/seo-manager.flows'
+import { Route as SeoManagerEmailRouteImport } from './routes/seo-manager.email'
+import { Route as SeoManagerDiagnosticsRouteImport } from './routes/seo-manager.diagnostics'
+import { Route as SeoManagerContentRouteImport } from './routes/seo-manager.content'
+import { Route as SeoManagerCompetitorsRouteImport } from './routes/seo-manager.competitors'
+import { Route as SeoManagerBehaviorRouteImport } from './routes/seo-manager.behavior'
+import { Route as SeoManagerBacklinksRouteImport } from './routes/seo-manager.backlinks'
+import { Route as SeoManagerAuditRouteImport } from './routes/seo-manager.audit'
+import { Route as SeoManagerAlertsRouteImport } from './routes/seo-manager.alerts'
+import { Route as SeoManagerAiAssistantRouteImport } from './routes/seo-manager.ai-assistant'
+import { Route as SeoManagerAdsRouteImport } from './routes/seo-manager.ads'
 import { Route as DashboardRoleRouteImport } from './routes/dashboard.$role'
+import { Route as BossAuthorManagerRouteImport } from './routes/boss.author-manager'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as BossAuthorManagerIndexRouteImport } from './routes/boss.author-manager.index'
+import { Route as BossAuthorManagerVersionsRouteImport } from './routes/boss.author-manager.versions'
+import { Route as BossAuthorManagerThemesRouteImport } from './routes/boss.author-manager.themes'
+import { Route as BossAuthorManagerTemplatesRouteImport } from './routes/boss.author-manager.templates'
+import { Route as BossAuthorManagerSupportRouteImport } from './routes/boss.author-manager.support'
+import { Route as BossAuthorManagerSourceCodeRouteImport } from './routes/boss.author-manager.source-code'
+import { Route as BossAuthorManagerSettingsRouteImport } from './routes/boss.author-manager.settings'
+import { Route as BossAuthorManagerRoyaltiesRouteImport } from './routes/boss.author-manager.royalties'
+import { Route as BossAuthorManagerReviewsRouteImport } from './routes/boss.author-manager.reviews'
+import { Route as BossAuthorManagerRevenueRouteImport } from './routes/boss.author-manager.revenue'
+import { Route as BossAuthorManagerReportsRouteImport } from './routes/boss.author-manager.reports'
+import { Route as BossAuthorManagerProductsRouteImport } from './routes/boss.author-manager.products'
+import { Route as BossAuthorManagerPluginsRouteImport } from './routes/boss.author-manager.plugins'
+import { Route as BossAuthorManagerLicensesRouteImport } from './routes/boss.author-manager.licenses'
+import { Route as BossAuthorManagerDownloadsRouteImport } from './routes/boss.author-manager.downloads'
+import { Route as BossAuthorManagerDocumentsRouteImport } from './routes/boss.author-manager.documents'
+import { Route as BossAuthorManagerDashboardRouteImport } from './routes/boss.author-manager.dashboard'
+import { Route as BossAuthorManagerAuthorsRouteImport } from './routes/boss.author-manager.authors'
+import { Route as BossAuthorManagerAuthGateEventsRouteImport } from './routes/boss.author-manager.auth-gate-events'
+import { Route as BossAuthorManagerApprovalsRouteImport } from './routes/boss.author-manager.approvals'
+import { Route as BossAuthorManagerApplicationsRouteImport } from './routes/boss.author-manager.applications'
+import { Route as BossAuthorManagerAnalyticsRouteImport } from './routes/boss.author-manager.analytics'
+import { Route as BossAuthorManagerAiModelsRouteImport } from './routes/boss.author-manager.ai-models'
+import { Route as ApiPublicAuthGateEventsRouteImport } from './routes/api/public/auth-gate-events'
+import { Route as BossAuthorManagerAuthorAuthorIdRouteImport } from './routes/boss.author-manager.author.$authorId'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductDemoManagerRoute = ProductDemoManagerRouteImport.update({
+  id: '/product-demo-manager',
+  path: '/product-demo-manager',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MarketplaceRoute = MarketplaceRouteImport.update({
@@ -25,9 +91,180 @@ const MarketplaceRoute = MarketplaceRouteImport.update({
   path: '/marketplace',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemoWorkspaceRoute = DemoWorkspaceRouteImport.update({
+  id: '/demo-workspace',
+  path: '/demo-workspace',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoOpsRoute = DemoOpsRouteImport.update({
+  id: '/demo-ops',
+  path: '/demo-ops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoManagerRoute = DemoManagerRouteImport.update({
+  id: '/demo-manager',
+  path: '/demo-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerIndexRoute = SeoManagerIndexRouteImport.update({
+  id: '/seo-manager/',
+  path: '/seo-manager/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketplaceManagerIndexRoute = MarketplaceManagerIndexRouteImport.update({
+  id: '/marketplace-manager/',
+  path: '/marketplace-manager/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeadManagerIndexRoute = LeadManagerIndexRouteImport.update({
+  id: '/lead-manager/',
+  path: '/lead-manager/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerTechnicalRoute = SeoManagerTechnicalRouteImport.update({
+  id: '/seo-manager/technical',
+  path: '/seo-manager/technical',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerSpamGuardRoute = SeoManagerSpamGuardRouteImport.update({
+  id: '/seo-manager/spam-guard',
+  path: '/seo-manager/spam-guard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerSocialRoute = SeoManagerSocialRouteImport.update({
+  id: '/seo-manager/social',
+  path: '/seo-manager/social',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerSchedulerRoute = SeoManagerSchedulerRouteImport.update({
+  id: '/seo-manager/scheduler',
+  path: '/seo-manager/scheduler',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerReportsRoute = SeoManagerReportsRouteImport.update({
+  id: '/seo-manager/reports',
+  path: '/seo-manager/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerRegionsRoute = SeoManagerRegionsRouteImport.update({
+  id: '/seo-manager/regions',
+  path: '/seo-manager/regions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerReelsRoute = SeoManagerReelsRouteImport.update({
+  id: '/seo-manager/reels',
+  path: '/seo-manager/reels',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerProductLibraryRoute =
+  SeoManagerProductLibraryRouteImport.update({
+    id: '/seo-manager/product-library',
+    path: '/seo-manager/product-library',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SeoManagerPerformanceRoute = SeoManagerPerformanceRouteImport.update({
+  id: '/seo-manager/performance',
+  path: '/seo-manager/performance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerPagesRoute = SeoManagerPagesRouteImport.update({
+  id: '/seo-manager/pages',
+  path: '/seo-manager/pages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerMetaRulesRoute = SeoManagerMetaRulesRouteImport.update({
+  id: '/seo-manager/meta-rules',
+  path: '/seo-manager/meta-rules',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerLeadsRoute = SeoManagerLeadsRouteImport.update({
+  id: '/seo-manager/leads',
+  path: '/seo-manager/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerKeywordsRoute = SeoManagerKeywordsRouteImport.update({
+  id: '/seo-manager/keywords',
+  path: '/seo-manager/keywords',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerIssuesRoute = SeoManagerIssuesRouteImport.update({
+  id: '/seo-manager/issues',
+  path: '/seo-manager/issues',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerIntegrationsRoute = SeoManagerIntegrationsRouteImport.update({
+  id: '/seo-manager/integrations',
+  path: '/seo-manager/integrations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerIndexingRoute = SeoManagerIndexingRouteImport.update({
+  id: '/seo-manager/indexing',
+  path: '/seo-manager/indexing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerInboxRoute = SeoManagerInboxRouteImport.update({
+  id: '/seo-manager/inbox',
+  path: '/seo-manager/inbox',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerFlowsRoute = SeoManagerFlowsRouteImport.update({
+  id: '/seo-manager/flows',
+  path: '/seo-manager/flows',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerEmailRoute = SeoManagerEmailRouteImport.update({
+  id: '/seo-manager/email',
+  path: '/seo-manager/email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerDiagnosticsRoute = SeoManagerDiagnosticsRouteImport.update({
+  id: '/seo-manager/diagnostics',
+  path: '/seo-manager/diagnostics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerContentRoute = SeoManagerContentRouteImport.update({
+  id: '/seo-manager/content',
+  path: '/seo-manager/content',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerCompetitorsRoute = SeoManagerCompetitorsRouteImport.update({
+  id: '/seo-manager/competitors',
+  path: '/seo-manager/competitors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerBehaviorRoute = SeoManagerBehaviorRouteImport.update({
+  id: '/seo-manager/behavior',
+  path: '/seo-manager/behavior',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerBacklinksRoute = SeoManagerBacklinksRouteImport.update({
+  id: '/seo-manager/backlinks',
+  path: '/seo-manager/backlinks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerAuditRoute = SeoManagerAuditRouteImport.update({
+  id: '/seo-manager/audit',
+  path: '/seo-manager/audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerAlertsRoute = SeoManagerAlertsRouteImport.update({
+  id: '/seo-manager/alerts',
+  path: '/seo-manager/alerts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerAiAssistantRoute = SeoManagerAiAssistantRouteImport.update({
+  id: '/seo-manager/ai-assistant',
+  path: '/seo-manager/ai-assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerAdsRoute = SeoManagerAdsRouteImport.update({
+  id: '/seo-manager/ads',
+  path: '/seo-manager/ads',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoleRoute = DashboardRoleRouteImport.update({
@@ -35,59 +272,617 @@ const DashboardRoleRoute = DashboardRoleRouteImport.update({
   path: '/dashboard/$role',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BossAuthorManagerRoute = BossAuthorManagerRouteImport.update({
+  id: '/boss/author-manager',
+  path: '/boss/author-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BossAuthorManagerIndexRoute = BossAuthorManagerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BossAuthorManagerRoute,
+} as any)
+const BossAuthorManagerVersionsRoute =
+  BossAuthorManagerVersionsRouteImport.update({
+    id: '/versions',
+    path: '/versions',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerThemesRoute = BossAuthorManagerThemesRouteImport.update({
+  id: '/themes',
+  path: '/themes',
+  getParentRoute: () => BossAuthorManagerRoute,
+} as any)
+const BossAuthorManagerTemplatesRoute =
+  BossAuthorManagerTemplatesRouteImport.update({
+    id: '/templates',
+    path: '/templates',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerSupportRoute =
+  BossAuthorManagerSupportRouteImport.update({
+    id: '/support',
+    path: '/support',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerSourceCodeRoute =
+  BossAuthorManagerSourceCodeRouteImport.update({
+    id: '/source-code',
+    path: '/source-code',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerSettingsRoute =
+  BossAuthorManagerSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerRoyaltiesRoute =
+  BossAuthorManagerRoyaltiesRouteImport.update({
+    id: '/royalties',
+    path: '/royalties',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerReviewsRoute =
+  BossAuthorManagerReviewsRouteImport.update({
+    id: '/reviews',
+    path: '/reviews',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerRevenueRoute =
+  BossAuthorManagerRevenueRouteImport.update({
+    id: '/revenue',
+    path: '/revenue',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerReportsRoute =
+  BossAuthorManagerReportsRouteImport.update({
+    id: '/reports',
+    path: '/reports',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerProductsRoute =
+  BossAuthorManagerProductsRouteImport.update({
+    id: '/products',
+    path: '/products',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerPluginsRoute =
+  BossAuthorManagerPluginsRouteImport.update({
+    id: '/plugins',
+    path: '/plugins',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerLicensesRoute =
+  BossAuthorManagerLicensesRouteImport.update({
+    id: '/licenses',
+    path: '/licenses',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerDownloadsRoute =
+  BossAuthorManagerDownloadsRouteImport.update({
+    id: '/downloads',
+    path: '/downloads',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerDocumentsRoute =
+  BossAuthorManagerDocumentsRouteImport.update({
+    id: '/documents',
+    path: '/documents',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerDashboardRoute =
+  BossAuthorManagerDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerAuthorsRoute =
+  BossAuthorManagerAuthorsRouteImport.update({
+    id: '/authors',
+    path: '/authors',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerAuthGateEventsRoute =
+  BossAuthorManagerAuthGateEventsRouteImport.update({
+    id: '/auth-gate-events',
+    path: '/auth-gate-events',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerApprovalsRoute =
+  BossAuthorManagerApprovalsRouteImport.update({
+    id: '/approvals',
+    path: '/approvals',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerApplicationsRoute =
+  BossAuthorManagerApplicationsRouteImport.update({
+    id: '/applications',
+    path: '/applications',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerAnalyticsRoute =
+  BossAuthorManagerAnalyticsRouteImport.update({
+    id: '/analytics',
+    path: '/analytics',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const BossAuthorManagerAiModelsRoute =
+  BossAuthorManagerAiModelsRouteImport.update({
+    id: '/ai-models',
+    path: '/ai-models',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
+const ApiPublicAuthGateEventsRoute = ApiPublicAuthGateEventsRouteImport.update({
+  id: '/api/public/auth-gate-events',
+  path: '/api/public/auth-gate-events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BossAuthorManagerAuthorAuthorIdRoute =
+  BossAuthorManagerAuthorAuthorIdRouteImport.update({
+    id: '/author/$authorId',
+    path: '/author/$authorId',
+    getParentRoute: () => BossAuthorManagerRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/demo-manager': typeof DemoManagerRoute
+  '/demo-ops': typeof DemoOpsRoute
+  '/demo-workspace': typeof DemoWorkspaceRoute
   '/marketplace': typeof MarketplaceRoute
+  '/product-demo-manager': typeof ProductDemoManagerRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/chat': typeof ApiChatRoute
+  '/boss/author-manager': typeof BossAuthorManagerRouteWithChildren
   '/dashboard/$role': typeof DashboardRoleRoute
+  '/seo-manager/ads': typeof SeoManagerAdsRoute
+  '/seo-manager/ai-assistant': typeof SeoManagerAiAssistantRoute
+  '/seo-manager/alerts': typeof SeoManagerAlertsRoute
+  '/seo-manager/audit': typeof SeoManagerAuditRoute
+  '/seo-manager/backlinks': typeof SeoManagerBacklinksRoute
+  '/seo-manager/behavior': typeof SeoManagerBehaviorRoute
+  '/seo-manager/competitors': typeof SeoManagerCompetitorsRoute
+  '/seo-manager/content': typeof SeoManagerContentRoute
+  '/seo-manager/diagnostics': typeof SeoManagerDiagnosticsRoute
+  '/seo-manager/email': typeof SeoManagerEmailRoute
+  '/seo-manager/flows': typeof SeoManagerFlowsRoute
+  '/seo-manager/inbox': typeof SeoManagerInboxRoute
+  '/seo-manager/indexing': typeof SeoManagerIndexingRoute
+  '/seo-manager/integrations': typeof SeoManagerIntegrationsRoute
+  '/seo-manager/issues': typeof SeoManagerIssuesRoute
+  '/seo-manager/keywords': typeof SeoManagerKeywordsRoute
+  '/seo-manager/leads': typeof SeoManagerLeadsRoute
+  '/seo-manager/meta-rules': typeof SeoManagerMetaRulesRoute
+  '/seo-manager/pages': typeof SeoManagerPagesRoute
+  '/seo-manager/performance': typeof SeoManagerPerformanceRoute
+  '/seo-manager/product-library': typeof SeoManagerProductLibraryRoute
+  '/seo-manager/reels': typeof SeoManagerReelsRoute
+  '/seo-manager/regions': typeof SeoManagerRegionsRoute
+  '/seo-manager/reports': typeof SeoManagerReportsRoute
+  '/seo-manager/scheduler': typeof SeoManagerSchedulerRoute
+  '/seo-manager/social': typeof SeoManagerSocialRoute
+  '/seo-manager/spam-guard': typeof SeoManagerSpamGuardRoute
+  '/seo-manager/technical': typeof SeoManagerTechnicalRoute
+  '/lead-manager/': typeof LeadManagerIndexRoute
+  '/marketplace-manager/': typeof MarketplaceManagerIndexRoute
+  '/seo-manager/': typeof SeoManagerIndexRoute
+  '/api/public/auth-gate-events': typeof ApiPublicAuthGateEventsRoute
+  '/boss/author-manager/ai-models': typeof BossAuthorManagerAiModelsRoute
+  '/boss/author-manager/analytics': typeof BossAuthorManagerAnalyticsRoute
+  '/boss/author-manager/applications': typeof BossAuthorManagerApplicationsRoute
+  '/boss/author-manager/approvals': typeof BossAuthorManagerApprovalsRoute
+  '/boss/author-manager/auth-gate-events': typeof BossAuthorManagerAuthGateEventsRoute
+  '/boss/author-manager/authors': typeof BossAuthorManagerAuthorsRoute
+  '/boss/author-manager/dashboard': typeof BossAuthorManagerDashboardRoute
+  '/boss/author-manager/documents': typeof BossAuthorManagerDocumentsRoute
+  '/boss/author-manager/downloads': typeof BossAuthorManagerDownloadsRoute
+  '/boss/author-manager/licenses': typeof BossAuthorManagerLicensesRoute
+  '/boss/author-manager/plugins': typeof BossAuthorManagerPluginsRoute
+  '/boss/author-manager/products': typeof BossAuthorManagerProductsRoute
+  '/boss/author-manager/reports': typeof BossAuthorManagerReportsRoute
+  '/boss/author-manager/revenue': typeof BossAuthorManagerRevenueRoute
+  '/boss/author-manager/reviews': typeof BossAuthorManagerReviewsRoute
+  '/boss/author-manager/royalties': typeof BossAuthorManagerRoyaltiesRoute
+  '/boss/author-manager/settings': typeof BossAuthorManagerSettingsRoute
+  '/boss/author-manager/source-code': typeof BossAuthorManagerSourceCodeRoute
+  '/boss/author-manager/support': typeof BossAuthorManagerSupportRoute
+  '/boss/author-manager/templates': typeof BossAuthorManagerTemplatesRoute
+  '/boss/author-manager/themes': typeof BossAuthorManagerThemesRoute
+  '/boss/author-manager/versions': typeof BossAuthorManagerVersionsRoute
+  '/boss/author-manager/': typeof BossAuthorManagerIndexRoute
+  '/boss/author-manager/author/$authorId': typeof BossAuthorManagerAuthorAuthorIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/demo-manager': typeof DemoManagerRoute
+  '/demo-ops': typeof DemoOpsRoute
+  '/demo-workspace': typeof DemoWorkspaceRoute
   '/marketplace': typeof MarketplaceRoute
+  '/product-demo-manager': typeof ProductDemoManagerRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/chat': typeof ApiChatRoute
   '/dashboard/$role': typeof DashboardRoleRoute
+  '/seo-manager/ads': typeof SeoManagerAdsRoute
+  '/seo-manager/ai-assistant': typeof SeoManagerAiAssistantRoute
+  '/seo-manager/alerts': typeof SeoManagerAlertsRoute
+  '/seo-manager/audit': typeof SeoManagerAuditRoute
+  '/seo-manager/backlinks': typeof SeoManagerBacklinksRoute
+  '/seo-manager/behavior': typeof SeoManagerBehaviorRoute
+  '/seo-manager/competitors': typeof SeoManagerCompetitorsRoute
+  '/seo-manager/content': typeof SeoManagerContentRoute
+  '/seo-manager/diagnostics': typeof SeoManagerDiagnosticsRoute
+  '/seo-manager/email': typeof SeoManagerEmailRoute
+  '/seo-manager/flows': typeof SeoManagerFlowsRoute
+  '/seo-manager/inbox': typeof SeoManagerInboxRoute
+  '/seo-manager/indexing': typeof SeoManagerIndexingRoute
+  '/seo-manager/integrations': typeof SeoManagerIntegrationsRoute
+  '/seo-manager/issues': typeof SeoManagerIssuesRoute
+  '/seo-manager/keywords': typeof SeoManagerKeywordsRoute
+  '/seo-manager/leads': typeof SeoManagerLeadsRoute
+  '/seo-manager/meta-rules': typeof SeoManagerMetaRulesRoute
+  '/seo-manager/pages': typeof SeoManagerPagesRoute
+  '/seo-manager/performance': typeof SeoManagerPerformanceRoute
+  '/seo-manager/product-library': typeof SeoManagerProductLibraryRoute
+  '/seo-manager/reels': typeof SeoManagerReelsRoute
+  '/seo-manager/regions': typeof SeoManagerRegionsRoute
+  '/seo-manager/reports': typeof SeoManagerReportsRoute
+  '/seo-manager/scheduler': typeof SeoManagerSchedulerRoute
+  '/seo-manager/social': typeof SeoManagerSocialRoute
+  '/seo-manager/spam-guard': typeof SeoManagerSpamGuardRoute
+  '/seo-manager/technical': typeof SeoManagerTechnicalRoute
+  '/lead-manager': typeof LeadManagerIndexRoute
+  '/marketplace-manager': typeof MarketplaceManagerIndexRoute
+  '/seo-manager': typeof SeoManagerIndexRoute
+  '/api/public/auth-gate-events': typeof ApiPublicAuthGateEventsRoute
+  '/boss/author-manager/ai-models': typeof BossAuthorManagerAiModelsRoute
+  '/boss/author-manager/analytics': typeof BossAuthorManagerAnalyticsRoute
+  '/boss/author-manager/applications': typeof BossAuthorManagerApplicationsRoute
+  '/boss/author-manager/approvals': typeof BossAuthorManagerApprovalsRoute
+  '/boss/author-manager/auth-gate-events': typeof BossAuthorManagerAuthGateEventsRoute
+  '/boss/author-manager/authors': typeof BossAuthorManagerAuthorsRoute
+  '/boss/author-manager/dashboard': typeof BossAuthorManagerDashboardRoute
+  '/boss/author-manager/documents': typeof BossAuthorManagerDocumentsRoute
+  '/boss/author-manager/downloads': typeof BossAuthorManagerDownloadsRoute
+  '/boss/author-manager/licenses': typeof BossAuthorManagerLicensesRoute
+  '/boss/author-manager/plugins': typeof BossAuthorManagerPluginsRoute
+  '/boss/author-manager/products': typeof BossAuthorManagerProductsRoute
+  '/boss/author-manager/reports': typeof BossAuthorManagerReportsRoute
+  '/boss/author-manager/revenue': typeof BossAuthorManagerRevenueRoute
+  '/boss/author-manager/reviews': typeof BossAuthorManagerReviewsRoute
+  '/boss/author-manager/royalties': typeof BossAuthorManagerRoyaltiesRoute
+  '/boss/author-manager/settings': typeof BossAuthorManagerSettingsRoute
+  '/boss/author-manager/source-code': typeof BossAuthorManagerSourceCodeRoute
+  '/boss/author-manager/support': typeof BossAuthorManagerSupportRoute
+  '/boss/author-manager/templates': typeof BossAuthorManagerTemplatesRoute
+  '/boss/author-manager/themes': typeof BossAuthorManagerThemesRoute
+  '/boss/author-manager/versions': typeof BossAuthorManagerVersionsRoute
+  '/boss/author-manager': typeof BossAuthorManagerIndexRoute
+  '/boss/author-manager/author/$authorId': typeof BossAuthorManagerAuthorAuthorIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/demo-manager': typeof DemoManagerRoute
+  '/demo-ops': typeof DemoOpsRoute
+  '/demo-workspace': typeof DemoWorkspaceRoute
   '/marketplace': typeof MarketplaceRoute
+  '/product-demo-manager': typeof ProductDemoManagerRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/chat': typeof ApiChatRoute
+  '/boss/author-manager': typeof BossAuthorManagerRouteWithChildren
   '/dashboard/$role': typeof DashboardRoleRoute
+  '/seo-manager/ads': typeof SeoManagerAdsRoute
+  '/seo-manager/ai-assistant': typeof SeoManagerAiAssistantRoute
+  '/seo-manager/alerts': typeof SeoManagerAlertsRoute
+  '/seo-manager/audit': typeof SeoManagerAuditRoute
+  '/seo-manager/backlinks': typeof SeoManagerBacklinksRoute
+  '/seo-manager/behavior': typeof SeoManagerBehaviorRoute
+  '/seo-manager/competitors': typeof SeoManagerCompetitorsRoute
+  '/seo-manager/content': typeof SeoManagerContentRoute
+  '/seo-manager/diagnostics': typeof SeoManagerDiagnosticsRoute
+  '/seo-manager/email': typeof SeoManagerEmailRoute
+  '/seo-manager/flows': typeof SeoManagerFlowsRoute
+  '/seo-manager/inbox': typeof SeoManagerInboxRoute
+  '/seo-manager/indexing': typeof SeoManagerIndexingRoute
+  '/seo-manager/integrations': typeof SeoManagerIntegrationsRoute
+  '/seo-manager/issues': typeof SeoManagerIssuesRoute
+  '/seo-manager/keywords': typeof SeoManagerKeywordsRoute
+  '/seo-manager/leads': typeof SeoManagerLeadsRoute
+  '/seo-manager/meta-rules': typeof SeoManagerMetaRulesRoute
+  '/seo-manager/pages': typeof SeoManagerPagesRoute
+  '/seo-manager/performance': typeof SeoManagerPerformanceRoute
+  '/seo-manager/product-library': typeof SeoManagerProductLibraryRoute
+  '/seo-manager/reels': typeof SeoManagerReelsRoute
+  '/seo-manager/regions': typeof SeoManagerRegionsRoute
+  '/seo-manager/reports': typeof SeoManagerReportsRoute
+  '/seo-manager/scheduler': typeof SeoManagerSchedulerRoute
+  '/seo-manager/social': typeof SeoManagerSocialRoute
+  '/seo-manager/spam-guard': typeof SeoManagerSpamGuardRoute
+  '/seo-manager/technical': typeof SeoManagerTechnicalRoute
+  '/lead-manager/': typeof LeadManagerIndexRoute
+  '/marketplace-manager/': typeof MarketplaceManagerIndexRoute
+  '/seo-manager/': typeof SeoManagerIndexRoute
+  '/api/public/auth-gate-events': typeof ApiPublicAuthGateEventsRoute
+  '/boss/author-manager/ai-models': typeof BossAuthorManagerAiModelsRoute
+  '/boss/author-manager/analytics': typeof BossAuthorManagerAnalyticsRoute
+  '/boss/author-manager/applications': typeof BossAuthorManagerApplicationsRoute
+  '/boss/author-manager/approvals': typeof BossAuthorManagerApprovalsRoute
+  '/boss/author-manager/auth-gate-events': typeof BossAuthorManagerAuthGateEventsRoute
+  '/boss/author-manager/authors': typeof BossAuthorManagerAuthorsRoute
+  '/boss/author-manager/dashboard': typeof BossAuthorManagerDashboardRoute
+  '/boss/author-manager/documents': typeof BossAuthorManagerDocumentsRoute
+  '/boss/author-manager/downloads': typeof BossAuthorManagerDownloadsRoute
+  '/boss/author-manager/licenses': typeof BossAuthorManagerLicensesRoute
+  '/boss/author-manager/plugins': typeof BossAuthorManagerPluginsRoute
+  '/boss/author-manager/products': typeof BossAuthorManagerProductsRoute
+  '/boss/author-manager/reports': typeof BossAuthorManagerReportsRoute
+  '/boss/author-manager/revenue': typeof BossAuthorManagerRevenueRoute
+  '/boss/author-manager/reviews': typeof BossAuthorManagerReviewsRoute
+  '/boss/author-manager/royalties': typeof BossAuthorManagerRoyaltiesRoute
+  '/boss/author-manager/settings': typeof BossAuthorManagerSettingsRoute
+  '/boss/author-manager/source-code': typeof BossAuthorManagerSourceCodeRoute
+  '/boss/author-manager/support': typeof BossAuthorManagerSupportRoute
+  '/boss/author-manager/templates': typeof BossAuthorManagerTemplatesRoute
+  '/boss/author-manager/themes': typeof BossAuthorManagerThemesRoute
+  '/boss/author-manager/versions': typeof BossAuthorManagerVersionsRoute
+  '/boss/author-manager/': typeof BossAuthorManagerIndexRoute
+  '/boss/author-manager/author/$authorId': typeof BossAuthorManagerAuthorAuthorIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/demo-manager'
+    | '/demo-ops'
+    | '/demo-workspace'
     | '/marketplace'
+    | '/product-demo-manager'
+    | '/sitemap.xml'
+    | '/api/chat'
+    | '/boss/author-manager'
+    | '/dashboard/$role'
+    | '/seo-manager/ads'
+    | '/seo-manager/ai-assistant'
+    | '/seo-manager/alerts'
+    | '/seo-manager/audit'
+    | '/seo-manager/backlinks'
+    | '/seo-manager/behavior'
+    | '/seo-manager/competitors'
+    | '/seo-manager/content'
+    | '/seo-manager/diagnostics'
+    | '/seo-manager/email'
+    | '/seo-manager/flows'
+    | '/seo-manager/inbox'
+    | '/seo-manager/indexing'
+    | '/seo-manager/integrations'
+    | '/seo-manager/issues'
+    | '/seo-manager/keywords'
+    | '/seo-manager/leads'
+    | '/seo-manager/meta-rules'
+    | '/seo-manager/pages'
+    | '/seo-manager/performance'
+    | '/seo-manager/product-library'
+    | '/seo-manager/reels'
+    | '/seo-manager/regions'
+    | '/seo-manager/reports'
+    | '/seo-manager/scheduler'
+    | '/seo-manager/social'
+    | '/seo-manager/spam-guard'
+    | '/seo-manager/technical'
+    | '/lead-manager/'
+    | '/marketplace-manager/'
+    | '/seo-manager/'
+    | '/api/public/auth-gate-events'
+    | '/boss/author-manager/ai-models'
+    | '/boss/author-manager/analytics'
+    | '/boss/author-manager/applications'
+    | '/boss/author-manager/approvals'
+    | '/boss/author-manager/auth-gate-events'
+    | '/boss/author-manager/authors'
+    | '/boss/author-manager/dashboard'
+    | '/boss/author-manager/documents'
+    | '/boss/author-manager/downloads'
+    | '/boss/author-manager/licenses'
+    | '/boss/author-manager/plugins'
+    | '/boss/author-manager/products'
+    | '/boss/author-manager/reports'
+    | '/boss/author-manager/revenue'
+    | '/boss/author-manager/reviews'
+    | '/boss/author-manager/royalties'
+    | '/boss/author-manager/settings'
+    | '/boss/author-manager/source-code'
+    | '/boss/author-manager/support'
+    | '/boss/author-manager/templates'
+    | '/boss/author-manager/themes'
+    | '/boss/author-manager/versions'
+    | '/boss/author-manager/'
+    | '/boss/author-manager/author/$authorId'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/demo-manager'
+    | '/demo-ops'
+    | '/demo-workspace'
+    | '/marketplace'
+    | '/product-demo-manager'
     | '/sitemap.xml'
     | '/api/chat'
     | '/dashboard/$role'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/marketplace' | '/sitemap.xml' | '/api/chat' | '/dashboard/$role'
+    | '/seo-manager/ads'
+    | '/seo-manager/ai-assistant'
+    | '/seo-manager/alerts'
+    | '/seo-manager/audit'
+    | '/seo-manager/backlinks'
+    | '/seo-manager/behavior'
+    | '/seo-manager/competitors'
+    | '/seo-manager/content'
+    | '/seo-manager/diagnostics'
+    | '/seo-manager/email'
+    | '/seo-manager/flows'
+    | '/seo-manager/inbox'
+    | '/seo-manager/indexing'
+    | '/seo-manager/integrations'
+    | '/seo-manager/issues'
+    | '/seo-manager/keywords'
+    | '/seo-manager/leads'
+    | '/seo-manager/meta-rules'
+    | '/seo-manager/pages'
+    | '/seo-manager/performance'
+    | '/seo-manager/product-library'
+    | '/seo-manager/reels'
+    | '/seo-manager/regions'
+    | '/seo-manager/reports'
+    | '/seo-manager/scheduler'
+    | '/seo-manager/social'
+    | '/seo-manager/spam-guard'
+    | '/seo-manager/technical'
+    | '/lead-manager'
+    | '/marketplace-manager'
+    | '/seo-manager'
+    | '/api/public/auth-gate-events'
+    | '/boss/author-manager/ai-models'
+    | '/boss/author-manager/analytics'
+    | '/boss/author-manager/applications'
+    | '/boss/author-manager/approvals'
+    | '/boss/author-manager/auth-gate-events'
+    | '/boss/author-manager/authors'
+    | '/boss/author-manager/dashboard'
+    | '/boss/author-manager/documents'
+    | '/boss/author-manager/downloads'
+    | '/boss/author-manager/licenses'
+    | '/boss/author-manager/plugins'
+    | '/boss/author-manager/products'
+    | '/boss/author-manager/reports'
+    | '/boss/author-manager/revenue'
+    | '/boss/author-manager/reviews'
+    | '/boss/author-manager/royalties'
+    | '/boss/author-manager/settings'
+    | '/boss/author-manager/source-code'
+    | '/boss/author-manager/support'
+    | '/boss/author-manager/templates'
+    | '/boss/author-manager/themes'
+    | '/boss/author-manager/versions'
+    | '/boss/author-manager'
+    | '/boss/author-manager/author/$authorId'
   id:
     | '__root__'
     | '/'
+    | '/demo-manager'
+    | '/demo-ops'
+    | '/demo-workspace'
     | '/marketplace'
+    | '/product-demo-manager'
     | '/sitemap.xml'
     | '/api/chat'
+    | '/boss/author-manager'
     | '/dashboard/$role'
+    | '/seo-manager/ads'
+    | '/seo-manager/ai-assistant'
+    | '/seo-manager/alerts'
+    | '/seo-manager/audit'
+    | '/seo-manager/backlinks'
+    | '/seo-manager/behavior'
+    | '/seo-manager/competitors'
+    | '/seo-manager/content'
+    | '/seo-manager/diagnostics'
+    | '/seo-manager/email'
+    | '/seo-manager/flows'
+    | '/seo-manager/inbox'
+    | '/seo-manager/indexing'
+    | '/seo-manager/integrations'
+    | '/seo-manager/issues'
+    | '/seo-manager/keywords'
+    | '/seo-manager/leads'
+    | '/seo-manager/meta-rules'
+    | '/seo-manager/pages'
+    | '/seo-manager/performance'
+    | '/seo-manager/product-library'
+    | '/seo-manager/reels'
+    | '/seo-manager/regions'
+    | '/seo-manager/reports'
+    | '/seo-manager/scheduler'
+    | '/seo-manager/social'
+    | '/seo-manager/spam-guard'
+    | '/seo-manager/technical'
+    | '/lead-manager/'
+    | '/marketplace-manager/'
+    | '/seo-manager/'
+    | '/api/public/auth-gate-events'
+    | '/boss/author-manager/ai-models'
+    | '/boss/author-manager/analytics'
+    | '/boss/author-manager/applications'
+    | '/boss/author-manager/approvals'
+    | '/boss/author-manager/auth-gate-events'
+    | '/boss/author-manager/authors'
+    | '/boss/author-manager/dashboard'
+    | '/boss/author-manager/documents'
+    | '/boss/author-manager/downloads'
+    | '/boss/author-manager/licenses'
+    | '/boss/author-manager/plugins'
+    | '/boss/author-manager/products'
+    | '/boss/author-manager/reports'
+    | '/boss/author-manager/revenue'
+    | '/boss/author-manager/reviews'
+    | '/boss/author-manager/royalties'
+    | '/boss/author-manager/settings'
+    | '/boss/author-manager/source-code'
+    | '/boss/author-manager/support'
+    | '/boss/author-manager/templates'
+    | '/boss/author-manager/themes'
+    | '/boss/author-manager/versions'
+    | '/boss/author-manager/'
+    | '/boss/author-manager/author/$authorId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DemoManagerRoute: typeof DemoManagerRoute
+  DemoOpsRoute: typeof DemoOpsRoute
+  DemoWorkspaceRoute: typeof DemoWorkspaceRoute
   MarketplaceRoute: typeof MarketplaceRoute
+  ProductDemoManagerRoute: typeof ProductDemoManagerRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiChatRoute: typeof ApiChatRoute
+  BossAuthorManagerRoute: typeof BossAuthorManagerRouteWithChildren
   DashboardRoleRoute: typeof DashboardRoleRoute
+  SeoManagerAdsRoute: typeof SeoManagerAdsRoute
+  SeoManagerAiAssistantRoute: typeof SeoManagerAiAssistantRoute
+  SeoManagerAlertsRoute: typeof SeoManagerAlertsRoute
+  SeoManagerAuditRoute: typeof SeoManagerAuditRoute
+  SeoManagerBacklinksRoute: typeof SeoManagerBacklinksRoute
+  SeoManagerBehaviorRoute: typeof SeoManagerBehaviorRoute
+  SeoManagerCompetitorsRoute: typeof SeoManagerCompetitorsRoute
+  SeoManagerContentRoute: typeof SeoManagerContentRoute
+  SeoManagerDiagnosticsRoute: typeof SeoManagerDiagnosticsRoute
+  SeoManagerEmailRoute: typeof SeoManagerEmailRoute
+  SeoManagerFlowsRoute: typeof SeoManagerFlowsRoute
+  SeoManagerInboxRoute: typeof SeoManagerInboxRoute
+  SeoManagerIndexingRoute: typeof SeoManagerIndexingRoute
+  SeoManagerIntegrationsRoute: typeof SeoManagerIntegrationsRoute
+  SeoManagerIssuesRoute: typeof SeoManagerIssuesRoute
+  SeoManagerKeywordsRoute: typeof SeoManagerKeywordsRoute
+  SeoManagerLeadsRoute: typeof SeoManagerLeadsRoute
+  SeoManagerMetaRulesRoute: typeof SeoManagerMetaRulesRoute
+  SeoManagerPagesRoute: typeof SeoManagerPagesRoute
+  SeoManagerPerformanceRoute: typeof SeoManagerPerformanceRoute
+  SeoManagerProductLibraryRoute: typeof SeoManagerProductLibraryRoute
+  SeoManagerReelsRoute: typeof SeoManagerReelsRoute
+  SeoManagerRegionsRoute: typeof SeoManagerRegionsRoute
+  SeoManagerReportsRoute: typeof SeoManagerReportsRoute
+  SeoManagerSchedulerRoute: typeof SeoManagerSchedulerRoute
+  SeoManagerSocialRoute: typeof SeoManagerSocialRoute
+  SeoManagerSpamGuardRoute: typeof SeoManagerSpamGuardRoute
+  SeoManagerTechnicalRoute: typeof SeoManagerTechnicalRoute
+  LeadManagerIndexRoute: typeof LeadManagerIndexRoute
+  MarketplaceManagerIndexRoute: typeof MarketplaceManagerIndexRoute
+  SeoManagerIndexRoute: typeof SeoManagerIndexRoute
+  ApiPublicAuthGateEventsRoute: typeof ApiPublicAuthGateEventsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,11 +894,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/product-demo-manager': {
+      id: '/product-demo-manager'
+      path: '/product-demo-manager'
+      fullPath: '/product-demo-manager'
+      preLoaderRoute: typeof ProductDemoManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/marketplace': {
       id: '/marketplace'
       path: '/marketplace'
       fullPath: '/marketplace'
       preLoaderRoute: typeof MarketplaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo-workspace': {
+      id: '/demo-workspace'
+      path: '/demo-workspace'
+      fullPath: '/demo-workspace'
+      preLoaderRoute: typeof DemoWorkspaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo-ops': {
+      id: '/demo-ops'
+      path: '/demo-ops'
+      fullPath: '/demo-ops'
+      preLoaderRoute: typeof DemoOpsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo-manager': {
+      id: '/demo-manager'
+      path: '/demo-manager'
+      fullPath: '/demo-manager'
+      preLoaderRoute: typeof DemoManagerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -113,11 +936,235 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/seo-manager/': {
+      id: '/seo-manager/'
+      path: '/seo-manager'
+      fullPath: '/seo-manager/'
+      preLoaderRoute: typeof SeoManagerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketplace-manager/': {
+      id: '/marketplace-manager/'
+      path: '/marketplace-manager'
+      fullPath: '/marketplace-manager/'
+      preLoaderRoute: typeof MarketplaceManagerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lead-manager/': {
+      id: '/lead-manager/'
+      path: '/lead-manager'
+      fullPath: '/lead-manager/'
+      preLoaderRoute: typeof LeadManagerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/technical': {
+      id: '/seo-manager/technical'
+      path: '/seo-manager/technical'
+      fullPath: '/seo-manager/technical'
+      preLoaderRoute: typeof SeoManagerTechnicalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/spam-guard': {
+      id: '/seo-manager/spam-guard'
+      path: '/seo-manager/spam-guard'
+      fullPath: '/seo-manager/spam-guard'
+      preLoaderRoute: typeof SeoManagerSpamGuardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/social': {
+      id: '/seo-manager/social'
+      path: '/seo-manager/social'
+      fullPath: '/seo-manager/social'
+      preLoaderRoute: typeof SeoManagerSocialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/scheduler': {
+      id: '/seo-manager/scheduler'
+      path: '/seo-manager/scheduler'
+      fullPath: '/seo-manager/scheduler'
+      preLoaderRoute: typeof SeoManagerSchedulerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/reports': {
+      id: '/seo-manager/reports'
+      path: '/seo-manager/reports'
+      fullPath: '/seo-manager/reports'
+      preLoaderRoute: typeof SeoManagerReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/regions': {
+      id: '/seo-manager/regions'
+      path: '/seo-manager/regions'
+      fullPath: '/seo-manager/regions'
+      preLoaderRoute: typeof SeoManagerRegionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/reels': {
+      id: '/seo-manager/reels'
+      path: '/seo-manager/reels'
+      fullPath: '/seo-manager/reels'
+      preLoaderRoute: typeof SeoManagerReelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/product-library': {
+      id: '/seo-manager/product-library'
+      path: '/seo-manager/product-library'
+      fullPath: '/seo-manager/product-library'
+      preLoaderRoute: typeof SeoManagerProductLibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/performance': {
+      id: '/seo-manager/performance'
+      path: '/seo-manager/performance'
+      fullPath: '/seo-manager/performance'
+      preLoaderRoute: typeof SeoManagerPerformanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/pages': {
+      id: '/seo-manager/pages'
+      path: '/seo-manager/pages'
+      fullPath: '/seo-manager/pages'
+      preLoaderRoute: typeof SeoManagerPagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/meta-rules': {
+      id: '/seo-manager/meta-rules'
+      path: '/seo-manager/meta-rules'
+      fullPath: '/seo-manager/meta-rules'
+      preLoaderRoute: typeof SeoManagerMetaRulesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/leads': {
+      id: '/seo-manager/leads'
+      path: '/seo-manager/leads'
+      fullPath: '/seo-manager/leads'
+      preLoaderRoute: typeof SeoManagerLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/keywords': {
+      id: '/seo-manager/keywords'
+      path: '/seo-manager/keywords'
+      fullPath: '/seo-manager/keywords'
+      preLoaderRoute: typeof SeoManagerKeywordsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/issues': {
+      id: '/seo-manager/issues'
+      path: '/seo-manager/issues'
+      fullPath: '/seo-manager/issues'
+      preLoaderRoute: typeof SeoManagerIssuesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/integrations': {
+      id: '/seo-manager/integrations'
+      path: '/seo-manager/integrations'
+      fullPath: '/seo-manager/integrations'
+      preLoaderRoute: typeof SeoManagerIntegrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/indexing': {
+      id: '/seo-manager/indexing'
+      path: '/seo-manager/indexing'
+      fullPath: '/seo-manager/indexing'
+      preLoaderRoute: typeof SeoManagerIndexingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/inbox': {
+      id: '/seo-manager/inbox'
+      path: '/seo-manager/inbox'
+      fullPath: '/seo-manager/inbox'
+      preLoaderRoute: typeof SeoManagerInboxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/flows': {
+      id: '/seo-manager/flows'
+      path: '/seo-manager/flows'
+      fullPath: '/seo-manager/flows'
+      preLoaderRoute: typeof SeoManagerFlowsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/email': {
+      id: '/seo-manager/email'
+      path: '/seo-manager/email'
+      fullPath: '/seo-manager/email'
+      preLoaderRoute: typeof SeoManagerEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/diagnostics': {
+      id: '/seo-manager/diagnostics'
+      path: '/seo-manager/diagnostics'
+      fullPath: '/seo-manager/diagnostics'
+      preLoaderRoute: typeof SeoManagerDiagnosticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/content': {
+      id: '/seo-manager/content'
+      path: '/seo-manager/content'
+      fullPath: '/seo-manager/content'
+      preLoaderRoute: typeof SeoManagerContentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/competitors': {
+      id: '/seo-manager/competitors'
+      path: '/seo-manager/competitors'
+      fullPath: '/seo-manager/competitors'
+      preLoaderRoute: typeof SeoManagerCompetitorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/behavior': {
+      id: '/seo-manager/behavior'
+      path: '/seo-manager/behavior'
+      fullPath: '/seo-manager/behavior'
+      preLoaderRoute: typeof SeoManagerBehaviorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/backlinks': {
+      id: '/seo-manager/backlinks'
+      path: '/seo-manager/backlinks'
+      fullPath: '/seo-manager/backlinks'
+      preLoaderRoute: typeof SeoManagerBacklinksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/audit': {
+      id: '/seo-manager/audit'
+      path: '/seo-manager/audit'
+      fullPath: '/seo-manager/audit'
+      preLoaderRoute: typeof SeoManagerAuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/alerts': {
+      id: '/seo-manager/alerts'
+      path: '/seo-manager/alerts'
+      fullPath: '/seo-manager/alerts'
+      preLoaderRoute: typeof SeoManagerAlertsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/ai-assistant': {
+      id: '/seo-manager/ai-assistant'
+      path: '/seo-manager/ai-assistant'
+      fullPath: '/seo-manager/ai-assistant'
+      preLoaderRoute: typeof SeoManagerAiAssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager/ads': {
+      id: '/seo-manager/ads'
+      path: '/seo-manager/ads'
+      fullPath: '/seo-manager/ads'
+      preLoaderRoute: typeof SeoManagerAdsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard/$role': {
       id: '/dashboard/$role'
       path: '/dashboard/$role'
       fullPath: '/dashboard/$role'
       preLoaderRoute: typeof DashboardRoleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/boss/author-manager': {
+      id: '/boss/author-manager'
+      path: '/boss/author-manager'
+      fullPath: '/boss/author-manager'
+      preLoaderRoute: typeof BossAuthorManagerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/chat': {
@@ -127,15 +1174,284 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/boss/author-manager/': {
+      id: '/boss/author-manager/'
+      path: '/'
+      fullPath: '/boss/author-manager/'
+      preLoaderRoute: typeof BossAuthorManagerIndexRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/versions': {
+      id: '/boss/author-manager/versions'
+      path: '/versions'
+      fullPath: '/boss/author-manager/versions'
+      preLoaderRoute: typeof BossAuthorManagerVersionsRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/themes': {
+      id: '/boss/author-manager/themes'
+      path: '/themes'
+      fullPath: '/boss/author-manager/themes'
+      preLoaderRoute: typeof BossAuthorManagerThemesRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/templates': {
+      id: '/boss/author-manager/templates'
+      path: '/templates'
+      fullPath: '/boss/author-manager/templates'
+      preLoaderRoute: typeof BossAuthorManagerTemplatesRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/support': {
+      id: '/boss/author-manager/support'
+      path: '/support'
+      fullPath: '/boss/author-manager/support'
+      preLoaderRoute: typeof BossAuthorManagerSupportRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/source-code': {
+      id: '/boss/author-manager/source-code'
+      path: '/source-code'
+      fullPath: '/boss/author-manager/source-code'
+      preLoaderRoute: typeof BossAuthorManagerSourceCodeRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/settings': {
+      id: '/boss/author-manager/settings'
+      path: '/settings'
+      fullPath: '/boss/author-manager/settings'
+      preLoaderRoute: typeof BossAuthorManagerSettingsRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/royalties': {
+      id: '/boss/author-manager/royalties'
+      path: '/royalties'
+      fullPath: '/boss/author-manager/royalties'
+      preLoaderRoute: typeof BossAuthorManagerRoyaltiesRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/reviews': {
+      id: '/boss/author-manager/reviews'
+      path: '/reviews'
+      fullPath: '/boss/author-manager/reviews'
+      preLoaderRoute: typeof BossAuthorManagerReviewsRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/revenue': {
+      id: '/boss/author-manager/revenue'
+      path: '/revenue'
+      fullPath: '/boss/author-manager/revenue'
+      preLoaderRoute: typeof BossAuthorManagerRevenueRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/reports': {
+      id: '/boss/author-manager/reports'
+      path: '/reports'
+      fullPath: '/boss/author-manager/reports'
+      preLoaderRoute: typeof BossAuthorManagerReportsRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/products': {
+      id: '/boss/author-manager/products'
+      path: '/products'
+      fullPath: '/boss/author-manager/products'
+      preLoaderRoute: typeof BossAuthorManagerProductsRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/plugins': {
+      id: '/boss/author-manager/plugins'
+      path: '/plugins'
+      fullPath: '/boss/author-manager/plugins'
+      preLoaderRoute: typeof BossAuthorManagerPluginsRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/licenses': {
+      id: '/boss/author-manager/licenses'
+      path: '/licenses'
+      fullPath: '/boss/author-manager/licenses'
+      preLoaderRoute: typeof BossAuthorManagerLicensesRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/downloads': {
+      id: '/boss/author-manager/downloads'
+      path: '/downloads'
+      fullPath: '/boss/author-manager/downloads'
+      preLoaderRoute: typeof BossAuthorManagerDownloadsRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/documents': {
+      id: '/boss/author-manager/documents'
+      path: '/documents'
+      fullPath: '/boss/author-manager/documents'
+      preLoaderRoute: typeof BossAuthorManagerDocumentsRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/dashboard': {
+      id: '/boss/author-manager/dashboard'
+      path: '/dashboard'
+      fullPath: '/boss/author-manager/dashboard'
+      preLoaderRoute: typeof BossAuthorManagerDashboardRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/authors': {
+      id: '/boss/author-manager/authors'
+      path: '/authors'
+      fullPath: '/boss/author-manager/authors'
+      preLoaderRoute: typeof BossAuthorManagerAuthorsRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/auth-gate-events': {
+      id: '/boss/author-manager/auth-gate-events'
+      path: '/auth-gate-events'
+      fullPath: '/boss/author-manager/auth-gate-events'
+      preLoaderRoute: typeof BossAuthorManagerAuthGateEventsRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/approvals': {
+      id: '/boss/author-manager/approvals'
+      path: '/approvals'
+      fullPath: '/boss/author-manager/approvals'
+      preLoaderRoute: typeof BossAuthorManagerApprovalsRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/applications': {
+      id: '/boss/author-manager/applications'
+      path: '/applications'
+      fullPath: '/boss/author-manager/applications'
+      preLoaderRoute: typeof BossAuthorManagerApplicationsRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/analytics': {
+      id: '/boss/author-manager/analytics'
+      path: '/analytics'
+      fullPath: '/boss/author-manager/analytics'
+      preLoaderRoute: typeof BossAuthorManagerAnalyticsRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/boss/author-manager/ai-models': {
+      id: '/boss/author-manager/ai-models'
+      path: '/ai-models'
+      fullPath: '/boss/author-manager/ai-models'
+      preLoaderRoute: typeof BossAuthorManagerAiModelsRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
+    '/api/public/auth-gate-events': {
+      id: '/api/public/auth-gate-events'
+      path: '/api/public/auth-gate-events'
+      fullPath: '/api/public/auth-gate-events'
+      preLoaderRoute: typeof ApiPublicAuthGateEventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/boss/author-manager/author/$authorId': {
+      id: '/boss/author-manager/author/$authorId'
+      path: '/author/$authorId'
+      fullPath: '/boss/author-manager/author/$authorId'
+      preLoaderRoute: typeof BossAuthorManagerAuthorAuthorIdRouteImport
+      parentRoute: typeof BossAuthorManagerRoute
+    }
   }
 }
 
+interface BossAuthorManagerRouteChildren {
+  BossAuthorManagerAiModelsRoute: typeof BossAuthorManagerAiModelsRoute
+  BossAuthorManagerAnalyticsRoute: typeof BossAuthorManagerAnalyticsRoute
+  BossAuthorManagerApplicationsRoute: typeof BossAuthorManagerApplicationsRoute
+  BossAuthorManagerApprovalsRoute: typeof BossAuthorManagerApprovalsRoute
+  BossAuthorManagerAuthGateEventsRoute: typeof BossAuthorManagerAuthGateEventsRoute
+  BossAuthorManagerAuthorsRoute: typeof BossAuthorManagerAuthorsRoute
+  BossAuthorManagerDashboardRoute: typeof BossAuthorManagerDashboardRoute
+  BossAuthorManagerDocumentsRoute: typeof BossAuthorManagerDocumentsRoute
+  BossAuthorManagerDownloadsRoute: typeof BossAuthorManagerDownloadsRoute
+  BossAuthorManagerLicensesRoute: typeof BossAuthorManagerLicensesRoute
+  BossAuthorManagerPluginsRoute: typeof BossAuthorManagerPluginsRoute
+  BossAuthorManagerProductsRoute: typeof BossAuthorManagerProductsRoute
+  BossAuthorManagerReportsRoute: typeof BossAuthorManagerReportsRoute
+  BossAuthorManagerRevenueRoute: typeof BossAuthorManagerRevenueRoute
+  BossAuthorManagerReviewsRoute: typeof BossAuthorManagerReviewsRoute
+  BossAuthorManagerRoyaltiesRoute: typeof BossAuthorManagerRoyaltiesRoute
+  BossAuthorManagerSettingsRoute: typeof BossAuthorManagerSettingsRoute
+  BossAuthorManagerSourceCodeRoute: typeof BossAuthorManagerSourceCodeRoute
+  BossAuthorManagerSupportRoute: typeof BossAuthorManagerSupportRoute
+  BossAuthorManagerTemplatesRoute: typeof BossAuthorManagerTemplatesRoute
+  BossAuthorManagerThemesRoute: typeof BossAuthorManagerThemesRoute
+  BossAuthorManagerVersionsRoute: typeof BossAuthorManagerVersionsRoute
+  BossAuthorManagerIndexRoute: typeof BossAuthorManagerIndexRoute
+  BossAuthorManagerAuthorAuthorIdRoute: typeof BossAuthorManagerAuthorAuthorIdRoute
+}
+
+const BossAuthorManagerRouteChildren: BossAuthorManagerRouteChildren = {
+  BossAuthorManagerAiModelsRoute: BossAuthorManagerAiModelsRoute,
+  BossAuthorManagerAnalyticsRoute: BossAuthorManagerAnalyticsRoute,
+  BossAuthorManagerApplicationsRoute: BossAuthorManagerApplicationsRoute,
+  BossAuthorManagerApprovalsRoute: BossAuthorManagerApprovalsRoute,
+  BossAuthorManagerAuthGateEventsRoute: BossAuthorManagerAuthGateEventsRoute,
+  BossAuthorManagerAuthorsRoute: BossAuthorManagerAuthorsRoute,
+  BossAuthorManagerDashboardRoute: BossAuthorManagerDashboardRoute,
+  BossAuthorManagerDocumentsRoute: BossAuthorManagerDocumentsRoute,
+  BossAuthorManagerDownloadsRoute: BossAuthorManagerDownloadsRoute,
+  BossAuthorManagerLicensesRoute: BossAuthorManagerLicensesRoute,
+  BossAuthorManagerPluginsRoute: BossAuthorManagerPluginsRoute,
+  BossAuthorManagerProductsRoute: BossAuthorManagerProductsRoute,
+  BossAuthorManagerReportsRoute: BossAuthorManagerReportsRoute,
+  BossAuthorManagerRevenueRoute: BossAuthorManagerRevenueRoute,
+  BossAuthorManagerReviewsRoute: BossAuthorManagerReviewsRoute,
+  BossAuthorManagerRoyaltiesRoute: BossAuthorManagerRoyaltiesRoute,
+  BossAuthorManagerSettingsRoute: BossAuthorManagerSettingsRoute,
+  BossAuthorManagerSourceCodeRoute: BossAuthorManagerSourceCodeRoute,
+  BossAuthorManagerSupportRoute: BossAuthorManagerSupportRoute,
+  BossAuthorManagerTemplatesRoute: BossAuthorManagerTemplatesRoute,
+  BossAuthorManagerThemesRoute: BossAuthorManagerThemesRoute,
+  BossAuthorManagerVersionsRoute: BossAuthorManagerVersionsRoute,
+  BossAuthorManagerIndexRoute: BossAuthorManagerIndexRoute,
+  BossAuthorManagerAuthorAuthorIdRoute: BossAuthorManagerAuthorAuthorIdRoute,
+}
+
+const BossAuthorManagerRouteWithChildren =
+  BossAuthorManagerRoute._addFileChildren(BossAuthorManagerRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DemoManagerRoute: DemoManagerRoute,
+  DemoOpsRoute: DemoOpsRoute,
+  DemoWorkspaceRoute: DemoWorkspaceRoute,
   MarketplaceRoute: MarketplaceRoute,
+  ProductDemoManagerRoute: ProductDemoManagerRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiChatRoute: ApiChatRoute,
+  BossAuthorManagerRoute: BossAuthorManagerRouteWithChildren,
   DashboardRoleRoute: DashboardRoleRoute,
+  SeoManagerAdsRoute: SeoManagerAdsRoute,
+  SeoManagerAiAssistantRoute: SeoManagerAiAssistantRoute,
+  SeoManagerAlertsRoute: SeoManagerAlertsRoute,
+  SeoManagerAuditRoute: SeoManagerAuditRoute,
+  SeoManagerBacklinksRoute: SeoManagerBacklinksRoute,
+  SeoManagerBehaviorRoute: SeoManagerBehaviorRoute,
+  SeoManagerCompetitorsRoute: SeoManagerCompetitorsRoute,
+  SeoManagerContentRoute: SeoManagerContentRoute,
+  SeoManagerDiagnosticsRoute: SeoManagerDiagnosticsRoute,
+  SeoManagerEmailRoute: SeoManagerEmailRoute,
+  SeoManagerFlowsRoute: SeoManagerFlowsRoute,
+  SeoManagerInboxRoute: SeoManagerInboxRoute,
+  SeoManagerIndexingRoute: SeoManagerIndexingRoute,
+  SeoManagerIntegrationsRoute: SeoManagerIntegrationsRoute,
+  SeoManagerIssuesRoute: SeoManagerIssuesRoute,
+  SeoManagerKeywordsRoute: SeoManagerKeywordsRoute,
+  SeoManagerLeadsRoute: SeoManagerLeadsRoute,
+  SeoManagerMetaRulesRoute: SeoManagerMetaRulesRoute,
+  SeoManagerPagesRoute: SeoManagerPagesRoute,
+  SeoManagerPerformanceRoute: SeoManagerPerformanceRoute,
+  SeoManagerProductLibraryRoute: SeoManagerProductLibraryRoute,
+  SeoManagerReelsRoute: SeoManagerReelsRoute,
+  SeoManagerRegionsRoute: SeoManagerRegionsRoute,
+  SeoManagerReportsRoute: SeoManagerReportsRoute,
+  SeoManagerSchedulerRoute: SeoManagerSchedulerRoute,
+  SeoManagerSocialRoute: SeoManagerSocialRoute,
+  SeoManagerSpamGuardRoute: SeoManagerSpamGuardRoute,
+  SeoManagerTechnicalRoute: SeoManagerTechnicalRoute,
+  LeadManagerIndexRoute: LeadManagerIndexRoute,
+  MarketplaceManagerIndexRoute: MarketplaceManagerIndexRoute,
+  SeoManagerIndexRoute: SeoManagerIndexRoute,
+  ApiPublicAuthGateEventsRoute: ApiPublicAuthGateEventsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
