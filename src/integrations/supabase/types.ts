@@ -14,16 +14,694 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      announcements: {
+        Row: {
+          badge: string
+          created_at: string
+          ends_at: string | null
+          gradient: string
+          icon_name: string
+          id: string
+          position: number
+          starts_at: string | null
+          text: string
+          title: string
+          updated_at: string
+          visible: boolean
+        }
+        Insert: {
+          badge?: string
+          created_at?: string
+          ends_at?: string | null
+          gradient?: string
+          icon_name?: string
+          id?: string
+          position?: number
+          starts_at?: string | null
+          text?: string
+          title: string
+          updated_at?: string
+          visible?: boolean
+        }
+        Update: {
+          badge?: string
+          created_at?: string
+          ends_at?: string | null
+          gradient?: string
+          icon_name?: string
+          id?: string
+          position?: number
+          starts_at?: string | null
+          text?: string
+          title?: string
+          updated_at?: string
+          visible?: boolean
+        }
+        Relationships: []
+      }
+      auth_qr_sessions: {
+        Row: {
+          approved_email: string | null
+          created_at: string
+          expires_at: string
+          id: string
+          status: string
+          token: string
+          user_id: string | null
+        }
+        Insert: {
+          approved_email?: string | null
+          created_at?: string
+          expires_at?: string
+          id?: string
+          status?: string
+          token: string
+          user_id?: string | null
+        }
+        Update: {
+          approved_email?: string | null
+          created_at?: string
+          expires_at?: string
+          id?: string
+          status?: string
+          token?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      demo_url_audit_log: {
+        Row: {
+          action: string
+          actor_email: string | null
+          actor_id: string | null
+          created_at: string
+          demo_url_id: string | null
+          id: string
+          metadata: Json
+        }
+        Insert: {
+          action: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          demo_url_id?: string | null
+          id?: string
+          metadata?: Json
+        }
+        Update: {
+          action?: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          demo_url_id?: string | null
+          id?: string
+          metadata?: Json
+        }
+        Relationships: []
+      }
+      feature_strip_items: {
+        Row: {
+          color_class: string
+          created_at: string
+          icon_name: string
+          id: string
+          label: string
+          position: number
+          updated_at: string
+          visible: boolean
+        }
+        Insert: {
+          color_class?: string
+          created_at?: string
+          icon_name?: string
+          id?: string
+          label: string
+          position?: number
+          updated_at?: string
+          visible?: boolean
+        }
+        Update: {
+          color_class?: string
+          created_at?: string
+          icon_name?: string
+          id?: string
+          label?: string
+          position?: number
+          updated_at?: string
+          visible?: boolean
+        }
+        Relationships: []
+      }
+      home_hero_slides: {
+        Row: {
+          accent: string
+          created_at: string
+          cta_link: string
+          cta_primary: string
+          cta_secondary: string
+          gradient: string
+          highlight: string
+          icon_name: string
+          id: string
+          kicker: string
+          position: number
+          published_at: string | null
+          slug: string
+          subtitle: string
+          title: string
+          unpublish_at: string | null
+          updated_at: string
+          visible: boolean
+        }
+        Insert: {
+          accent: string
+          created_at?: string
+          cta_link?: string
+          cta_primary: string
+          cta_secondary: string
+          gradient: string
+          highlight?: string
+          icon_name: string
+          id?: string
+          kicker: string
+          position?: number
+          published_at?: string | null
+          slug: string
+          subtitle: string
+          title: string
+          unpublish_at?: string | null
+          updated_at?: string
+          visible?: boolean
+        }
+        Update: {
+          accent?: string
+          created_at?: string
+          cta_link?: string
+          cta_primary?: string
+          cta_secondary?: string
+          gradient?: string
+          highlight?: string
+          icon_name?: string
+          id?: string
+          kicker?: string
+          position?: number
+          published_at?: string | null
+          slug?: string
+          subtitle?: string
+          title?: string
+          unpublish_at?: string | null
+          updated_at?: string
+          visible?: boolean
+        }
+        Relationships: []
+      }
+      homepage_sections: {
+        Row: {
+          created_at: string
+          id: string
+          label: string
+          position: number
+          section_key: string
+          updated_at: string
+          visible: boolean
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          label: string
+          position?: number
+          section_key: string
+          updated_at?: string
+          visible?: boolean
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          label?: string
+          position?: number
+          section_key?: string
+          updated_at?: string
+          visible?: boolean
+        }
+        Relationships: []
+      }
+      license_keys: {
+        Row: {
+          created_at: string
+          email: string | null
+          expires_at: string | null
+          id: string
+          last_used_at: string | null
+          license_key: string
+          plan: string | null
+          status: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          expires_at?: string | null
+          id?: string
+          last_used_at?: string | null
+          license_key: string
+          plan?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          expires_at?: string | null
+          id?: string
+          last_used_at?: string | null
+          license_key?: string
+          plan?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      marketplace_categories: {
+        Row: {
+          created_at: string
+          icon: string | null
+          id: string
+          image_key: string | null
+          is_featured: boolean
+          is_hidden: boolean
+          name: string
+          seo: Json
+          slug: string
+          sort_order: number
+          tone: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          icon?: string | null
+          id?: string
+          image_key?: string | null
+          is_featured?: boolean
+          is_hidden?: boolean
+          name: string
+          seo?: Json
+          slug: string
+          sort_order?: number
+          tone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          icon?: string | null
+          id?: string
+          image_key?: string | null
+          is_featured?: boolean
+          is_hidden?: boolean
+          name?: string
+          seo?: Json
+          slug?: string
+          sort_order?: number
+          tone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      marketplace_homepage_sections: {
+        Row: {
+          config: Json
+          created_at: string
+          enabled: boolean
+          id: string
+          key: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          config?: Json
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          key: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          config?: Json
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          key?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      marketplace_products: {
+        Row: {
+          badge: string | null
+          category_id: string | null
+          created_at: string
+          downloads: number
+          downloads_label: string | null
+          icon: string | null
+          id: string
+          industry_label: string | null
+          is_ai: boolean
+          is_best_seller: boolean
+          is_featured: boolean
+          is_new_release: boolean
+          is_trending: boolean
+          name: string
+          price_label: string
+          price_period: string | null
+          publish_at: string | null
+          rating: number
+          slug: string
+          sort_order: number
+          unpublish_at: string | null
+          updated_at: string
+          visible: boolean
+        }
+        Insert: {
+          badge?: string | null
+          category_id?: string | null
+          created_at?: string
+          downloads?: number
+          downloads_label?: string | null
+          icon?: string | null
+          id?: string
+          industry_label?: string | null
+          is_ai?: boolean
+          is_best_seller?: boolean
+          is_featured?: boolean
+          is_new_release?: boolean
+          is_trending?: boolean
+          name: string
+          price_label?: string
+          price_period?: string | null
+          publish_at?: string | null
+          rating?: number
+          slug: string
+          sort_order?: number
+          unpublish_at?: string | null
+          updated_at?: string
+          visible?: boolean
+        }
+        Update: {
+          badge?: string | null
+          category_id?: string | null
+          created_at?: string
+          downloads?: number
+          downloads_label?: string | null
+          icon?: string | null
+          id?: string
+          industry_label?: string | null
+          is_ai?: boolean
+          is_best_seller?: boolean
+          is_featured?: boolean
+          is_new_release?: boolean
+          is_trending?: boolean
+          name?: string
+          price_label?: string
+          price_period?: string | null
+          publish_at?: string | null
+          rating?: number
+          slug?: string
+          sort_order?: number
+          unpublish_at?: string | null
+          updated_at?: string
+          visible?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "marketplace_products_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "marketplace_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      marketplace_vendors: {
+        Row: {
+          country: string | null
+          created_at: string
+          id: string
+          name: string
+          product_count: number
+          rating: number
+          slug: string
+          updated_at: string
+          verified: boolean
+          visible: boolean
+        }
+        Insert: {
+          country?: string | null
+          created_at?: string
+          id?: string
+          name: string
+          product_count?: number
+          rating?: number
+          slug: string
+          updated_at?: string
+          verified?: boolean
+          visible?: boolean
+        }
+        Update: {
+          country?: string | null
+          created_at?: string
+          id?: string
+          name?: string
+          product_count?: number
+          rating?: number
+          slug?: string
+          updated_at?: string
+          verified?: boolean
+          visible?: boolean
+        }
+        Relationships: []
+      }
+      product_demo_urls: {
+        Row: {
+          created_at: string
+          demo_name: string
+          description: string | null
+          environment: string
+          id: string
+          last_checked_at: string | null
+          last_http_status: number | null
+          last_response_ms: number | null
+          last_result: string
+          password: string | null
+          product_id: string | null
+          role_name: string
+          sort_order: number
+          ssl_valid: boolean | null
+          status: string
+          updated_at: string
+          url: string
+          username: string | null
+        }
+        Insert: {
+          created_at?: string
+          demo_name: string
+          description?: string | null
+          environment?: string
+          id?: string
+          last_checked_at?: string | null
+          last_http_status?: number | null
+          last_response_ms?: number | null
+          last_result?: string
+          password?: string | null
+          product_id?: string | null
+          role_name?: string
+          sort_order?: number
+          ssl_valid?: boolean | null
+          status?: string
+          updated_at?: string
+          url: string
+          username?: string | null
+        }
+        Update: {
+          created_at?: string
+          demo_name?: string
+          description?: string | null
+          environment?: string
+          id?: string
+          last_checked_at?: string | null
+          last_http_status?: number | null
+          last_response_ms?: number | null
+          last_result?: string
+          password?: string | null
+          product_id?: string | null
+          role_name?: string
+          sort_order?: number
+          ssl_valid?: boolean | null
+          status?: string
+          updated_at?: string
+          url?: string
+          username?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_demo_urls_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "marketplace_products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+          username: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string
+          username?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          username?: string | null
+        }
+        Relationships: []
+      }
+      site_notifications: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          is_published: boolean
+          kind: string
+          link_url: string | null
+          published_at: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          body?: string
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          kind?: string
+          link_url?: string | null
+          published_at?: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          kind?: string
+          link_url?: string | null
+          published_at?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          created_at: string
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          created_at?: string
+          key: string
+          updated_at?: string
+          value?: Json
+        }
+        Update: {
+          created_at?: string
+          key?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role:
+        | "admin"
+        | "boss"
+        | "founder"
+        | "developer"
+        | "employee"
+        | "vendor"
+        | "author"
+        | "affiliate"
+        | "influencer"
+        | "reseller"
+        | "franchise"
+        | "seo"
+        | "marketing"
+        | "sales"
+        | "finance"
+        | "support"
+        | "customer"
+        | "marketplace-user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +828,27 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: [
+        "admin",
+        "boss",
+        "founder",
+        "developer",
+        "employee",
+        "vendor",
+        "author",
+        "affiliate",
+        "influencer",
+        "reseller",
+        "franchise",
+        "seo",
+        "marketing",
+        "sales",
+        "finance",
+        "support",
+        "customer",
+        "marketplace-user",
+      ],
+    },
   },
 } as const
