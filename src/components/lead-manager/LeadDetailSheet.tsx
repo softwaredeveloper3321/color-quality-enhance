@@ -33,7 +33,7 @@ import {
   useLeadCommunications,
   useLeadNotes,
 } from "@/lib/lead-manager/queries";
-import { PIPELINE_STAGES, type Lead, type LeadStatus } from "@/lib/lead-manager/types";
+import { PIPELINE_STAGES, type Lead, type LeadPriority, type LeadStatus, type LeadTemperature } from "@/lib/lead-manager/types";
 import {
   PriorityBadge,
   ScoreBar,

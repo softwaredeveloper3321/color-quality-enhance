@@ -18,7 +18,7 @@ function DemoPicker({
   value,
   onChange,
 }: {
-  demos: { id: string; title: string }[];
+  demos: { id: string; title: string | null }[];
   value: string | null;
   onChange: (id: string) => void;
 }) {
