@@ -1993,6 +1993,1308 @@ export type Database = {
         }
         Relationships: []
       }
+      seo_activity_log: {
+        Row: {
+          action: string
+          actor: string | null
+          details: Json | null
+          id: string
+          occurred_at: string
+          record_id: string | null
+          table_name: string
+        }
+        Insert: {
+          action: string
+          actor?: string | null
+          details?: Json | null
+          id?: string
+          occurred_at?: string
+          record_id?: string | null
+          table_name: string
+        }
+        Update: {
+          action?: string
+          actor?: string | null
+          details?: Json | null
+          id?: string
+          occurred_at?: string
+          record_id?: string | null
+          table_name?: string
+        }
+        Relationships: []
+      }
+      seo_ad_campaigns: {
+        Row: {
+          budget: number
+          channel: string
+          clicks: number
+          conversions: number
+          cpa: number
+          created_at: string
+          ends_on: string | null
+          id: string
+          impressions: number
+          name: string
+          roas: number
+          spend: number
+          starts_on: string | null
+          status: string
+        }
+        Insert: {
+          budget?: number
+          channel?: string
+          clicks?: number
+          conversions?: number
+          cpa?: number
+          created_at?: string
+          ends_on?: string | null
+          id?: string
+          impressions?: number
+          name: string
+          roas?: number
+          spend?: number
+          starts_on?: string | null
+          status?: string
+        }
+        Update: {
+          budget?: number
+          channel?: string
+          clicks?: number
+          conversions?: number
+          cpa?: number
+          created_at?: string
+          ends_on?: string | null
+          id?: string
+          impressions?: number
+          name?: string
+          roas?: number
+          spend?: number
+          starts_on?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      seo_ai_suggestions: {
+        Row: {
+          confidence: number
+          created_at: string
+          id: string
+          impact: string
+          status: string
+          suggestion: string
+          target_ref: string | null
+          target_type: string
+          title: string
+        }
+        Insert: {
+          confidence?: number
+          created_at?: string
+          id?: string
+          impact?: string
+          status?: string
+          suggestion?: string
+          target_ref?: string | null
+          target_type?: string
+          title: string
+        }
+        Update: {
+          confidence?: number
+          created_at?: string
+          id?: string
+          impact?: string
+          status?: string
+          suggestion?: string
+          target_ref?: string | null
+          target_type?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      seo_alerts: {
+        Row: {
+          acknowledged: boolean
+          category: string
+          created_at: string
+          id: string
+          message: string
+          severity: string
+          title: string
+        }
+        Insert: {
+          acknowledged?: boolean
+          category?: string
+          created_at?: string
+          id?: string
+          message?: string
+          severity?: string
+          title: string
+        }
+        Update: {
+          acknowledged?: boolean
+          category?: string
+          created_at?: string
+          id?: string
+          message?: string
+          severity?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      seo_audits: {
+        Row: {
+          breakdown: Json | null
+          completed_at: string | null
+          id: string
+          issues_found: number
+          name: string
+          pages_crawled: number
+          score: number
+          started_at: string
+          status: string
+        }
+        Insert: {
+          breakdown?: Json | null
+          completed_at?: string | null
+          id?: string
+          issues_found?: number
+          name: string
+          pages_crawled?: number
+          score?: number
+          started_at?: string
+          status?: string
+        }
+        Update: {
+          breakdown?: Json | null
+          completed_at?: string | null
+          id?: string
+          issues_found?: number
+          name?: string
+          pages_crawled?: number
+          score?: number
+          started_at?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      seo_automation_flows: {
+        Row: {
+          conversion_rate: number
+          created_at: string
+          executions: number
+          id: string
+          name: string
+          status: string
+          steps: number
+          trigger_event: string
+        }
+        Insert: {
+          conversion_rate?: number
+          created_at?: string
+          executions?: number
+          id?: string
+          name: string
+          status?: string
+          steps?: number
+          trigger_event: string
+        }
+        Update: {
+          conversion_rate?: number
+          created_at?: string
+          executions?: number
+          id?: string
+          name?: string
+          status?: string
+          steps?: number
+          trigger_event?: string
+        }
+        Relationships: []
+      }
+      seo_automation_runs: {
+        Row: {
+          automation_id: string | null
+          finished_at: string | null
+          id: string
+          items_processed: number
+          message: string | null
+          started_at: string
+          status: string
+        }
+        Insert: {
+          automation_id?: string | null
+          finished_at?: string | null
+          id?: string
+          items_processed?: number
+          message?: string | null
+          started_at?: string
+          status?: string
+        }
+        Update: {
+          automation_id?: string | null
+          finished_at?: string | null
+          id?: string
+          items_processed?: number
+          message?: string | null
+          started_at?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "seo_automation_runs_automation_id_fkey"
+            columns: ["automation_id"]
+            isOneToOne: false
+            referencedRelation: "seo_automations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      seo_automations: {
+        Row: {
+          automation_type: string
+          created_at: string
+          description: string | null
+          id: string
+          last_run_at: string | null
+          name: string
+          next_run_at: string | null
+          runs_count: number
+          schedule: string
+          status: string
+          success_rate: number
+        }
+        Insert: {
+          automation_type?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          last_run_at?: string | null
+          name: string
+          next_run_at?: string | null
+          runs_count?: number
+          schedule?: string
+          status?: string
+          success_rate?: number
+        }
+        Update: {
+          automation_type?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          last_run_at?: string | null
+          name?: string
+          next_run_at?: string | null
+          runs_count?: number
+          schedule?: string
+          status?: string
+          success_rate?: number
+        }
+        Relationships: []
+      }
+      seo_backlinks: {
+        Row: {
+          anchor_text: string | null
+          domain_authority: number
+          first_seen_at: string
+          id: string
+          link_type: string
+          source_domain: string
+          source_url: string
+          spam_score: number
+          status: string
+          target_url: string
+        }
+        Insert: {
+          anchor_text?: string | null
+          domain_authority?: number
+          first_seen_at?: string
+          id?: string
+          link_type?: string
+          source_domain: string
+          source_url: string
+          spam_score?: number
+          status?: string
+          target_url: string
+        }
+        Update: {
+          anchor_text?: string | null
+          domain_authority?: number
+          first_seen_at?: string
+          id?: string
+          link_type?: string
+          source_domain?: string
+          source_url?: string
+          spam_score?: number
+          status?: string
+          target_url?: string
+        }
+        Relationships: []
+      }
+      seo_benchmark_runs: {
+        Row: {
+          created_at: string
+          id: string
+          label: string
+          notes: string | null
+          pagination_ms: number
+          query_ms: number
+          report_ms: number
+          rows_scanned: number
+          status: string
+          target: string
+          ttfb_ms: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          label: string
+          notes?: string | null
+          pagination_ms?: number
+          query_ms?: number
+          report_ms?: number
+          rows_scanned?: number
+          status?: string
+          target: string
+          ttfb_ms?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          label?: string
+          notes?: string | null
+          pagination_ms?: number
+          query_ms?: number
+          report_ms?: number
+          rows_scanned?: number
+          status?: string
+          target?: string
+          ttfb_ms?: number
+        }
+        Relationships: []
+      }
+      seo_competitor_gaps: {
+        Row: {
+          competitor_id: string | null
+          created_at: string
+          id: string
+          keyword: string
+          opportunity: string
+          our_position: number | null
+          search_volume: number
+          their_position: number | null
+        }
+        Insert: {
+          competitor_id?: string | null
+          created_at?: string
+          id?: string
+          keyword: string
+          opportunity?: string
+          our_position?: number | null
+          search_volume?: number
+          their_position?: number | null
+        }
+        Update: {
+          competitor_id?: string | null
+          created_at?: string
+          id?: string
+          keyword?: string
+          opportunity?: string
+          our_position?: number | null
+          search_volume?: number
+          their_position?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "seo_competitor_gaps_competitor_id_fkey"
+            columns: ["competitor_id"]
+            isOneToOne: false
+            referencedRelation: "seo_competitors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      seo_competitors: {
+        Row: {
+          backlinks_count: number
+          created_at: string
+          domain: string
+          domain_authority: number
+          id: string
+          keywords_count: number
+          name: string
+          region: string
+          traffic_estimate: number
+          visibility_score: number
+        }
+        Insert: {
+          backlinks_count?: number
+          created_at?: string
+          domain: string
+          domain_authority?: number
+          id?: string
+          keywords_count?: number
+          name: string
+          region?: string
+          traffic_estimate?: number
+          visibility_score?: number
+        }
+        Update: {
+          backlinks_count?: number
+          created_at?: string
+          domain?: string
+          domain_authority?: number
+          id?: string
+          keywords_count?: number
+          name?: string
+          region?: string
+          traffic_estimate?: number
+          visibility_score?: number
+        }
+        Relationships: []
+      }
+      seo_content_items: {
+        Row: {
+          body: string | null
+          content_type: string
+          created_at: string
+          id: string
+          seo_score: number
+          status: string
+          target_keyword: string | null
+          title: string
+          url: string | null
+          word_count: number
+        }
+        Insert: {
+          body?: string | null
+          content_type?: string
+          created_at?: string
+          id?: string
+          seo_score?: number
+          status?: string
+          target_keyword?: string | null
+          title: string
+          url?: string | null
+          word_count?: number
+        }
+        Update: {
+          body?: string | null
+          content_type?: string
+          created_at?: string
+          id?: string
+          seo_score?: number
+          status?: string
+          target_keyword?: string | null
+          title?: string
+          url?: string | null
+          word_count?: number
+        }
+        Relationships: []
+      }
+      seo_email_campaigns: {
+        Row: {
+          clicked_count: number
+          created_at: string
+          id: string
+          name: string
+          opened_count: number
+          replied_count: number
+          scheduled_at: string | null
+          segment: string
+          sent_count: number
+          status: string
+          subject: string
+        }
+        Insert: {
+          clicked_count?: number
+          created_at?: string
+          id?: string
+          name: string
+          opened_count?: number
+          replied_count?: number
+          scheduled_at?: string | null
+          segment?: string
+          sent_count?: number
+          status?: string
+          subject?: string
+        }
+        Update: {
+          clicked_count?: number
+          created_at?: string
+          id?: string
+          name?: string
+          opened_count?: number
+          replied_count?: number
+          scheduled_at?: string | null
+          segment?: string
+          sent_count?: number
+          status?: string
+          subject?: string
+        }
+        Relationships: []
+      }
+      seo_error_events: {
+        Row: {
+          context: Json
+          first_seen_at: string
+          fn_name: string | null
+          id: string
+          last_seen_at: string
+          message: string
+          name: string
+          occurrences: number
+          resolved: boolean
+          route: string | null
+          severity: string
+          source: string
+          stack: string | null
+        }
+        Insert: {
+          context?: Json
+          first_seen_at?: string
+          fn_name?: string | null
+          id?: string
+          last_seen_at?: string
+          message: string
+          name: string
+          occurrences?: number
+          resolved?: boolean
+          route?: string | null
+          severity?: string
+          source: string
+          stack?: string | null
+        }
+        Update: {
+          context?: Json
+          first_seen_at?: string
+          fn_name?: string | null
+          id?: string
+          last_seen_at?: string
+          message?: string
+          name?: string
+          occurrences?: number
+          resolved?: boolean
+          route?: string | null
+          severity?: string
+          source?: string
+          stack?: string | null
+        }
+        Relationships: []
+      }
+      seo_inbox_messages: {
+        Row: {
+          auto_reply: string | null
+          channel: string
+          contact_handle: string | null
+          contact_name: string
+          created_at: string
+          id: string
+          message: string
+          status: string
+        }
+        Insert: {
+          auto_reply?: string | null
+          channel?: string
+          contact_handle?: string | null
+          contact_name: string
+          created_at?: string
+          id?: string
+          message?: string
+          status?: string
+        }
+        Update: {
+          auto_reply?: string | null
+          channel?: string
+          contact_handle?: string | null
+          contact_name?: string
+          created_at?: string
+          id?: string
+          message?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      seo_indexing_records: {
+        Row: {
+          crawl_status: string
+          created_at: string
+          http_status: number
+          id: string
+          index_state: string
+          last_crawled_at: string | null
+          notes: string | null
+          source: string
+          url: string
+        }
+        Insert: {
+          crawl_status?: string
+          created_at?: string
+          http_status?: number
+          id?: string
+          index_state?: string
+          last_crawled_at?: string | null
+          notes?: string | null
+          source?: string
+          url: string
+        }
+        Update: {
+          crawl_status?: string
+          created_at?: string
+          http_status?: number
+          id?: string
+          index_state?: string
+          last_crawled_at?: string | null
+          notes?: string | null
+          source?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      seo_integrations: {
+        Row: {
+          category: string
+          created_at: string
+          display_name: string
+          id: string
+          last_sync_at: string | null
+          provider: string
+          status: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          display_name: string
+          id?: string
+          last_sync_at?: string | null
+          provider: string
+          status?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          last_sync_at?: string | null
+          provider?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      seo_issues: {
+        Row: {
+          category: string
+          description: string
+          detected_at: string
+          fix_suggestion: string | null
+          id: string
+          issue_type: string
+          page_url: string
+          severity: string
+          status: string
+        }
+        Insert: {
+          category?: string
+          description?: string
+          detected_at?: string
+          fix_suggestion?: string | null
+          id?: string
+          issue_type: string
+          page_url: string
+          severity?: string
+          status?: string
+        }
+        Update: {
+          category?: string
+          description?: string
+          detected_at?: string
+          fix_suggestion?: string | null
+          id?: string
+          issue_type?: string
+          page_url?: string
+          severity?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      seo_keyword_rankings: {
+        Row: {
+          created_at: string
+          id: string
+          keyword: string | null
+          keyword_id: string | null
+          position: number
+          recorded_on: string
+          url: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          keyword?: string | null
+          keyword_id?: string | null
+          position?: number
+          recorded_on?: string
+          url?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          keyword?: string | null
+          keyword_id?: string | null
+          position?: number
+          recorded_on?: string
+          url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "seo_keyword_rankings_keyword_id_fkey"
+            columns: ["keyword_id"]
+            isOneToOne: false
+            referencedRelation: "seo_keywords"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      seo_keywords: {
+        Row: {
+          country: string | null
+          cpc: number
+          created_at: string
+          difficulty: number
+          id: string
+          industry: string | null
+          intent: string
+          keyword: string
+          position: number
+          previous_position: number | null
+          region: string
+          search_volume: number
+          status: string
+          target_url: string | null
+        }
+        Insert: {
+          country?: string | null
+          cpc?: number
+          created_at?: string
+          difficulty?: number
+          id?: string
+          industry?: string | null
+          intent?: string
+          keyword: string
+          position?: number
+          previous_position?: number | null
+          region?: string
+          search_volume?: number
+          status?: string
+          target_url?: string | null
+        }
+        Update: {
+          country?: string | null
+          cpc?: number
+          created_at?: string
+          difficulty?: number
+          id?: string
+          industry?: string | null
+          intent?: string
+          keyword?: string
+          position?: number
+          previous_position?: number | null
+          region?: string
+          search_volume?: number
+          status?: string
+          target_url?: string | null
+        }
+        Relationships: []
+      }
+      seo_leads: {
+        Row: {
+          company: string | null
+          country: string | null
+          created_at: string
+          email: string
+          estimated_value: number
+          full_name: string
+          id: string
+          landing_url: string | null
+          phone: string | null
+          score: number
+          source_channel: string
+          source_keyword: string | null
+          stage: string
+        }
+        Insert: {
+          company?: string | null
+          country?: string | null
+          created_at?: string
+          email: string
+          estimated_value?: number
+          full_name: string
+          id?: string
+          landing_url?: string | null
+          phone?: string | null
+          score?: number
+          source_channel?: string
+          source_keyword?: string | null
+          stage?: string
+        }
+        Update: {
+          company?: string | null
+          country?: string | null
+          created_at?: string
+          email?: string
+          estimated_value?: number
+          full_name?: string
+          id?: string
+          landing_url?: string | null
+          phone?: string | null
+          score?: number
+          source_channel?: string
+          source_keyword?: string | null
+          stage?: string
+        }
+        Relationships: []
+      }
+      seo_meta_rules: {
+        Row: {
+          applies_to: number
+          created_at: string
+          description_template: string
+          id: string
+          name: string
+          og_image_template: string | null
+          priority: number
+          status: string
+          title_template: string
+          url_pattern: string
+        }
+        Insert: {
+          applies_to?: number
+          created_at?: string
+          description_template?: string
+          id?: string
+          name: string
+          og_image_template?: string | null
+          priority?: number
+          status?: string
+          title_template?: string
+          url_pattern: string
+        }
+        Update: {
+          applies_to?: number
+          created_at?: string
+          description_template?: string
+          id?: string
+          name?: string
+          og_image_template?: string | null
+          priority?: number
+          status?: string
+          title_template?: string
+          url_pattern?: string
+        }
+        Relationships: []
+      }
+      seo_page_behavior: {
+        Row: {
+          avg_time_seconds: number
+          bounce_rate: number
+          clicks: number
+          id: string
+          page_url: string
+          rage_clicks: number
+          recorded_on: string
+          scroll_depth_pct: number
+          sessions: number
+        }
+        Insert: {
+          avg_time_seconds?: number
+          bounce_rate?: number
+          clicks?: number
+          id?: string
+          page_url: string
+          rage_clicks?: number
+          recorded_on?: string
+          scroll_depth_pct?: number
+          sessions?: number
+        }
+        Update: {
+          avg_time_seconds?: number
+          bounce_rate?: number
+          clicks?: number
+          id?: string
+          page_url?: string
+          rage_clicks?: number
+          recorded_on?: string
+          scroll_depth_pct?: number
+          sessions?: number
+        }
+        Relationships: []
+      }
+      seo_pages: {
+        Row: {
+          canonical_url: string | null
+          created_at: string
+          h1: string | null
+          id: string
+          index_status: string
+          issues_count: number
+          last_crawled_at: string | null
+          meta_description: string | null
+          meta_title: string | null
+          page_type: string
+          seo_score: number
+          status: string
+          title: string
+          updated_at: string
+          url: string
+          word_count: number
+        }
+        Insert: {
+          canonical_url?: string | null
+          created_at?: string
+          h1?: string | null
+          id?: string
+          index_status?: string
+          issues_count?: number
+          last_crawled_at?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          page_type?: string
+          seo_score?: number
+          status?: string
+          title?: string
+          updated_at?: string
+          url: string
+          word_count?: number
+        }
+        Update: {
+          canonical_url?: string | null
+          created_at?: string
+          h1?: string | null
+          id?: string
+          index_status?: string
+          issues_count?: number
+          last_crawled_at?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          page_type?: string
+          seo_score?: number
+          status?: string
+          title?: string
+          updated_at?: string
+          url?: string
+          word_count?: number
+        }
+        Relationships: []
+      }
+      seo_performance_metrics: {
+        Row: {
+          avg_position: number
+          clicks: number
+          cls: number
+          conversions: number
+          ctr: number
+          id: string
+          impressions: number
+          inp_ms: number
+          lcp_ms: number
+          organic_sessions: number
+          recorded_on: string
+        }
+        Insert: {
+          avg_position?: number
+          clicks?: number
+          cls?: number
+          conversions?: number
+          ctr?: number
+          id?: string
+          impressions?: number
+          inp_ms?: number
+          lcp_ms?: number
+          organic_sessions?: number
+          recorded_on: string
+        }
+        Update: {
+          avg_position?: number
+          clicks?: number
+          cls?: number
+          conversions?: number
+          ctr?: number
+          id?: string
+          impressions?: number
+          inp_ms?: number
+          lcp_ms?: number
+          organic_sessions?: number
+          recorded_on?: string
+        }
+        Relationships: []
+      }
+      seo_product_entries: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          meta_description: string | null
+          meta_title: string | null
+          product_name: string
+          status: string
+          structured_data: Json | null
+          target_keywords: string[]
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          product_name: string
+          status?: string
+          structured_data?: Json | null
+          target_keywords?: string[]
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          product_name?: string
+          status?: string
+          structured_data?: Json | null
+          target_keywords?: string[]
+        }
+        Relationships: []
+      }
+      seo_reels: {
+        Row: {
+          created_at: string
+          duration_seconds: number
+          id: string
+          platform: string
+          prompt: string
+          script: string | null
+          status: string
+          title: string
+          views: number
+        }
+        Insert: {
+          created_at?: string
+          duration_seconds?: number
+          id?: string
+          platform?: string
+          prompt?: string
+          script?: string | null
+          status?: string
+          title: string
+          views?: number
+        }
+        Update: {
+          created_at?: string
+          duration_seconds?: number
+          id?: string
+          platform?: string
+          prompt?: string
+          script?: string | null
+          status?: string
+          title?: string
+          views?: number
+        }
+        Relationships: []
+      }
+      seo_regions: {
+        Row: {
+          code: string
+          flag: string | null
+          growth_pct: number
+          id: string
+          keywords_count: number
+          name: string
+          region_group: string
+          traffic_share: number
+        }
+        Insert: {
+          code: string
+          flag?: string | null
+          growth_pct?: number
+          id?: string
+          keywords_count?: number
+          name: string
+          region_group?: string
+          traffic_share?: number
+        }
+        Update: {
+          code?: string
+          flag?: string | null
+          growth_pct?: number
+          id?: string
+          keywords_count?: number
+          name?: string
+          region_group?: string
+          traffic_share?: number
+        }
+        Relationships: []
+      }
+      seo_reports: {
+        Row: {
+          generated_at: string
+          id: string
+          name: string
+          period_end: string
+          period_start: string
+          report_type: string
+          status: string
+          summary: Json | null
+        }
+        Insert: {
+          generated_at?: string
+          id?: string
+          name: string
+          period_end?: string
+          period_start?: string
+          report_type?: string
+          status?: string
+          summary?: Json | null
+        }
+        Update: {
+          generated_at?: string
+          id?: string
+          name?: string
+          period_end?: string
+          period_start?: string
+          report_type?: string
+          status?: string
+          summary?: Json | null
+        }
+        Relationships: []
+      }
+      seo_social_comments: {
+        Row: {
+          author: string
+          auto_reply: string | null
+          comment: string
+          created_at: string
+          id: string
+          platform: string
+          sentiment: string
+          status: string
+        }
+        Insert: {
+          author: string
+          auto_reply?: string | null
+          comment?: string
+          created_at?: string
+          id?: string
+          platform?: string
+          sentiment?: string
+          status?: string
+        }
+        Update: {
+          author?: string
+          auto_reply?: string | null
+          comment?: string
+          created_at?: string
+          id?: string
+          platform?: string
+          sentiment?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      seo_social_posts: {
+        Row: {
+          content: string
+          created_at: string
+          engagements: number
+          id: string
+          impressions: number
+          link_url: string | null
+          platform: string
+          published_at: string | null
+          scheduled_at: string | null
+          status: string
+        }
+        Insert: {
+          content?: string
+          created_at?: string
+          engagements?: number
+          id?: string
+          impressions?: number
+          link_url?: string | null
+          platform?: string
+          published_at?: string | null
+          scheduled_at?: string | null
+          status?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          engagements?: number
+          id?: string
+          impressions?: number
+          link_url?: string | null
+          platform?: string
+          published_at?: string | null
+          scheduled_at?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      seo_spam_events: {
+        Row: {
+          blocked: boolean
+          country: string | null
+          created_at: string
+          detail: string | null
+          event_type: string
+          id: string
+          source_ip: string | null
+        }
+        Insert: {
+          blocked?: boolean
+          country?: string | null
+          created_at?: string
+          detail?: string | null
+          event_type: string
+          id?: string
+          source_ip?: string | null
+        }
+        Update: {
+          blocked?: boolean
+          country?: string | null
+          created_at?: string
+          detail?: string | null
+          event_type?: string
+          id?: string
+          source_ip?: string | null
+        }
+        Relationships: []
+      }
+      seo_technical_checks: {
+        Row: {
+          affected_urls: number
+          category: string
+          detail: string | null
+          id: string
+          last_checked_at: string
+          name: string
+          status: string
+        }
+        Insert: {
+          affected_urls?: number
+          category?: string
+          detail?: string | null
+          id?: string
+          last_checked_at?: string
+          name: string
+          status?: string
+        }
+        Update: {
+          affected_urls?: number
+          category?: string
+          detail?: string | null
+          id?: string
+          last_checked_at?: string
+          name?: string
+          status?: string
+        }
+        Relationships: []
+      }
       server_backups: {
         Row: {
           backup_name: string | null
