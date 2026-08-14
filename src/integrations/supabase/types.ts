@@ -1261,6 +1261,735 @@ export type Database = {
         }
         Relationships: []
       }
+      lead_agents: {
+        Row: {
+          avg_response_minutes: number
+          can_export: boolean
+          can_unmask: boolean
+          capacity: number
+          conversion_rate: number
+          created_at: string
+          email: string
+          id: string
+          name: string
+          role: string
+          status: string
+          team: string
+        }
+        Insert: {
+          avg_response_minutes?: number
+          can_export?: boolean
+          can_unmask?: boolean
+          capacity?: number
+          conversion_rate?: number
+          created_at?: string
+          email?: string
+          id?: string
+          name: string
+          role?: string
+          status?: string
+          team?: string
+        }
+        Update: {
+          avg_response_minutes?: number
+          can_export?: boolean
+          can_unmask?: boolean
+          capacity?: number
+          conversion_rate?: number
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          role?: string
+          status?: string
+          team?: string
+        }
+        Relationships: []
+      }
+      lead_alerts: {
+        Row: {
+          acknowledged_at: string | null
+          alert_type: string
+          created_at: string
+          id: string
+          is_active: boolean
+          lead_id: string | null
+          message: string
+          severity: string
+        }
+        Insert: {
+          acknowledged_at?: string | null
+          alert_type?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          lead_id?: string | null
+          message?: string
+          severity?: string
+        }
+        Update: {
+          acknowledged_at?: string | null
+          alert_type?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          lead_id?: string | null
+          message?: string
+          severity?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_alerts_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_assignments: {
+        Row: {
+          agent_id: string | null
+          assignment_score: number
+          auto_assigned: boolean
+          created_at: string
+          id: string
+          lead_id: string
+          previous_agent_id: string | null
+          reason: string
+        }
+        Insert: {
+          agent_id?: string | null
+          assignment_score?: number
+          auto_assigned?: boolean
+          created_at?: string
+          id?: string
+          lead_id: string
+          previous_agent_id?: string | null
+          reason?: string
+        }
+        Update: {
+          agent_id?: string | null
+          assignment_score?: number
+          auto_assigned?: boolean
+          created_at?: string
+          id?: string
+          lead_id?: string
+          previous_agent_id?: string | null
+          reason?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_assignments_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "lead_agents"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_assignments_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_assignments_previous_agent_id_fkey"
+            columns: ["previous_agent_id"]
+            isOneToOne: false
+            referencedRelation: "lead_agents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_audit_logs: {
+        Row: {
+          action: string
+          action_type: string
+          actor: string
+          actor_role: string
+          created_at: string
+          details: string | null
+          id: string
+          lead_id: string | null
+          metadata: Json
+        }
+        Insert: {
+          action: string
+          action_type?: string
+          actor?: string
+          actor_role?: string
+          created_at?: string
+          details?: string | null
+          id?: string
+          lead_id?: string | null
+          metadata?: Json
+        }
+        Update: {
+          action?: string
+          action_type?: string
+          actor?: string
+          actor_role?: string
+          created_at?: string
+          details?: string | null
+          id?: string
+          lead_id?: string | null
+          metadata?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_audit_logs_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_automation_rules: {
+        Row: {
+          created_at: string
+          description: string
+          execution_count: number
+          id: string
+          is_active: boolean
+          last_executed_at: string | null
+          name: string
+          rule_key: string
+          trigger_event: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          execution_count?: number
+          id?: string
+          is_active?: boolean
+          last_executed_at?: string | null
+          name: string
+          rule_key: string
+          trigger_event?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          execution_count?: number
+          id?: string
+          is_active?: boolean
+          last_executed_at?: string | null
+          name?: string
+          rule_key?: string
+          trigger_event?: string
+        }
+        Relationships: []
+      }
+      lead_communications: {
+        Row: {
+          content: string
+          created_at: string
+          created_by: string
+          direction: string
+          id: string
+          lead_id: string
+          subject: string | null
+          type: string
+        }
+        Insert: {
+          content?: string
+          created_at?: string
+          created_by?: string
+          direction?: string
+          id?: string
+          lead_id: string
+          subject?: string | null
+          type?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          created_by?: string
+          direction?: string
+          id?: string
+          lead_id?: string
+          subject?: string | null
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_communications_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_escalations: {
+        Row: {
+          created_at: string
+          id: string
+          idle_minutes: number
+          is_resolved: boolean
+          lead_id: string
+          level: string
+          reason: string
+          resolution_notes: string | null
+          resolved_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          idle_minutes?: number
+          is_resolved?: boolean
+          lead_id: string
+          level?: string
+          reason?: string
+          resolution_notes?: string | null
+          resolved_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          idle_minutes?: number
+          is_resolved?: boolean
+          lead_id?: string
+          level?: string
+          reason?: string
+          resolution_notes?: string | null
+          resolved_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_escalations_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_follow_ups: {
+        Row: {
+          agent_id: string | null
+          completed_at: string | null
+          created_at: string
+          follow_up_type: string
+          id: string
+          is_completed: boolean
+          lead_id: string
+          notes: string | null
+          outcome: string | null
+          scheduled_at: string
+          suggested_message: string | null
+        }
+        Insert: {
+          agent_id?: string | null
+          completed_at?: string | null
+          created_at?: string
+          follow_up_type?: string
+          id?: string
+          is_completed?: boolean
+          lead_id: string
+          notes?: string | null
+          outcome?: string | null
+          scheduled_at?: string
+          suggested_message?: string | null
+        }
+        Update: {
+          agent_id?: string | null
+          completed_at?: string | null
+          created_at?: string
+          follow_up_type?: string
+          id?: string
+          is_completed?: boolean
+          lead_id?: string
+          notes?: string | null
+          outcome?: string | null
+          scheduled_at?: string
+          suggested_message?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_follow_ups_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "lead_agents"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_follow_ups_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_integration_events: {
+        Row: {
+          created_at: string
+          detail: string
+          event: string
+          id: string
+          integration_key: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          detail?: string
+          event: string
+          id?: string
+          integration_key: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          detail?: string
+          event?: string
+          id?: string
+          integration_key?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      lead_integrations: {
+        Row: {
+          category: string
+          created_at: string
+          events_today: number
+          id: string
+          integration_key: string
+          is_enabled: boolean
+          last_sync_at: string | null
+          name: string
+          status: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          events_today?: number
+          id?: string
+          integration_key: string
+          is_enabled?: boolean
+          last_sync_at?: string | null
+          name: string
+          status?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          events_today?: number
+          id?: string
+          integration_key?: string
+          is_enabled?: boolean
+          last_sync_at?: string | null
+          name?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      lead_notes: {
+        Row: {
+          content: string
+          created_at: string
+          created_by: string
+          id: string
+          lead_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          lead_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          lead_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_notes_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_routing_rules: {
+        Row: {
+          accuracy: number
+          created_at: string
+          description: string
+          id: string
+          is_active: boolean
+          name: string
+          rule_key: string
+          strategy: string
+          target_team: string
+        }
+        Insert: {
+          accuracy?: number
+          created_at?: string
+          description?: string
+          id?: string
+          is_active?: boolean
+          name: string
+          rule_key: string
+          strategy?: string
+          target_team?: string
+        }
+        Update: {
+          accuracy?: number
+          created_at?: string
+          description?: string
+          id?: string
+          is_active?: boolean
+          name?: string
+          rule_key?: string
+          strategy?: string
+          target_team?: string
+        }
+        Relationships: []
+      }
+      lead_scores: {
+        Row: {
+          confidence: number
+          created_at: string
+          factors: Json
+          id: string
+          lead_id: string
+          model_version: string
+          score: number
+          score_type: string
+        }
+        Insert: {
+          confidence?: number
+          created_at?: string
+          factors?: Json
+          id?: string
+          lead_id: string
+          model_version?: string
+          score?: number
+          score_type?: string
+        }
+        Update: {
+          confidence?: number
+          created_at?: string
+          factors?: Json
+          id?: string
+          lead_id?: string
+          model_version?: string
+          score?: number
+          score_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_scores_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lead_settings: {
+        Row: {
+          category: string
+          created_at: string
+          description: string
+          id: string
+          label: string
+          setting_key: string
+          value_bool: boolean | null
+          value_text: string | null
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          description?: string
+          id?: string
+          label: string
+          setting_key: string
+          value_bool?: boolean | null
+          value_text?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string
+          id?: string
+          label?: string
+          setting_key?: string
+          value_bool?: boolean | null
+          value_text?: string | null
+        }
+        Relationships: []
+      }
+      lead_sources: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          name: string
+          sub_sources: Json
+          type: string
+          utm_medium: string | null
+          utm_source: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          name: string
+          sub_sources?: Json
+          type?: string
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          name?: string
+          sub_sources?: Json
+          type?: string
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Relationships: []
+      }
+      leads: {
+        Row: {
+          ai_score: number
+          assigned_agent_id: string | null
+          assigned_at: string | null
+          budget_range: string | null
+          campaign: string
+          category: string
+          city: string
+          closed_at: string | null
+          company: string
+          conversion_probability: number
+          country: string
+          created_at: string
+          deal_value: number
+          device: string
+          duplicate_of: string | null
+          duplicate_score: number
+          email: string
+          fraud_score: number
+          id: string
+          industry: string
+          intent_score: number
+          is_duplicate: boolean
+          language: string
+          last_contact_at: string | null
+          lost_reason: string | null
+          name: string
+          next_follow_up: string | null
+          phone: string
+          priority: string
+          requirements: string
+          source: string
+          spam_reason: string | null
+          state: string
+          status: string
+          sub_source: string
+          temperature: string
+          updated_at: string
+        }
+        Insert: {
+          ai_score?: number
+          assigned_agent_id?: string | null
+          assigned_at?: string | null
+          budget_range?: string | null
+          campaign?: string
+          category?: string
+          city?: string
+          closed_at?: string | null
+          company?: string
+          conversion_probability?: number
+          country?: string
+          created_at?: string
+          deal_value?: number
+          device?: string
+          duplicate_of?: string | null
+          duplicate_score?: number
+          email?: string
+          fraud_score?: number
+          id?: string
+          industry?: string
+          intent_score?: number
+          is_duplicate?: boolean
+          language?: string
+          last_contact_at?: string | null
+          lost_reason?: string | null
+          name: string
+          next_follow_up?: string | null
+          phone?: string
+          priority?: string
+          requirements?: string
+          source?: string
+          spam_reason?: string | null
+          state?: string
+          status?: string
+          sub_source?: string
+          temperature?: string
+          updated_at?: string
+        }
+        Update: {
+          ai_score?: number
+          assigned_agent_id?: string | null
+          assigned_at?: string | null
+          budget_range?: string | null
+          campaign?: string
+          category?: string
+          city?: string
+          closed_at?: string | null
+          company?: string
+          conversion_probability?: number
+          country?: string
+          created_at?: string
+          deal_value?: number
+          device?: string
+          duplicate_of?: string | null
+          duplicate_score?: number
+          email?: string
+          fraud_score?: number
+          id?: string
+          industry?: string
+          intent_score?: number
+          is_duplicate?: boolean
+          language?: string
+          last_contact_at?: string | null
+          lost_reason?: string | null
+          name?: string
+          next_follow_up?: string | null
+          phone?: string
+          priority?: string
+          requirements?: string
+          source?: string
+          spam_reason?: string | null
+          state?: string
+          status?: string
+          sub_source?: string
+          temperature?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "leads_assigned_agent_id_fkey"
+            columns: ["assigned_agent_id"]
+            isOneToOne: false
+            referencedRelation: "lead_agents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       license_keys: {
         Row: {
           created_at: string
