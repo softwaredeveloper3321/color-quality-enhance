@@ -2818,6 +2818,7 @@ export type Database = {
           created_at: string
           id: string
           impact: string
+          model: string | null
           status: string
           suggestion: string
           target_ref: string | null
@@ -2829,6 +2830,7 @@ export type Database = {
           created_at?: string
           id?: string
           impact?: string
+          model?: string | null
           status?: string
           suggestion?: string
           target_ref?: string | null
@@ -2840,6 +2842,7 @@ export type Database = {
           created_at?: string
           id?: string
           impact?: string
+          model?: string | null
           status?: string
           suggestion?: string
           target_ref?: string | null
@@ -3194,6 +3197,7 @@ export type Database = {
           content_type: string
           created_at: string
           id: string
+          model: string | null
           seo_score: number
           status: string
           target_keyword: string | null
@@ -3206,6 +3210,7 @@ export type Database = {
           content_type?: string
           created_at?: string
           id?: string
+          model?: string | null
           seo_score?: number
           status?: string
           target_keyword?: string | null
@@ -3218,6 +3223,7 @@ export type Database = {
           content_type?: string
           created_at?: string
           id?: string
+          model?: string | null
           seo_score?: number
           status?: string
           target_keyword?: string | null
@@ -3500,7 +3506,7 @@ export type Database = {
           industry: string | null
           intent: string
           keyword: string
-          position: number
+          position: number | null
           previous_position: number | null
           region: string
           search_volume: number
@@ -3516,7 +3522,7 @@ export type Database = {
           industry?: string | null
           intent?: string
           keyword: string
-          position?: number
+          position?: number | null
           previous_position?: number | null
           region?: string
           search_volume?: number
@@ -3532,7 +3538,7 @@ export type Database = {
           industry?: string | null
           intent?: string
           keyword?: string
-          position?: number
+          position?: number | null
           previous_position?: number | null
           region?: string
           search_volume?: number
@@ -3804,6 +3810,7 @@ export type Database = {
           created_at: string
           duration_seconds: number
           id: string
+          model: string | null
           platform: string
           prompt: string
           script: string | null
@@ -3815,6 +3822,7 @@ export type Database = {
           created_at?: string
           duration_seconds?: number
           id?: string
+          model?: string | null
           platform?: string
           prompt?: string
           script?: string | null
@@ -3826,6 +3834,7 @@ export type Database = {
           created_at?: string
           duration_seconds?: number
           id?: string
+          model?: string | null
           platform?: string
           prompt?: string
           script?: string | null
