@@ -54,7 +54,7 @@ const ROLE_CATEGORIES = [
   { id: 'ceo', label: 'CEO Dashboard', icon: Eye },
   { id: 'vala_ai_management', label: 'Vala AI', icon: Brain },
   { id: 'server_manager', label: 'Server Manager', icon: Server },
-  { id: 'api_ai_manager', label: 'AI API Manager', icon: Zap },
+  { id: 'api_ai_manager', label: 'API + AI Manager', icon: Zap },
   // GRADE 2
   { id: 'developer_management', label: 'Development Manager', icon: Code2 },
   { id: 'product_manager', label: 'Product Manager', icon: Box },
@@ -69,6 +69,7 @@ const ROLE_CATEGORIES = [
   // GRADE 3
   { id: 'marketing_management', label: 'Marketing Manager', icon: Megaphone },
   { id: 'seo_manager', label: 'SEO Manager', icon: Search },
+  { id: 'author_manager', label: 'Author Manager', icon: FileSignature },
   { id: 'lead_manager', label: 'Lead Manager', icon: Target },
   { id: 'sales_support_manager', label: 'Sales & Support', icon: Headphones },
   { id: 'customer_support_management', label: 'Customer Support', icon: HeartHandshake },
