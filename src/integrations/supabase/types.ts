@@ -1448,6 +1448,7 @@ export type Database = {
       }
       lead_automation_rules: {
         Row: {
+          accuracy: number
           created_at: string
           description: string
           execution_count: number
@@ -1459,6 +1460,7 @@ export type Database = {
           trigger_event: string
         }
         Insert: {
+          accuracy?: number
           created_at?: string
           description?: string
           execution_count?: number
@@ -1470,6 +1472,7 @@ export type Database = {
           trigger_event?: string
         }
         Update: {
+          accuracy?: number
           created_at?: string
           description?: string
           execution_count?: number
@@ -1655,6 +1658,7 @@ export type Database = {
         Row: {
           category: string
           created_at: string
+          description: string
           events_today: number
           id: string
           integration_key: string
@@ -1666,6 +1670,7 @@ export type Database = {
         Insert: {
           category?: string
           created_at?: string
+          description?: string
           events_today?: number
           id?: string
           integration_key: string
@@ -1677,6 +1682,7 @@ export type Database = {
         Update: {
           category?: string
           created_at?: string
+          description?: string
           events_today?: number
           id?: string
           integration_key?: string
@@ -1724,6 +1730,7 @@ export type Database = {
           accuracy: number
           created_at: string
           description: string
+          execution_count: number
           id: string
           is_active: boolean
           name: string
@@ -1735,6 +1742,7 @@ export type Database = {
           accuracy?: number
           created_at?: string
           description?: string
+          execution_count?: number
           id?: string
           is_active?: boolean
           name: string
@@ -1746,6 +1754,7 @@ export type Database = {
           accuracy?: number
           created_at?: string
           description?: string
+          execution_count?: number
           id?: string
           is_active?: boolean
           name?: string
@@ -1870,9 +1879,9 @@ export type Database = {
           budget_range: string | null
           campaign: string
           category: string
-          city: string
+          city: string | null
           closed_at: string | null
-          company: string
+          company: string | null
           conversion_probability: number
           country: string
           created_at: string
@@ -1893,10 +1902,10 @@ export type Database = {
           next_follow_up: string | null
           phone: string
           priority: string
-          requirements: string
+          requirements: string | null
           source: string
           spam_reason: string | null
-          state: string
+          state: string | null
           status: string
           sub_source: string
           temperature: string
@@ -1909,9 +1918,9 @@ export type Database = {
           budget_range?: string | null
           campaign?: string
           category?: string
-          city?: string
+          city?: string | null
           closed_at?: string | null
-          company?: string
+          company?: string | null
           conversion_probability?: number
           country?: string
           created_at?: string
@@ -1932,10 +1941,10 @@ export type Database = {
           next_follow_up?: string | null
           phone?: string
           priority?: string
-          requirements?: string
+          requirements?: string | null
           source?: string
           spam_reason?: string | null
-          state?: string
+          state?: string | null
           status?: string
           sub_source?: string
           temperature?: string
@@ -1948,9 +1957,9 @@ export type Database = {
           budget_range?: string | null
           campaign?: string
           category?: string
-          city?: string
+          city?: string | null
           closed_at?: string | null
-          company?: string
+          company?: string | null
           conversion_probability?: number
           country?: string
           created_at?: string
@@ -1971,10 +1980,10 @@ export type Database = {
           next_follow_up?: string | null
           phone?: string
           priority?: string
-          requirements?: string
+          requirements?: string | null
           source?: string
           spam_reason?: string | null
-          state?: string
+          state?: string | null
           status?: string
           sub_source?: string
           temperature?: string
