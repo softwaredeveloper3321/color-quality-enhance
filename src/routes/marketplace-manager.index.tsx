@@ -24,11 +24,11 @@ function ManagerGate() {
   useEffect(() => {
     const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
       setAuthed(!!session);
-      if (!session) navigate({ to: "/login" });
+      if (!session) navigate({ to: "/" });
     });
     supabase.auth.getSession().then(({ data }) => {
       setAuthed(!!data.session);
-      if (!data.session) navigate({ to: "/login" });
+      if (!data.session) navigate({ to: "/" });
     });
     return () => sub.subscription.unsubscribe();
   }, [navigate]);

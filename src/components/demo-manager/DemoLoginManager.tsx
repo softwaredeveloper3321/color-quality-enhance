@@ -61,7 +61,19 @@ function DemoLoginManagerContent() {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setDemos(data || []);
+      setDemos(
+        (data ?? []).map((d) => ({
+          id: d.id,
+          title: d.title ?? "Untitled demo",
+          url: d.url ?? "",
+          login_url: d.login_url ?? "",
+          demo_type: d.demo_type ?? "standard",
+          lifecycle_status: d.lifecycle_status ?? "active",
+          total_login_roles: d.total_login_roles ?? 0,
+          created_at: d.created_at ?? new Date().toISOString(),
+          is_bulk_created: d.is_bulk_created ?? false,
+        })),
+      );
     } catch (error) {
       console.error('Error fetching demos:', error);
       toast.error('Failed to load demos');

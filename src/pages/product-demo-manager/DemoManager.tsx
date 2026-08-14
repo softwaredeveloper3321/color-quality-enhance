@@ -101,7 +101,7 @@ const DemoManager = () => {
                       </TableCell>
                       <TableCell className="text-slate-300">{demo.category}</TableCell>
                       <TableCell className="text-slate-300">{demo.demo_type || "Standard"}</TableCell>
-                      <TableCell>{getStatusBadge(demo.status)}</TableCell>
+                      <TableCell>{getStatusBadge(demo.status ?? "unknown")}</TableCell>
                       <TableCell className="text-slate-400 text-sm">
                         {demo.created_at ? format(new Date(demo.created_at), "MMM d, yyyy") : "-"}
                       </TableCell>
@@ -120,7 +120,7 @@ const DemoManager = () => {
                             <Button
                               variant="ghost"
                               size="sm"
-                              onClick={() => window.open(demo.url, "_blank")}
+                              onClick={() => demo.url && window.open(demo.url, "_blank")}
                               className="text-violet-400 hover:text-violet-300"
                             >
                               <ExternalLink className="w-4 h-4" />

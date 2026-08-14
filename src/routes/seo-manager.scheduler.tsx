@@ -64,7 +64,7 @@ function SchedulerScreen() {
             <DataTable<Row<"seo_automation_runs">>
               rows={rows}
               columns={[
-                { key: "automation", header: "Automation", render: (r) => nameById.get(r.automation_id) ?? "—" },
+                { key: "automation", header: "Automation", render: (r) => (r.automation_id ? nameById.get(r.automation_id) : null) ?? "—" },
                 { key: "status", header: "Status", render: (r) => <StatusPill value={r.status} /> },
                 { key: "items", header: "Items", render: (r) => nf.format(r.items_processed) },
                 { key: "message", header: "Message", render: (r) => <span className="block max-w-[360px] truncate text-xs text-muted-foreground">{r.message ?? "—"}</span> },

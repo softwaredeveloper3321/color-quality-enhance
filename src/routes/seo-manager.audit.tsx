@@ -204,7 +204,7 @@ function AuditScreen() {
                 { key: "action", header: "Action", render: (row) => <StatusPill value={row.action.toLowerCase()} /> },
                 { key: "table", header: "Area", render: (row) => <span className="font-medium">{row.table_name.replace(/^seo_/, "").replace(/_/g, " ")}</span> },
                 { key: "record", header: "Record", render: (row) => <span className="numeric text-xs text-muted-foreground">{row.record_id?.slice(0, 8) ?? "—"}</span> },
-                { key: "actor", header: "Actor", render: (row) => <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><History aria-hidden="true" className="h-3.5 w-3.5" />{row.actor.replace(/_/g, " ")}</span> },
+                { key: "actor", header: "Actor", render: (row) => <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><History aria-hidden="true" className="h-3.5 w-3.5" />{(row.actor ?? "system").replace(/_/g, " ")}</span> },
               ]}
             />
           )}

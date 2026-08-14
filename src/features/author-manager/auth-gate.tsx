@@ -213,7 +213,7 @@ export function AuthGateBanner() {
         </div>
         {signin ? (
           <Link
-            to="/auth"
+            to="/"
             data-testid="auth-gate-signin"
             className="shrink-0 rounded-md bg-brand px-3 py-1.5 text-xs font-semibold text-brand-foreground hover:opacity-90"
           >

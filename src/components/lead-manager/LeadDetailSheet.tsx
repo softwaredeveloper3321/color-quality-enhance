@@ -33,7 +33,7 @@ import {
   useLeadCommunications,
   useLeadNotes,
 } from "@/lib/lead-manager/queries";
-import { PIPELINE_STAGES, type Lead, type LeadStatus } from "@/lib/lead-manager/types";
+import { PIPELINE_STAGES, type Lead, type LeadPriority, type LeadStatus, type LeadTemperature } from "@/lib/lead-manager/types";
 import {
   PriorityBadge,
   ScoreBar,
@@ -96,8 +96,8 @@ export function LeadDetailSheet({
           <SheetTitle className="font-display text-xl">{lead.name}</SheetTitle>
           <div className="flex flex-wrap items-center gap-2">
             <StatusBadge status={lead.status as LeadStatus} />
-            <PriorityBadge priority={lead.priority} />
-            <TemperatureBadge temperature={lead.temperature} />
+            <PriorityBadge priority={lead.priority as LeadPriority} />
+            <TemperatureBadge temperature={lead.temperature as LeadTemperature} />
             <span className="text-xs text-muted-foreground">
               {lead.sub_source} • created {relTime(lead.created_at)}
             </span>

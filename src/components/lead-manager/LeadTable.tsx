@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import type { Agent, Lead, LeadStatus } from "@/lib/lead-manager/types";
+import type { Agent, Lead, LeadPriority, LeadStatus, LeadTemperature } from "@/lib/lead-manager/types";
 import {
   EmptyState,
   LoadingRows,
@@ -124,13 +124,13 @@ export function LeadTable({
                   case "priority":
                     return (
                       <TableCell key={c}>
-                        <PriorityBadge priority={lead.priority} />
+                        <PriorityBadge priority={lead.priority as LeadPriority} />
                       </TableCell>
                     );
                   case "temperature":
                     return (
                       <TableCell key={c}>
-                        <TemperatureBadge temperature={lead.temperature} />
+                        <TemperatureBadge temperature={lead.temperature as LeadTemperature} />
                       </TableCell>
                     );
                   case "agent":

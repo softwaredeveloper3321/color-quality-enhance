@@ -97,7 +97,7 @@ const ProductAuditLogs = () => {
                         <div className="flex items-center gap-2">
                           <Clock className="w-4 h-4 text-slate-400" />
                           <span className="text-slate-400 text-sm">
-                            {format(new Date(log.timestamp), "MMM d, yyyy HH:mm")}
+                            {log.timestamp ? format(new Date(log.timestamp), "MMM d, yyyy HH:mm") : "-"}
                           </span>
                         </div>
                       </TableCell>

@@ -67,10 +67,10 @@ const DemoPendingRequests = () => {
 
       return (rows ?? []).map((row) => ({
         id: row.id,
-        requesterName: row.client_name,
+        requesterName: row.client_name ?? 'Unknown',
         company: row.company_name ?? '—',
-        email: row.client_email,
-        phone: row.phone,
+        email: row.client_email ?? '—',
+        phone: row.phone ?? '—',
         category: row.interested_category ?? 'Unspecified',
         requestedAt: relative(row.created_at),
         reason: row.message?.trim() || 'No message provided with this request.',
