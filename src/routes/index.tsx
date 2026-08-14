@@ -170,6 +170,19 @@ const ROLE_DASHBOARD_ROUTES: Partial<Record<RoleId, string>> = {
   admin_dashboard: "admin",
 };
 
+// CONTROL PANEL module buttons -> their dedicated module routes
+const MODULE_ROUTES: Partial<Record<RoleId, string>> = {
+  marketplace_manager: "/marketplace-manager",
+  api_ai_manager: "/dashboard/admin",
+  demo_manager: "/demo-manager",
+  seo_manager: "/seo-manager",
+  author_manager: "/boss/author-manager",
+  reseller_manager: "/dashboard/reseller",
+  lead_manager: "/lead-manager",
+};
+
+
+
 
 function Index() {
   const navigate = useNavigate();
