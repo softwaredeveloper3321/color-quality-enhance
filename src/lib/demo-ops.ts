@@ -318,8 +318,8 @@ export const detectFailures = (demos: DemoRow[], logs: ValidationLogRow[]): Dete
       hits.push({
         kind,
         demoId: demo.id,
-        demoTitle: demo.title,
-        at: demo.last_health_check ?? demo.updated_at,
+        demoTitle: demo.title ?? "Untitled demo",
+        at: demo.last_health_check ?? demo.updated_at ?? new Date().toISOString(),
         evidence: `Stored HTTP status ${demo.http_status} on demos row`,
       });
     }

@@ -11,7 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import type { Database } from "@/integrations/supabase/types";
 
 type DemoRow = Database["public"]["Tables"]["demos"]["Row"];
-type DemoStatus = Database["public"]["Enums"]["demo_status"];
+type DemoStatus = DemoRow["status"];
 type DemoRequestRow = Database["public"]["Tables"]["demo_requests"]["Row"];
 
 /** UI-facing lifecycle label used by the dashboard filters. */
@@ -60,16 +60,16 @@ const daysLeftLabel = (expiry: string | null): string => {
 
 const mapDemo = (row: DemoRow): DemoOverviewItem => ({
   id: row.id,
-  name: row.title,
-  product: row.category,
+  name: row.title ?? "Untitled demo",
+  product: row.category ?? "Uncategorised",
   status: toUiStatus(row),
   dbStatus: row.status,
   activeUsers: row.total_login_roles ?? 0,
   expiresIn: daysLeftLabel(row.expiry_date),
   createdBy: row.created_by ?? "—",
-  region: row.tech_stack,
+  region: row.tech_stack ?? "—",
   usagePercent: Math.round(row.health_score ?? row.uptime_percentage ?? 0),
-  url: row.url,
+  url: row.url ?? "",
 });
 
 const priorityOf = (row: DemoRequestRow): DemoRequestItem["priority"] => {
@@ -82,9 +82,9 @@ const priorityOf = (row: DemoRequestRow): DemoRequestItem["priority"] => {
 
 const mapRequest = (row: DemoRequestRow): DemoRequestItem => ({
   id: row.id,
-  company: row.company_name ?? row.client_name,
+  company: row.company_name ?? row.client_name ?? "Unknown",
   product: row.interested_category ?? "Unspecified",
-  requestedBy: row.client_name,
+  requestedBy: row.client_name ?? "Unknown",
   priority: priorityOf(row),
   requestDate: row.created_at ? new Date(row.created_at).toISOString().slice(0, 10) : "—",
   status: row.status ?? "pending",

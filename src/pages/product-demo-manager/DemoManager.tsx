@@ -120,7 +120,7 @@ const DemoManager = () => {
                             <Button
                               variant="ghost"
                               size="sm"
-                              onClick={() => window.open(demo.url, "_blank")}
+                              onClick={() => demo.url && window.open(demo.url, "_blank")}
                               className="text-violet-400 hover:text-violet-300"
                             >
                               <ExternalLink className="w-4 h-4" />

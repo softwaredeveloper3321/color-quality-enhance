@@ -76,6 +76,7 @@ const AddProduct = ({ onSuccess }: AddProductProps) => {
     setIsSubmitting(true);
     try {
       const { error } = await supabase.from("products").insert({
+        name: data.product_name,
         product_name: data.product_name,
         category: data.category,
         description: data.description,
@@ -156,7 +157,7 @@ const AddProduct = ({ onSuccess }: AddProductProps) => {
                   </SelectTrigger>
                   <SelectContent>
                     {categories?.map((cat) => (
-                      <SelectItem key={cat.id} value={cat.name}>{cat.name}</SelectItem>
+                      <SelectItem key={cat.id} value={cat.name ?? cat.id}>{cat.name ?? "Unnamed"}</SelectItem>
                     ))}
                     <SelectItem value="other">Other</SelectItem>
                   </SelectContent>

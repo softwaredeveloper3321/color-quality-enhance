@@ -124,13 +124,13 @@ export function LeadTable({
                   case "priority":
                     return (
                       <TableCell key={c}>
-                        <PriorityBadge priority={lead.priority} />
+                        <PriorityBadge priority={lead.priority as LeadPriority} />
                       </TableCell>
                     );
                   case "temperature":
                     return (
                       <TableCell key={c}>
-                        <TemperatureBadge temperature={lead.temperature} />
+                        <TemperatureBadge temperature={lead.temperature as LeadTemperature} />
                       </TableCell>
                     );
                   case "agent":

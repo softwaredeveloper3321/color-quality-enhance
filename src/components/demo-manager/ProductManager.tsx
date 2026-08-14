@@ -123,7 +123,7 @@ export const ProductManager: React.FC<ProductManagerProps> = ({ viewOnly = false
       // Merge demo mappings into products
       const productsWithMappings = (productsData || []).map(p => ({
         ...p,
-        demo_mappings: demoMappings[p.product_id] || []
+        demo_mappings: (p.product_id ? demoMappings[p.product_id] : undefined) || []
       }));
 
       setProducts(productsWithMappings as unknown as Product[]);
@@ -172,7 +172,8 @@ export const ProductManager: React.FC<ProductManagerProps> = ({ viewOnly = false
       const { data: product, error } = await supabase
         .from("products")
         .insert({
-          product_name: formData.name,
+          name: formData.name,
+        product_name: formData.name,
           product_type: formData.product_type,
           business_category_id: formData.category_id,
           subcategory_id: formData.subcategory_id,

@@ -90,7 +90,7 @@ const DemoDashboard = () => {
       const visitors = new Set<string>();
 
       clickRows.forEach((c) => {
-        perDemo.set(c.demo_id, (perDemo.get(c.demo_id) ?? 0) + 1);
+        if (c.demo_id) perDemo.set(c.demo_id, (perDemo.get(c.demo_id) ?? 0) + 1);
         const region = c.region ?? c.country ?? "Unknown";
         regionCounts.set(region, (regionCounts.get(region) ?? 0) + 1);
         const device = c.device_type ?? "Unknown";

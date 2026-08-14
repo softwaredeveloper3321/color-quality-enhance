@@ -156,7 +156,7 @@ const AddDemo = ({ onSuccess }: AddDemoProps) => {
                     </SelectTrigger>
                     <SelectContent>
                       {categories?.map((cat) => (
-                        <SelectItem key={cat.id} value={cat.name}>{cat.name}</SelectItem>
+                        <SelectItem key={cat.id} value={cat.name ?? cat.id}>{cat.name ?? "Unnamed"}</SelectItem>
                       ))}
                       <SelectItem value="SaaS">SaaS</SelectItem>
                       <SelectItem value="E-commerce">E-commerce</SelectItem>

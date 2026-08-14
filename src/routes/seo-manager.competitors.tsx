@@ -85,7 +85,7 @@ function CompetitorsScreen() {
                 {
                   key: "competitor",
                   header: "Competitor",
-                  render: (g) => nameById.get(g.competitor_id) ?? "—",
+                  render: (g) => (g.competitor_id ? nameById.get(g.competitor_id) : null) ?? "—",
                 },
                 { key: "their", header: "Their pos", render: (g) => g.their_position ?? "—" },
                 { key: "ours", header: "Our pos", render: (g) => g.our_position ?? "Not ranking" },
