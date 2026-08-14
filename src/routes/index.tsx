@@ -190,8 +190,9 @@ function Index() {
             onToggleCollapse={() => setSidebarCollapsed((v) => !v)}
             onRoleSelect={(roleId) => {
               setActiveRole(roleId);
-              if (roleId === "marketplace_manager") {
-                void navigate({ to: "/marketplace" });
+              const moduleRoute = MODULE_ROUTES[roleId];
+              if (moduleRoute) {
+                void navigate({ to: moduleRoute });
                 return;
               }
               const dashRole = ROLE_DASHBOARD_ROUTES[roleId];
