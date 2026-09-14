@@ -10,11 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ResellerManagerRouteImport } from './routes/reseller-manager'
 import { Route as ProductDemoManagerRouteImport } from './routes/product-demo-manager'
 import { Route as MarketplaceRouteImport } from './routes/marketplace'
 import { Route as DemoWorkspaceRouteImport } from './routes/demo-workspace'
 import { Route as DemoOpsRouteImport } from './routes/demo-ops'
 import { Route as DemoManagerRouteImport } from './routes/demo-manager'
+import { Route as ApiAiManagerRouteImport } from './routes/api-ai-manager'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SeoManagerIndexRouteImport } from './routes/seo-manager.index'
 import { Route as MarketplaceManagerIndexRouteImport } from './routes/marketplace-manager.index'
@@ -81,6 +83,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResellerManagerRoute = ResellerManagerRouteImport.update({
+  id: '/reseller-manager',
+  path: '/reseller-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductDemoManagerRoute = ProductDemoManagerRouteImport.update({
   id: '/product-demo-manager',
   path: '/product-demo-manager',
@@ -104,6 +111,11 @@ const DemoOpsRoute = DemoOpsRouteImport.update({
 const DemoManagerRoute = DemoManagerRouteImport.update({
   id: '/demo-manager',
   path: '/demo-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAiManagerRoute = ApiAiManagerRouteImport.update({
+  id: '/api-ai-manager',
+  path: '/api-ai-manager',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -432,11 +444,13 @@ const BossAuthorManagerAuthorAuthorIdRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api-ai-manager': typeof ApiAiManagerRoute
   '/demo-manager': typeof DemoManagerRoute
   '/demo-ops': typeof DemoOpsRoute
   '/demo-workspace': typeof DemoWorkspaceRoute
   '/marketplace': typeof MarketplaceRoute
   '/product-demo-manager': typeof ProductDemoManagerRoute
+  '/reseller-manager': typeof ResellerManagerRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/chat': typeof ApiChatRoute
   '/boss/author-manager': typeof BossAuthorManagerRouteWithChildren
@@ -500,11 +514,13 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api-ai-manager': typeof ApiAiManagerRoute
   '/demo-manager': typeof DemoManagerRoute
   '/demo-ops': typeof DemoOpsRoute
   '/demo-workspace': typeof DemoWorkspaceRoute
   '/marketplace': typeof MarketplaceRoute
   '/product-demo-manager': typeof ProductDemoManagerRoute
+  '/reseller-manager': typeof ResellerManagerRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/chat': typeof ApiChatRoute
   '/dashboard/$role': typeof DashboardRoleRoute
@@ -568,11 +584,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api-ai-manager': typeof ApiAiManagerRoute
   '/demo-manager': typeof DemoManagerRoute
   '/demo-ops': typeof DemoOpsRoute
   '/demo-workspace': typeof DemoWorkspaceRoute
   '/marketplace': typeof MarketplaceRoute
   '/product-demo-manager': typeof ProductDemoManagerRoute
+  '/reseller-manager': typeof ResellerManagerRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/api/chat': typeof ApiChatRoute
   '/boss/author-manager': typeof BossAuthorManagerRouteWithChildren
@@ -638,11 +656,13 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/api-ai-manager'
     | '/demo-manager'
     | '/demo-ops'
     | '/demo-workspace'
     | '/marketplace'
     | '/product-demo-manager'
+    | '/reseller-manager'
     | '/sitemap.xml'
     | '/api/chat'
     | '/boss/author-manager'
@@ -706,11 +726,13 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/api-ai-manager'
     | '/demo-manager'
     | '/demo-ops'
     | '/demo-workspace'
     | '/marketplace'
     | '/product-demo-manager'
+    | '/reseller-manager'
     | '/sitemap.xml'
     | '/api/chat'
     | '/dashboard/$role'
@@ -773,11 +795,13 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/api-ai-manager'
     | '/demo-manager'
     | '/demo-ops'
     | '/demo-workspace'
     | '/marketplace'
     | '/product-demo-manager'
+    | '/reseller-manager'
     | '/sitemap.xml'
     | '/api/chat'
     | '/boss/author-manager'
@@ -842,11 +866,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiAiManagerRoute: typeof ApiAiManagerRoute
   DemoManagerRoute: typeof DemoManagerRoute
   DemoOpsRoute: typeof DemoOpsRoute
   DemoWorkspaceRoute: typeof DemoWorkspaceRoute
   MarketplaceRoute: typeof MarketplaceRoute
   ProductDemoManagerRoute: typeof ProductDemoManagerRoute
+  ResellerManagerRoute: typeof ResellerManagerRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiChatRoute: typeof ApiChatRoute
   BossAuthorManagerRoute: typeof BossAuthorManagerRouteWithChildren
@@ -894,6 +920,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reseller-manager': {
+      id: '/reseller-manager'
+      path: '/reseller-manager'
+      fullPath: '/reseller-manager'
+      preLoaderRoute: typeof ResellerManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/product-demo-manager': {
       id: '/product-demo-manager'
       path: '/product-demo-manager'
@@ -927,6 +960,13 @@ declare module '@tanstack/react-router' {
       path: '/demo-manager'
       fullPath: '/demo-manager'
       preLoaderRoute: typeof DemoManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api-ai-manager': {
+      id: '/api-ai-manager'
+      path: '/api-ai-manager'
+      fullPath: '/api-ai-manager'
+      preLoaderRoute: typeof ApiAiManagerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -1411,11 +1451,13 @@ const BossAuthorManagerRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiAiManagerRoute: ApiAiManagerRoute,
   DemoManagerRoute: DemoManagerRoute,
   DemoOpsRoute: DemoOpsRoute,
   DemoWorkspaceRoute: DemoWorkspaceRoute,
   MarketplaceRoute: MarketplaceRoute,
   ProductDemoManagerRoute: ProductDemoManagerRoute,
+  ResellerManagerRoute: ResellerManagerRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiChatRoute: ApiChatRoute,
   BossAuthorManagerRoute: BossAuthorManagerRouteWithChildren,
