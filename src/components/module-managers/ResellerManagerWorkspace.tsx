@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { ArrowLeft, ChevronRight, Handshake, Layers3, Search } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
@@ -85,7 +85,7 @@ export function ResellerManagerWorkspace() {
   );
 }
 
-function WorkspaceSection({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
+function WorkspaceSection({ title, icon, children }: { title: string; icon: ReactNode; children: ReactNode }) {
   return (
     <section className="space-y-3">
       <div className="flex items-center gap-2 text-sm font-semibold">
